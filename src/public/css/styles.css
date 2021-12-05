@@ -1,0 +1,232 @@
+body {
+  font-family: "National", "Helvetica Neue", "Segoe WP", "Helvetica", "Arial";
+}
+
+/* Navigation Bar */
+#vicLinksUL {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#nav {
+  background-color: rgb(204, 204, 204);
+  overflow: hidden;
+}
+#nav a {
+  float: left;
+  color: rgb(108, 108, 108);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+#nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+#nav a.active {
+  background-color: rgb(40, 86, 58);
+  color: white;
+}
+/* Header */
+#headerContainer {
+  background-color: #333;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(40, 86, 58);
+  width: 100%;
+  overflow: hidden;
+}
+#logo {
+  width: 230px;
+  padding-top: 28px;
+  padding-left: 20px;
+  float: left;
+}
+#site-intro {
+  text-align: center;
+  display: inline;
+  overflow: hidden;
+  line-height: 13px;
+}
+
+#site-intro a {
+  color: white;
+  text-decoration: none;
+}
+
+#maintitle {
+  padding-top: 0.5%;
+  font-weight: normal;
+}
+
+#schooltitle {
+  font-weight: lighter;
+  font-size: 130%;
+}
+
+#schoolname {
+  font-size: 110%;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+#mainheader {
+  color: rgb(40, 86, 58);
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 5%;
+}
+
+/* Filter */
+/* form {
+  margin-left: 4%;
+  margin-right: 4%;
+} */
+
+.form-group {
+  margin-bottom: 1%;
+}
+
+.paneltext {
+  font-weight: bold;
+  font-size: medium;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+.selectpicker {
+  color: black;
+  font-weight: normal;
+  font-size: small;
+  width: auto;
+}
+
+.searchContainer {
+  /* padding-top: 1%;
+  padding-left: 7%; */
+}
+
+.searchInput {
+  padding: 1%;
+}
+
+.notes {
+  width: 48%;
+  font-weight: lighter;
+  font-style: italic;
+  font-size: small;
+  padding-left: 2%;
+  color: grey;
+}
+
+#checkboxContainer,
+#showLineCheckBoxContainer,
+#checkboxLabel,
+#lineCheckboxLabel {
+  padding-top: 1%;
+  padding-left: 2%;
+}
+
+/* SVG */
+#svgDivContainer {
+  margin: 2%;
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+#mainSVG {
+  border: solid #ddd 0.5px;
+  border-radius: 6px;
+}
+
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+/* Course Node */
+
+#level100 {
+  visibility: hidden;
+} /* Hide "level100" node */
+
+/* Zoom buttons */
+.btn-sm,
+.btn-outline-primary {
+  margin-top: 0.6%;
+  margin-right: 0.5%;
+  margin-bottom: 3%;
+  float: right; /* stick buttons to the right side*/
+}
+
+/* .btn-outline-secondary {
+  width: 3.4% !important;
+  height: 3% !important;
+  border-radius: 50% !important;
+  /*force rounded border: 在HTML网页中css样式是根据优先级来判断使用的，优先级高的css样式会覆盖优先级低的样式，而css属性有很多都具有继承性，这就会影响我们网页显示，我们可以使用!important来改变这种情况。
+} */
+
+/* Popup Window */
+.popUpWindow {
+  background-color: white;
+  border: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  opacity: 0;
+}
+
+/* Full course name in tooltip */
+#TooltipCourseName {
+  color: Blue;
+  /* Let it be centered */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Filter and CourseInfo Card */
+#cardsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#filterCard {
+  width: 45%;
+  margin-left: 4%;
+  float: left;
+}
+
+#courseInfoCard {
+  width: 45%;
+  margin-left: 2%;
+  margin-right: 4%;
+  float: left;
+}
+
+/* Course info card body */
+#courseInfoCardBody {
+}
+
+/* Footnote */
+#footnote {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: medium;
+  color: grey;
+  float: left;
+  padding-left: 4%;
+  margin: 0.8%;
+}
+
+/* HTML link */
+a:hover {
+  background-color: yellow;
+  text-decoration: underline;
+}
+
+/* a:visited {
+  color: purple;
+  background-color: transparent;
+  text-decoration: none;
+} */
