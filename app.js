@@ -1,7 +1,8 @@
 // "bare" import d3-dag remotely(through internet) using unpkg
 // import * as d3dag from "https://unpkg.com/d3-dag@0.6.0?module";
 
-// import local modified d3-dag library
+//import local modified d3-dag library
+
 import * as d3dag from "./module/d3-dag-047.js";
 import { draw } from "./src/public/js/main.js";
 import { rawCourseDataToJsonArray } from "./src/public/js/rawCourseDataParser.js";
@@ -20,7 +21,6 @@ function drawLocalData() {
     .then((json) => {
       var dag = d3dag.dagStratify()(json);
       sugiyama()(dag);
-      console.log(json);
     });
 }
 
@@ -46,22 +46,45 @@ function drawLocalData() {
 //   return d3dag.dagStratify()(dag_data)”
 // }
 
-var PORT = process.env.PORT || 5000;
-var express = require("express");
-var app = express();
-var http = require("http");
-var server = http.Server(app);
+// var PORT = 5000;
+// var express = require("express");
+// var app = express();
 
-app.use(express.static("client"));
+// var http = require("http");
+// var server = http.Server(app);
 
-server.listen(PORT, function () {
-  console.log("Chat server running");
-});
+// app.use(express.static("client"));
 
-var io = require("socket.io")(server);
+// server.listen(PORT, function () {
+//   console.log("Chat server running");
+// });
 
-io.on("connection", function (socket) {
-  socket.on("message", function (msg) {
-    io.emit("message", msg);
-  });
-});
+// var io = require("socket.io")(server);
+
+// io.on("connection", function (socket) {
+//   console.log("Chat server connection");
+// });
+
+// var http = require("http");
+
+// http
+//   .createServer(function (request, response) {
+//     // 发送 HTTP 头部
+//     // HTTP 状态值: 200 : OK
+//     // 内容类型: text/plain
+//     response.writeHead(200, { "Content-Type": "text/plain" });
+
+//     // 发送响应数据 "Hello World"
+//     response.end("Hello World !\n");
+//   })
+//   .listen(8080);
+
+// // 终端打印如下信息
+// console.log("Server running at http://127.0.0.1:8080/");
+
+/**
+ * node.js应用由哪几部分组成：
+ * 1. 引入required模块：我们可以使用 require 指令来载入 Node.js 模块。
+ * 2. 创建服务器：服务器可以监听客户端的请求。
+ * 3. 接收请求与响应请求：服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。
+ */
