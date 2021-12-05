@@ -24,7 +24,7 @@ function drawLocalData() {
     });
 }
 
-// Use to convert txt JSON
+// Use to convert txt to JSON
 // function drawLocalData() {
 //   fetch(rawDataURL2).then((response) => {
 //     response.text().then((data) => {
