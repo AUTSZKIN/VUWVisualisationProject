@@ -2,6 +2,9 @@
   "name": "thridprototype",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "15.5.1"
+  },
   "main": "app.js",
   "scripts": {
     "start": "http-server src/data --cors -p 7077 & http-server --cors -p 7078 & open http://127.0.0.1:7078/src/views/index.html",
