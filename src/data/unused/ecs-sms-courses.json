@@ -1,0 +1,1028 @@
+[
+{
+    "id":"AIML420",
+    "title":"Artificial Intelligence",
+    "prerequisites":["( 4of COMP3xx DATA3xx SWEN3xx NWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"AIML421",
+    "title":"Machine Learning Tools and Techniques",
+    "prerequisites":["( 4of COMP3xx DATA3xx SWEN3xx NWEN3xx STAT3xx )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"AIML425",
+    "title":"Neural Networks and Deep Learning",
+    "prerequisites":["( 1of AIML420 COMP307 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"AIML426",
+    "title":"Evolutionary Computation and Learning",
+    "prerequisites":["( 1of AIML420 COMP307 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"AIML427",
+    "title":"Big Data",
+    "prerequisites":["( 1of AIML420 AIML421 COMP307 COMP309 STAT393 STAT394 )",
+		     "( 1of ENGR123 STAT193 MATH177 QUAN102 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"AIML428",
+    "title":"Text Mining and Natural Language Processing",
+    "prerequisites":["60 300-level pts"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"AIML429",
+    "title":"Probabilistic Machine Learning",
+    "prerequisites":["( 1of AIML420  COMP307 )",
+		     "( 1of MATH177 STAT292 STAT293 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"AIML430",
+    "title":"Applications and Implications of Artificial Intelligence",
+    "prerequisites":["60 300-level pts"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"AIML431",
+    "title":"Current Topics in Artificial Intelligence",
+    "prerequisites":["( 1of AIML420 COMP307 )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"CGRA151",
+    "title":"Introduction to Computer Graphics",
+    "prerequisites":["( 1of COMP102 COMP112 or DSDN142 )"
+		     "( 1of ENGR121 MATH1xx )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CGRA251",
+    "title":"Computer Graphics",
+    "prerequisites":["CGRA151",
+		     "NWEN241",
+		     "( 1of  ENGR121 MATH151 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CGRA350",
+    "title":"Real-time 3D Computer Graphics",
+    "prerequisites":["CGRA251",
+		     "COMP261",
+		     "NWEN241"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CGRA352",
+    "title":"Image-based Graphics",
+    "prerequisites":["CGRA251",
+		     "( 1of COMP261 NWEN241 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CGRA408",
+    "title":"Computer Graphics Rendering",
+    "prerequisites":["( 1of CGRA350 COMP308 ( and CGRA401 CGRA402 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CGRA409",
+    "title":"Geometry Processing Algorithms",
+    "prerequisites":["( 1of CGRA350 COMP308 ( and CGRA401 CGRA402 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CGRA463",
+    "title":"Computer Graphics Practicum",
+    "prerequisites":["Permission of Head of School"],
+    "school":"ECS",
+    "trimesters":[2,3]
+},{
+    "id":"COMP102",
+    "title":"Introduction to Computer Program Design",
+    "prerequisites":[],
+    "school":"ECS",
+    "trimesters":[1,3]
+},{
+    "id":"COMP103",
+    "title":"Introduction to Data Structures and Algorithms",
+    "prerequisites":["( 1of COMP102 COMP112 )"],
+    "school":"ECS",
+    "trimesters":[2,3]
+},{
+    "id":"COMP112",
+    "title":"Introduction to Computer Science",
+    "prerequisites":["( 1of NCEA COMP132 )",
+		     "14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"COMP132",
+    "title":"Programming for the Natural and Social Sciences",
+    "prerequisites":[],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"COMP261",
+    "title":"Algorithms and Data Structures",
+    "prerequisites":["COMP103",
+		     "( 1of  ENGR123 MATH161 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"COMP304",
+    "title":"Programming Languages",
+    "prerequisites":["COMP261"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"COMP307",
+    "title":"Introduction to Artificial Intelligence",
+    "prerequisites":["( 1of COMP261 NWEN241 SWEN221 )",
+		     "( 1of ENGR123 MATH151 MATH161 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"COMP309",
+    "title":"Machine Learning Tools and Techniques",
+    "prerequisites":["( 1of COMP261  ( and DATA201 DATA202 ) NWEN241 SWEN221"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"COMP312",
+    "title":"Simulation and Stochastic Models",
+    "prerequisites":["( 1of COMP102 COMP112 COMP132 DATA202 )",
+		     "( 1of ENGR123 MATH177 MATH277 STAT292 )",
+		     "( 1of COMP2xx DATA2xx MATH2xx NWEN2xx STAT2xx SWEN2xx )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"COMP313",
+    "title":"Computer Game Development",
+    "prerequisites":["( 2of COMP261 NWEN241 NWEN243 SWEN222 SWEN225 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"COMP361",
+    "title":"Design and Analysis of Algorithms",
+    "prerequisites":["COMP261"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"COMP425",
+    "title":"Computational Logic",
+    "prerequisites":["COMP304",
+		     "( 1of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"CYBR171",
+    "title":"Cybersecurity Fundamentals",
+    "prerequisites":[],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CYBR271",
+    "title":"Secure Programming",
+    "prerequisites":["CYBR171",
+		     "NWEN241"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CYBR371",
+    "title":"System and Network Security",
+    "prerequisites":["CYBR171",
+		     "NWEN241",
+		     "NWEN243"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CYBR372",
+    "title":"Applications of Cryptography",
+    "prerequisites":["CYBR171",
+		     "( 1of CYBR271 COMP261 )",
+		     "NWEN243"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CYBR373",
+    "title":"Human and Organisational Security",
+    "prerequisites":["CYBR371"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CYBR471",
+    "title":"Offensive and Defensive Security",
+    "prerequisites":["CYBR271",
+		     "CYBR371",
+		     "CYBR373"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"CYBR472",
+    "title":"Digital Forensics",
+    "prerequisites":["CYBR271",
+		     "CYBR371",
+		     "( 2of CYBR3xx NWEN3xx SWEN324 SWEN326 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"CYBR473",
+    "title":"Malware and Reverse Engineering",
+    "prerequisites":["CYBR271",
+		     "CYBR371",
+		     "( 2of CYBR3xx NWEN3xx SWEN324 SWEN326 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"DATA201",
+    "title":"Techniques of Data Science",
+    "prerequisites":["DATA101",
+		     "( 1of COMP102 COMP112 COMP132 INFO151 )",
+		     "( 1of ENGR123 MATH177 QUAN102 STAT193 )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"DATA202",
+    "title":"Data Management and Programming",
+    "prerequisites":["( 1of COMP102 COMP112 COMP132 ( and INFO151 INFO226 ) )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"DATA301",
+    "title":"Data Science in Practice",
+    "prerequisites":["DATA201",
+		     "DATA202"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"DATA303",
+    "title":"Statistics for Data Science",
+    "prerequisites":["( 1of STAT293 DATA202 )",
+		     "( 1of MATH277 QUAN203 STAT292 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"DATA304",
+    "title":"Simulation and Stochastic Models",
+    "prerequisites":["( 1of COMP102 COMP112 COMP132 DATA202 )",
+		     "( 1of ENGR123 MATH177 MATH277 STAT292 )",
+		     "( 1of COMP2xx DATA2xx MATH2xx NWEN2xx STAT2xx SWEN2xx )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"DATA351",
+    "title":"Data Science Internship",
+    "prerequisites":["DATA201",
+		     "( 1of MATH277 STAT292 )",
+		     "( 1of DATA202 QUAN203 )",
+		     "15 further 200-level points",
+		     "prereq courses must have an average of B+ or better"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"ECEN301",
+    "title":"Embedded Systems",
+    "prerequisites":["ECEN202",
+		     "ECEN203"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ECEN302",
+    "title":"Integrated Digital Electronics",
+    "prerequisites":["ECEN202",
+		     "ECEN204"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"ECEN310",
+    "title":"Communication Engineering",
+    "prerequisites":["ECEN220"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"ECEN315",
+    "title":"Control Systems Engineering",
+    "prerequisites":["ECEN203"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ECEN321",
+    "title":"Engineering Statistics",
+    "prerequisites":["( 1of ( and ENGR121 ENGR122 ) ( and MATH142 MATH151 ) )",
+		     "( 2of ECEN2xx"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ECEN405",
+    "title":"Power Electronics",
+    "prerequisites":["ECEN303"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ECEN410",
+    "title":"Advanced Communications Engineering",
+    "prerequisites":["ECEN310"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"ECEN415",
+    "title":"Advanced Control Systems Engineering",
+    "prerequisites":["ECEN315"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ECEN425",
+    "title":"Advanced Mechatronic Engineering 1: Hardware and Control",
+    "prerequisites":["ECEN301"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ECEN426",
+    "title":"Special Topic: Convex Optimisation",
+    "prerequisites":["ECEN320"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"ECEN430",
+    "title":"Advanced Mechatronic Engineering 2: Intelligence and Design",
+    "prerequisites":["ECEN301"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"EEEN201",
+    "title":"Mechatronic Design and Prototyping",
+    "prerequisites":["( 1of COMP102 COMP112 )",
+		     "ENGR101",
+		     "ENGR110",
+		     "( 1of ENGR121 MATH141 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"EEEN202",
+    "title":"Digital Electronics and Microprocessors",
+    "prerequisites":["( 1of COMP102 COMP112 ENGR101 ENGR121 MATH161 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"EEEN203",
+    "title":"Circuit Analysis",
+    "prerequisites":["( 1of ENGR122 MATH142 )",
+		     "( 1of ENGR142 PHYS115 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"EEEN204",
+    "title":"Electronic Devices",
+    "prerequisites":["( 1of ENGR122 MATH142 )",
+		     "( 1of ENGR142 PHYS115 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"EEEN220",
+    "title":"Signals, Systems and Statistics 1",
+    "prerequisites":["( 1of ( and ENGR121 ENGR122 ) ( and MATH142 MATH151 ) )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"EEEN313",
+    "title":"Power Electronics and Electrical Machines",
+    "prerequisites":["( 1of EEEN203 ECEN203 )",
+		     "( 1of EEEN204 ECEN204 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ENGR101",
+    "title":"Engineering Technology",
+    "prerequisites":["enrolment in BE(Hons)"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ENGR110",
+    "title":"Engineering Design",
+    "prerequisites":["( 1of  COMP102 COMP112 )",
+		     "ENGR101"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ENGR121",
+    "title":"Engineering Mathematics Foundations",
+    "prerequisites":["( 1of  NCEA MATH132 )"],
+    "school":"SMS",
+    "trimesters":[1,2,3]
+},{
+    "id":"ENGR122",
+    "title":"Engineering Mathematics with Calculus",
+    "prerequisites":["( 1of ENGR121 MATH141 )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"ENGR123",
+    "title":"Engineering Mathematics with Logic and Statistics",
+    "prerequisites":["ENGR121"],
+    "school":"SMS",
+    "trimesters":[2,3]
+},{
+    "id":"ENGR201",
+    "title":"Engineering in Context",
+    "prerequisites":["ENGR101",
+		     "ENGR110",
+		     "45 further points from Part 1 of the BE(Hons) schedule"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ENGR222",
+    "title":"Computational Algebra and Calculus",
+    "prerequisites":["( 1of ( and ENGR121 ENGR122 ) ( MATH142 MATH151 ) )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"ENGR301",
+    "title":"Engineering Project Management 1",
+    "prerequisites":["Admission to Part 2 of the BE(Hons)",
+		     "ENGR201",
+		     "60 200-level pts from (CYBR, COMP, ECEN, NWEN, RESE, SWEN)"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ENGR302",
+    "title":"Engineering Project Management 2",
+    "prerequisites":["ENGR301"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"ENGR401",
+    "title":"Professional Practice",
+    "prerequisites":["ENGR201",
+		     "ENGR301",
+		     "ENGR302",
+		     "( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"ENGR439",
+    "title":"Special Topic: Mechatronic Design",
+    "prerequisites":["HoS"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"ENGR489",
+    "title":"Engineering Project",
+    "prerequisites":["ENGR201",
+		     "ENGR301",
+		     "ENGR302",
+		     "( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":F
+},{
+    "id":"MATH132",
+    "title":"Introduction to Mathematical Thinking",
+    "prerequisites":[],
+    "school":"SMS",
+    "trimesters":[1,3]
+},{
+    "id":"MATH141",
+    "title":"Calculus 1A",
+    "prerequisites":["( 1of NCEA MATH132 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH142",
+    "title":"Calculus 1B",
+    "prerequisites":["( 1of MATH141 QUAN111 )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH151",
+    "title":"Algebra",
+    "prerequisites":["( 1of NCEA MATH132 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH161",
+    "title":"Discrete Mathematics and Logic",
+    "prerequisites":["Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR121-123, B+ or better in MATH132, MATH141-177, QUAN111) or equivalent background in mathematics."],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH177",
+    "title":"Probability and Decision Modelling",
+    "prerequisites":["Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR122, 123, MATH141, QUAN111) or equivalent background in mathematics."],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH212",
+    "title":"Introduction to Real Analysis",
+    "prerequisites":["MATH142",
+		     "MATH161",
+		     "Alternatively, B+ or better in both (ENGR122, 123)"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH243",
+    "title":"Multivariable Calculus",
+    "prerequisites":["MATH142",
+		     "MATH151",
+		     "Alternatively, B+ or better in ENGR122"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH244",
+    "title":"Modelling with Differential Equations",
+    "prerequisites":["( 1of  ( and MATH142 MATH151 )  ( and ENGR121 ENGR122 ) )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH245",
+    "title":"Computational Mathematics",
+    "prerequisites":["( 1of ENGR122 ENGR123 ( and MATH151 ( 1of MATH141 MATH142 ) ) )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH251",
+    "title":"Linear Algebra",
+    "prerequisites":["MATH151",
+		     "MATH161",
+		     "Alternatively, B+ or better in (ENGR122 or MATH151)"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH261",
+    "title":"Discrete Mathematics 2",
+    "prerequisites":["MATH161",
+		     "Alternatively, B+ or better in ENGR123"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH277",
+    "title":"Mathematical Statistics",
+    "prerequisites":["MATH142",
+		     "MATH177",
+		     "Alternatively, B+ or better in both (ENGR122, 123)"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH301",
+    "title":"Differential Equations",
+    "prerequisites":["MATH243",
+		     "MATH244"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH309",
+    "title":"Mathematical Logic",
+    "prerequisites":["MATH161",
+		     "( 1of MATH211 MATH212 MATH251 MATH261 )",
+		     "( 1of MATH2xx COMP261 )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH311",
+    "title":"Algebra",
+    "prerequisites":["MATH151",
+		     "( 1of MATH251 MATH261 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH317",
+    "title":"Metric Spaces",
+    "prerequisites":["( 1of MATH211 MATH212"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH318",
+    "title":"Hilbert Spaces",
+    "prerequisites":["MATH251",
+		     "( 1of MATH211 MATH212 )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH321",
+    "title":"Applied Mathematics I",
+    "prerequisites":["( 2of MATH243 MATH244 MATH235 MATH251 MATH277 ENGR222 )"],
+    "school":"SMS",
+    "trimesters":[1,2]
+},{
+    "id":"MATH322",
+    "title":"Applied Mathematics II",
+    "prerequisites":["( 2of MATH243 MATH244 MATH235 MATH251 MATH277 ENGR222 )"],
+    "school":"SMS",
+    "trimesters":[1,2]
+},{
+    "id":"MATH323",
+    "title":"Mathematics for Earth Sciences",
+    "prerequisites":["( 2of MATH243 MATH244 MATH235 MATH251 MATH277 ENGR222 )"],
+    "school":"SMS",
+    "trimesters":[1,2]
+},{
+    "id":"MATH324",
+    "title":"Coding and Cryptography",
+    "prerequisites":["( 1of MATH251 ( and ( 1of ENGR121 MATH151 ) MATH2xx ) )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"MATH335",
+    "title":"Computability and Complexity",
+    "prerequisites":["MATH161",
+		     "( 1of MATH211 MATH212 MATH251 MATH261 )",
+		     "( 2of MATH2xx COMP261 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH353",
+    "title":"Optimisation",
+    "prerequisites":["MATH142",
+		     "MATH151",
+		     "( 1of MATH243 MATH244 MATH251 MATH261 )",
+		     "( 2of MATH2xx )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH361",
+    "title":"Graph Theory",
+    "prerequisites":["MATH161",
+		     "MATH2xx"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"MATH377",
+    "title":"Probability and Random Processes",
+    "prerequisites":["MATH243",
+		     "( 1of MATH277 STAT232 )"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"NWEN241",
+    "title":"Systems Programming",
+    "prerequisites":["COMP103"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"NWEN243",
+    "title":"Clouds and Networking",
+    "prerequisites":["COMP103"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"NWEN301",
+    "title":"Operating Systems Design",
+    "prerequisites":["NWEN241"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"NWEN302",
+    "title":"Computer Network Design",
+    "prerequisites":["NWEN241",
+		     "NWEN243",
+		     "( 1of ENGR123 ( and MATH161 ( 1of MATH177 QUAN102 STAT193 ) ) )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"NWEN303",
+    "title":"Concurrent Programming",
+    "prerequisites":["SWEN221",
+		     "( 1of ENGR123 MATH161 )",
+		     "( 1of COMP261 CYBR271 NWEN241 NWEN243 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"NWEN304",
+    "title":"Advanced Network Applications",
+    "prerequisites":["NWEN243",
+		     "( 1of ENGR123 MATH161 )",
+		     "( 1of COMP261 NWEN241 SWEN221 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"NWEN342",
+    "title":"Computer Organisation",
+    "prerequisites":["NWEN241",
+		     "( 1of ENGR123 MATH161 )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN401",
+    "title":"Distributed Systems Design",
+    "prerequisites":["( 2of NWEN301 NWEN302 NWEN303 )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN402",
+    "title":"Internet Engineering",
+    "prerequisites":["NWEN302",
+		     "NWEN304",
+		     "( 1of COMP3xx ECEN3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN403",
+    "title":"Advanced Network Engineering",
+    "prerequisites":["NWEN302",
+		     "( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN404",
+    "title":"Mobile Computing",
+    "prerequisites":["NWEN302",
+		     "( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN405",
+    "title":"Security Engineering",
+    "prerequisites":["NWEN304",
+		     "( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN406",
+    "title":"Distributed Computing in Grids and Clouds",
+    "prerequisites":["NWEN301",
+		     "( 1of NWEN302 NWEN303 )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN438",
+    "title":"Special Topic: System and Network Security",
+    "prerequisites":["NWEN241",
+		     "NWEN243",
+		     "( 4of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"NWEN439",
+    "title":"Special Topic: Protocols and Architecture for the Internet of Things",
+    "prerequisites":["NWEN241",
+		     "NWEN243",
+		     "( 4of COMP3xx ECEN3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"RESE111",
+    "title":"Introduction to Renewable Energy Systems",
+    "prerequisites":[],
+    "school":"ECS",
+    "trimesters":[3]
+},{
+    "id":"RESE211",
+    "title":"Renewable Energy Generation Systems",
+    "prerequisites":["( 1of ENGR110 RESE111 )",
+		     "( 1of ENGR121 ( and MATH141 MATH151 ) )",
+		     "( 1of ENGR141 ( and PHYS114 CHEM114 ) )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"RESE212",
+    "title":"Renewable Energy Conversion and Storage",
+    "prerequisites":["( 1of ENGR110 RESE111)",
+		     "( 1of ENGR121 ( and MATH141 MATH151 ) )",
+		     "( 1of ENGR141 ( and PHYS114 CHEM114 ) )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"RESE311",
+    "title":"Energy Economic Analyses",
+    "prerequisites":["RESE211",
+		     "RESE212",
+		     "( 1of STAT193 QUAN102 ECEN321 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"RESE312",
+    "title":"Sustainability Modelling Techniques",
+    "prerequisites":["RESE211",
+		     "RESE212"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"RESE323",
+    "title":"Renewable Energy Policy",
+    "prerequisites":["RESE211",
+		     "RESE212"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"RESE411",
+    "title":"Power Systems Analysis",
+    "prerequisites":["RESE313",
+		     "ECEN202",
+		     "ECEN203"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"RESE412",
+    "title":"Advanced Development of Renewable Energy Systems",
+    "prerequisites":["( 1of EEEN315 ECEN315 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"STAT193",
+    "title":"Statistics in Practice",
+    "prerequisites":[],
+    "school":"SMS",
+    "trimesters":[1,2,3]
+},{
+    "id":"STAT292",
+    "title":"Applied Statistics 2A",
+    "prerequisites":["( 1of STAT193 ENGR123 QUAN102 )",
+		     "Alternatively, a comparable background in Statistics."],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"STAT293",
+    "title":"Applied Statistics 2B",
+    "prerequisites":["STAT292"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"STAT332",
+    "title":"Statistical Inference",
+    "prerequisites":["MATH243",
+		     "MATH277"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"STAT335",
+    "title":"Statistical Models for Actuarial Science",
+    "prerequisites":["MATH277"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"STAT391",
+    "title":"Mathematical Methods for Applied Statistics",
+    "prerequisites":["STAT292;"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"STAT392",
+    "title":"Sample Surveys",
+    "prerequisites":["( 1of STAT193 QUAN102 ENGR123 )",
+		     "30 approved 200 or 300-level pts"],
+    "school":"SMS",
+    "trimesters":[1]
+},{
+    "id":"STAT393",
+    "title":"Linear Models",
+    "prerequisites":["( 1of ( and MATH243 MATH277 ) ( and STAT293 STAT391 ) )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"STAT394",
+    "title":"Multivariate Statistics",
+    "prerequisites":["( 1of MATH277 ( and STAT292 STAT391 ) )"],
+    "school":"SMS",
+    "trimesters":[2]
+},{
+    "id":"SWEN221",
+    "title":"Software Development",
+    "prerequisites":["COMP103"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN225",
+    "title":"Software Design",
+    "prerequisites":["SWEN221;"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN301",
+    "title":"Structured Methods",
+    "prerequisites":["SWEN225"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN303",
+    "title":"User Experience Engineering",
+    "prerequisites":["( 1of COMP261 SWEN221 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN304",
+    "title":"Database System Engineering",
+    "prerequisites":["( 1of COMP261 SWEN221 )",
+		     "( 1of ENGR123 MATH161 )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN324",
+    "title":"Software Correctness",
+    "prerequisites":["COMP103",
+		     "( 1of ENGR123 MATH161 )",
+		     "( 2of COMP2xx NWEN2xx SWEN2xx )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN325",
+    "title":"Software Development for Mobile Platforms",
+    "prerequisites":["NWEN243",
+		     "SWEN225"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN326",
+    "title":"Safety-Critical Systems",
+    "prerequisites":["NWEN241",
+		     "SWEN225"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN421",
+    "title":"Formal Software Engineering",
+    "prerequisites":["SWEN324",
+		     "( 2of COMP3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN422",
+    "title":"Human Computer Interaction",
+    "prerequisites":["( 1of COMP313 SWEN303 SWEN325 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN423",
+    "title":"Design: Patterns, Frameworks and Languages",
+    "prerequisites":["SWEN225",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN424",
+    "title":"Model-Driven Development",
+    "prerequisites":["( 2of  COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN425",
+    "title":"Design Patterns",
+    "prerequisites":["SWEN301",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN426",
+    "title":"Advanced Software Implementation and Development",
+    "prerequisites":["SWEN301",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN427",
+    "title":"Advanced Software Engineering: Requirements and Design",
+    "prerequisites":["SWEN301",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN430",
+    "title":"Compiler Engineering",
+    "prerequisites":["( 1of COMP261 SWEN324 )",
+		     "( 3of COMP3xx NWEN3xx SWEN3xx COMP261 )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN431",
+    "title":"Advanced Programming Languages",
+    "prerequisites":["( 2of COMP3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[1]
+},{
+    "id":"SWEN432",
+    "title":"Advanced Database Design and Implementation",
+    "prerequisites":["SWEN304",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN433",
+    "title":"Web Information Systems Engineering",
+    "prerequisites":["SWEN304",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN434",
+    "title":"Data Warehousing",
+    "prerequisites":["SWEN304",
+		     "( 2of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[]
+},{
+    "id":"SWEN438",
+    "title":"Special Topic: DevOps",
+    "prerequisites":["ENGR302"],
+    "school":"ECS",
+    "trimesters":[2]
+},{
+    "id":"SWEN439",
+    "title":"Special Topic: Database System Engineering",
+    "prerequisites":["( 4of COMP3xx NWEN3xx SWEN3xx )"],
+    "school":"ECS",
+    "trimesters":[1]
+}]

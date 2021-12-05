@@ -1,0 +1,1029 @@
+[
+  {
+    "id": "level100",
+    "courseTitle": ["level100 Info"],
+    "parentIds": [],
+    "trimester": ["0"],
+    "parentIdsComplex": []
+  },
+  {
+    "id": "STAT193",
+    "courseTitle": "Statistics in Practice",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA151",
+    "courseTitle": "Introduction to Computer Graphics",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP102", "COMP112", "DSDN142"] },
+      { "1of": ["ENGR121", "MATH1xx"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA251",
+    "courseTitle": "Computer Graphics",
+    "parentIds": ["CGRA151", "NWEN241"],
+    "parentIdsComplex": [{ "1of": ["ENGR121", "MATH151"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "CGRA350",
+    "courseTitle": "Real-Time 3D Computer Graphics",
+    "parentIds": ["CGRA251", "COMP261", "NWEN241"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "CGRA351",
+    "courseTitle": "Visual Effects Programming",
+    "parentIds": ["CGRA251"],
+    "parentIdsComplex": [{ "1of": ["COMP261", "NWEN241"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA352",
+    "courseTitle": "Image-Based Graphics",
+    "parentIds": ["CGRA251"],
+    "parentIdsComplex": [{ "1of": ["COMP261", "NWEN241"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA408",
+    "courseTitle": "Computer Graphics Rendering",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA409",
+    "courseTitle": "Geometry Processing Algorithms",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA463",
+    "courseTitle": "Computer Graphics Practicum",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "CGRA471",
+    "courseTitle": "Special Topic",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "CGRA472",
+    "courseTitle": "Special Topic",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP102",
+    "courseTitle": "Introduction to Computer Program Design",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP103",
+    "courseTitle": "Introduction to Data Structures and Algorithms",
+    "parentIds": [],
+    "parentIdsComplex": [{ "1of": ["COMP102", "COMP112"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP112",
+    "courseTitle": "Introduction to Computer Science",
+    "parentIds": [],
+    "parentIdsComplex": [{ "1of": ["NCEA", "COMP132", "HoS"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP132",
+    "courseTitle": "Programming for the Natural and Social Sciences",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP261",
+    "courseTitle": "Algorithms and Data Structures",
+    "parentIds": ["COMP103"],
+    "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP304",
+    "courseTitle": "Programming Languages",
+    "parentIds": ["COMP261"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP307",
+    "courseTitle": "Introduction to Artificial Intelligence",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP261", "NWEN241", "SWEN221"] },
+      { "1of": ["ENGR123", "MATH151", "MATH161"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP309",
+    "courseTitle": "Machine Learning Tools and Techniques",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "COMP261",
+          { "and": ["DATA201", "202"] },
+          "",
+          "NWEN241",
+          "SWEN221"
+        ]
+      }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP312",
+    "courseTitle": "Simulation and Stochastic Models",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP102", "COMP112", "COMP132", "DATA202"] },
+      { "1of": ["ENGR123", "MATH177", "MATH277", "STAT292"] },
+      {
+        "1of": [
+          "COMP2xx",
+          "DATA2xx",
+          "MATH2xx",
+          "NWEN2xx",
+          "STAT2xx",
+          "SWEN2xx"
+        ]
+      }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP313",
+    "courseTitle": "Computer Game Development",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "2of": ["COMP261", "NWEN241", "NWEN243", "SWEN222", "SWEN225"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP348",
+    "courseTitle": "Special Topics",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP361",
+    "courseTitle": "Design and Analysis of Algorithms",
+    "parentIds": ["COMP261"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP420",
+    "courseTitle": "Artificial Intelligence",
+    "parentIds": [],
+    "parentIdsComplex": [{ "4of": ["COMP3xx", "SWEN3xx", "NWEN3xx"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP421",
+    "courseTitle": "Machine Learning",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP307", "COMP420"] },
+      { "1of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP422",
+    "courseTitle": "Data Mining, Neural Networks and Genetic Programming",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP307", "COMP420"] },
+      { "1of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "COMP423",
+    "courseTitle": "Intelligent Agents",
+    "parentIds": ["COMP307"],
+    "parentIdsComplex": [
+      { "1of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP424",
+    "courseTitle": "Big Data",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP307", "COMP309", "STAT393", "STAT394"] },
+      { "1of": ["STAT193", "ENGR123"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "COMP425",
+    "courseTitle": "Computational Logic",
+    "parentIds": ["COMP304"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "CYBR171",
+    "courseTitle": "Cybersecurity Fundamentals",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "CYBR271",
+    "courseTitle": "Secure Programming",
+    "parentIds": ["CYBR171", "NWEN241"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "CYBR371",
+    "courseTitle": "System and Network Security",
+    "parentIds": ["CYBR171", "NWEN241", "NWEN243"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "CYBR372",
+    "courseTitle": "Applications of Cryptography",
+    "parentIds": ["CYBR171", "NWEN243"],
+    "parentIdsComplex": [{ "1of": ["CYBR271", "COMP261"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "CYBR373",
+    "courseTitle": "Human and Organisational Security",
+    "parentIds": ["CYBR371"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "CYBR471",
+    "courseTitle": "Offensive and Defensive Security",
+    "parentIds": ["CYBR271", "CYBR371", "CYBR373"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "CYBR472",
+    "courseTitle": "Digital Forensics",
+    "parentIds": ["CYBR271", "CYBR371"],
+    "parentIdsComplex": [
+      { "2of": ["CYBR3xx", "NWEN3xx", "SWEN324", "SWEN326"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "CYBR473",
+    "courseTitle": "Malware and Reverse Engineering",
+    "parentIds": ["CYBR271", "CYBR371"],
+    "parentIdsComplex": [
+      { "2of": ["CYBR3xx", "NWEN3xx", "SWEN324", "SWEN326"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN202",
+    "courseTitle": "Digital Electronics",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["ENGR101", "ENGR142", "PHYS115"] },
+      {
+        "1of": [
+          "ENGR121",
+          "ENGR122",
+          "ENGR123",
+          "MATH141",
+          "MATH142",
+          "MATH151",
+          "MATH161"
+        ]
+      }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN203",
+    "courseTitle": "Analogue Circuits and Systems",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["ENGR122", "MATH142"] },
+      { "1of": ["ENGR142", "PHYS115"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN204",
+    "courseTitle": "Electronic Design",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["ENGR122", "MATH142"] },
+      { "1of": ["ENGR142", "PHYS115"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN220",
+    "courseTitle": "Signals and Systems",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          { "and": ["ENGR121", "ENGR122"] },
+          { "and": ["MATH142", "151"] }
+        ]
+      }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN301",
+    "courseTitle": "Embedded Systems",
+    "parentIds": ["ECEN202", "ECEN203"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN302",
+    "courseTitle": "Integrated Digital Electronics",
+    "parentIds": ["ECEN202", "ECEN204"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN303",
+    "courseTitle": "Analogue Electronics",
+    "parentIds": ["ECEN203", "ECEN204"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN310",
+    "courseTitle": "Communication Engineering",
+    "parentIds": ["ECEN220"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN315",
+    "courseTitle": "Control Systems Engineering",
+    "parentIds": ["ECEN203"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN321",
+    "courseTitle": "Engineering Statistics",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          { "and": ["ENGR121", "ENGR122"] },
+          "",
+          { "and": ["MATH142", "MATH151"] }
+        ]
+      },
+      { "2of": ["ECEN2xx"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN403",
+    "courseTitle": "Advanced Electronics",
+    "parentIds": ["ECEN303"],
+    "parentIdsComplex": [{ "1of": ["ECEN220", "MATH243", "MATH244"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN404",
+    "courseTitle": "Electronic Devices",
+    "parentIds": ["ECEN303"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN405",
+    "courseTitle": "Power Electronics",
+    "parentIds": ["ECEN303"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN410",
+    "courseTitle": "Advanced Communications Engineering",
+    "parentIds": ["ECEN310"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN415",
+    "courseTitle": "Advanced Control Systems Engineering",
+    "parentIds": ["ECEN315"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN421",
+    "courseTitle": "Advanced Signal Processing",
+    "parentIds": ["ECEN321"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN422",
+    "courseTitle": "Convex Optimisation",
+    "parentIds": ["ECEN220"],
+    "parentIdsComplex": [{ "1of": ["ECEN321", "320"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN425",
+    "courseTitle": "Advanced Mechatronic Engineering 1: Hardware and Control",
+    "parentIds": ["ECEN301"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN426-427",
+    "courseTitle": "Special Topics",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ECEN430",
+    "courseTitle": "Advanced Mechatronic Engineering 2: Intelligence and Design",
+    "parentIds": ["ECEN301"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "ECEN431",
+    "courseTitle": "Musical Robotics",
+    "parentIds": ["ECEN301"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR101",
+    "courseTitle": "Engineering Technology",
+    "parentIds": [],
+    "parentIdsComplex": ["enrolment"],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR110",
+    "courseTitle": "Engineering Design",
+    "parentIds": ["COMP102", "ENGR101"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR111",
+    "courseTitle": "Introduction to Renewable Energy Systems",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR121",
+    "courseTitle": "Engineering Mathematics Foundations",
+    "parentIds": [],
+    "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR122",
+    "courseTitle": "Engineering Mathematics with Calculus",
+    "parentIds": [],
+    "parentIdsComplex": [{ "1of": ["ENGR121", "MATH141"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR123",
+    "courseTitle": "Engineering Mathematics with Logic and Statistics",
+    "parentIds": ["ENGR121"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR141",
+    "courseTitle": "Engineering Science",
+    "parentIds": [],
+    "parentIdsComplex": ["NCEA"],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR142",
+    "courseTitle": "Engineering Physics for Electronics and Computer Systems",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          { "and": ["ENGR141", "", { "1of": ["ENGR121", "MATH141"] }] },
+          "NCEA"
+        ]
+      }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR201",
+    "courseTitle": "Engineering in Context",
+    "parentIds": ["ENGR101", "ENGR110"],
+    "parentIdsComplex": [
+      { "3of": ["COMP1x2", "COMP103", "ENGR12x", "ENGR14x", "CYBR171"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR238",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR239",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR240",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR241",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR301",
+    "courseTitle": "Project Management",
+    "parentIds": ["ENGR201"],
+    "parentIdsComplex": [
+      "BEadm",
+      {
+        "4of": [
+          "CYBR2xx",
+          "COMP2xx",
+          "ECEN2xx",
+          "NWEN2xx",
+          "RESE2xx",
+          "SWEN2xx"
+        ]
+      }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR302",
+    "courseTitle": "Group Project",
+    "parentIds": ["ENGR301"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR338",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR339",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR340",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR341",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR401",
+    "courseTitle": "Professional Practice",
+    "parentIds": ["ENGR201", "ENGR301", "ENGR302"],
+    "parentIdsComplex": [
+      {
+        "3of": [
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR439",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR440",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "4of": [
+          "CGRA3xx",
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      },
+      "HoS"
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "ENGR441",
+    "courseTitle": "Directed Individual Study",
+    "parentIds": [],
+    "parentIdsComplex": [
+      {
+        "4of": [
+          "CGRA3xx",
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      },
+      "HoS"
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "ENGR489",
+    "courseTitle": "Engineering Project",
+    "parentIds": ["ENGR201", "ENGR301", "ENGR302"],
+    "parentIdsComplex": [
+      {
+        "3of": [
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN241",
+    "courseTitle": "Systems Programming",
+    "parentIds": ["COMP103"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "NWEN243",
+    "courseTitle": "Network Applications",
+    "parentIds": ["COMP103", "NWEN241"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN301",
+    "courseTitle": "Operating System Design",
+    "parentIds": ["NWEN241", "NWEN342"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN302",
+    "courseTitle": "Computer Network Design",
+    "parentIds": ["NWEN241", "NWEN243"],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "ENGR123",
+          { "and": ["MATH161", { "1of": ["MATH177", "QUAN102", "STAT193"] }] }
+        ]
+      }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN303",
+    "courseTitle": "Concurrent Programming",
+    "parentIds": ["SWEN221"],
+    "parentIdsComplex": [
+      { "1of": ["ENGR123", "MATH161"] },
+      { "1of": ["COMP261", "CYBR271", "NWEN241", "NWEN243"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "NWEN304",
+    "courseTitle": "Advanced Network Applications",
+    "parentIds": ["NWEN243"],
+    "parentIdsComplex": [
+      { "1of": ["ENGR123", "MATH161"] },
+      { "1of": ["COMP261", "NWEN241", "SWEN221"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN342",
+    "courseTitle": "Computer Organisation",
+    "parentIds": ["NWEN241"],
+    "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "NWEN401",
+    "courseTitle": "Distributed Systems Design",
+    "parentIds": [],
+    "parentIdsComplex": [{ "2of": ["NWEN301", "NWEN302", "NWEN303"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "NWEN402",
+    "courseTitle": "Internet Engineering",
+    "parentIds": ["NWEN302", "NWEN304"],
+    "parentIdsComplex": [
+      { "1of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN403",
+    "courseTitle": "Advanced Network Engineering",
+    "parentIds": ["NWEN302"],
+    "parentIdsComplex": [
+      { "2of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN404",
+    "courseTitle": "Mobile Computing",
+    "parentIds": ["NWEN302"],
+    "parentIdsComplex": [
+      { "2of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN405",
+    "courseTitle": "Security Engineering",
+    "parentIds": ["NWEN304"],
+    "parentIdsComplex": [
+      { "2of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN406",
+    "courseTitle": "Distributed Computing in Grids and Clouds",
+    "parentIds": ["NWEN301"],
+    "parentIdsComplex": [{ "1of": ["NWEN302", "NWEN303"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "NWEN438",
+    "courseTitle": "Special Topic",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "NWEN439",
+    "courseTitle": "Special Topic",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN221",
+    "courseTitle": "Software Development",
+    "parentIds": ["COMP103"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN225",
+    "courseTitle": "Software Design",
+    "parentIds": ["SWEN221"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN301",
+    "courseTitle": "Structured Methods",
+    "parentIds": ["SWEN225"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN303",
+    "courseTitle": "User Interface Design",
+    "parentIds": [],
+    "parentIdsComplex": [{ "1of": ["COMP261", "SWEN221"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN304",
+    "courseTitle": "Database System Engineering",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP261", "SWEN221"] },
+      { "1of": ["ENGR123", "MATH161"] }
+    ],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN324",
+    "courseTitle": "Software Correctness",
+    "parentIds": ["COMP103"],
+    "parentIdsComplex": [
+      { "1of": ["ENGR123", "MATH161"] },
+      { "2of": ["COMP2xx", "NWEN2xx", "SWEN2xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN325",
+    "courseTitle": "Software Development for Mobile Platforms",
+    "parentIds": ["NWEN243", "SWEN225"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN326",
+    "courseTitle": "Safety-Critical Systems",
+    "parentIds": ["NWEN241", "SWEN225"],
+    "parentIdsComplex": [],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN421",
+    "courseTitle": "Formal Software Engineering",
+    "parentIds": ["SWEN324"],
+    "parentIdsComplex": [{ "2of": ["COMP3xx", "SWEN3xx"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN422",
+    "courseTitle": "Human Computer Interaction",
+    "parentIds": ["SWEN303"],
+    "parentIdsComplex": [],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN423",
+    "courseTitle": "Design: Patterns, Frameworks and Languages",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP304", "SWEN301"] },
+      { "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN424",
+    "courseTitle": "Model-Driven Development",
+    "parentIds": [],
+    "parentIdsComplex": [{ "2of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN425",
+    "courseTitle": "Design Patterns",
+    "parentIds": ["SWEN301"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN426",
+    "courseTitle": "Advanced Software Implementation and Development",
+    "parentIds": ["SWEN301"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN427",
+    "courseTitle": "Advanced Software Engineering: Requirements and Design",
+    "parentIds": ["SWEN301"],
+    "parentIdsComplex": [{ "1of": ["SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN430",
+    "courseTitle": "Compiler Engineering",
+    "parentIds": [],
+    "parentIdsComplex": [
+      { "1of": ["COMP261", "SWEN324"] },
+      { "2of": ["COMP3xx", "NWEN303", "SWEN3xx"] }
+    ],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN431",
+    "courseTitle": "Advanced Programming Languages",
+    "parentIds": ["COMP304"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN432",
+    "courseTitle": "Advanced Database Design and Implementation",
+    "parentIds": ["SWEN304"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "1"
+  },
+  {
+    "id": "SWEN433",
+    "courseTitle": "Web Information Systems Engineering",
+    "parentIds": ["SWEN304"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN434",
+    "courseTitle": "Data Warehousing",
+    "parentIds": ["SWEN304"],
+    "parentIdsComplex": [{ "1of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN438",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  },
+  {
+    "id": "SWEN439",
+    "courseTitle": "Special Topic",
+    "parentIds": [],
+    "parentIdsComplex": ["HoS"],
+    "trimester": "2"
+  }
+]
