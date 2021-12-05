@@ -3,26 +3,26 @@
 
 //import local modified d3-dag library
 
-import * as d3dag from "./module/d3-dag-047.js";
-import { draw } from "./src/public/js/main.js";
-import { rawCourseDataToJsonArray } from "./src/public/js/rawCourseDataParser.js";
-import sugiyama from "./src/public/js/sugiyamaDagDrawing.js";
+// import * as d3dag from "./module/d3-dag-047.js";
+// import { draw } from "./src/public/js/main.js";
+// import { rawCourseDataToJsonArray } from "./src/public/js/rawCourseDataParser.js";
+// import sugiyama from "./src/public/js/sugiyamaDagDrawing.js";
 
-// const rawDataURL = "http://127.0.0.1:7077/rawtxt/courses2.txt";
-// const rawDataURL2 = "http://127.0.0.1:7077/rawtxt/ecs-sms-courses.txt"; // With 2 school
+// // const rawDataURL = "http://127.0.0.1:7077/rawtxt/courses2.txt";
+// // const rawDataURL2 = "http://127.0.0.1:7077/rawtxt/ecs-sms-courses.txt"; // With 2 school
 
-draw();
-drawLocalData();
+// draw();
+// drawLocalData();
 
-// Get JSON data from file
-function drawLocalData() {
-  fetch("http://127.0.0.1:7077/converted/ecs-sms-courses.json")
-    .then((response) => response.json())
-    .then((json) => {
-      var dag = d3dag.dagStratify()(json);
-      sugiyama()(dag);
-    });
-}
+// // Get JSON data from file
+// function drawLocalData() {
+//   fetch("http://127.0.0.1:7077/converted/ecs-sms-courses.json")
+//     .then((response) => response.json())
+//     .then((json) => {
+//       var dag = d3dag.dagStratify()(json);
+//       sugiyama()(dag);
+//     });
+// }
 
 // Use to convert TXT to JSON.
 // function drawLocalData() {
@@ -65,22 +65,20 @@ function drawLocalData() {
 //   console.log("Chat server connection");
 // });
 
-// var http = require("http");
+// create an express app
+const express = require("express");
+const app = express();
 
-// http
-//   .createServer(function (request, response) {
-//     // 发送 HTTP 头部
-//     // HTTP 状态值: 200 : OK
-//     // 内容类型: text/plain
-//     response.writeHead(200, { "Content-Type": "text/plain" });
+// use the express-static middleware
+app.use(express.static("public"));
 
-//     // 发送响应数据 "Hello World"
-//     response.end("Hello World !\n");
-//   })
-//   .listen(8080);
+// define the first route
+app.get("/", function (req, res) {
+  res.send("<h1>Hello World!</h1>");
+});
 
-// // 终端打印如下信息
-// console.log("Server running at http://127.0.0.1:8080/");
+// start the server listening for requests
+app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
 
 /**
  * node.js应用由哪几部分组成：
