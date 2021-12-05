@@ -1,1 +1,1 @@
-web: node index.html
+web: http-server src/data --cors -p 7077 & http-server --cors -p 7078 & open http://127.0.0.1:7078/src/views/index.html
