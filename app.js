@@ -59,27 +59,6 @@
 // }
 
 //************************************************************************************************
-
-// var PORT = 5000;
-// var express = require("express");
-// var app = express();
-
-// var http = require("http");
-// var server = http.Server(app);
-
-// app.use(express.static("client"));
-
-// server.listen(PORT, function () {
-//   console.log("Chat server running");
-// });
-
-// var io = require("socket.io")(server);
-
-// io.on("connection", function (socket) {
-//   console.log("Chat server connection");
-// });
-
-//************************************************************************************************
 // // create an express app
 // import express from "express";
 
@@ -104,31 +83,6 @@
  * 3. 接收请求与响应请求：服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。
  */
 
-// var express = require("express");
-// var app = express();
-// app.set("port", process.env.PORT || 5000);
-
-// app.use(express.static(__dirname + "/public"));
-// // app.use("/js", express.static("src/public/js/"));
-
-// // views is directory for all template files
-// // app.set("views", "src/views");
-// // app.set("view engine", "ejs");
-
-// // app.get("/", function (request, response) {
-// //   response.render("index");
-// // });
-
-// app.get("*", function (req, res) {
-//   res.sendFile("/src/views/index.html", { root: __dirname }); // load the single view file (angular will handle the page changes on the front-end)
-// });
-
-// app.listen(app.get("port"), function () {
-//   console.log("Node app is running on port", app.get("port"));
-// });
-
-// console.log("the server is started.");
-
 var express = require("express");
 var app = express();
 
@@ -146,5 +100,5 @@ app.get("/", function (request, response) {
 });
 
 app.listen(app.get("port"), function () {
-  console.log("Node app is running on port", app.get("port"));
+  console.log("Node app is running on port localhost:" + app.get("port"));
 });
