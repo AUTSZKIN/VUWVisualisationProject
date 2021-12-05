@@ -230,3 +230,8 @@ a:hover {
   background-color: transparent;
   text-decoration: none;
 } */
+
+/* course info card */
+.bg-warning {
+  opacity: 99%;
+}
