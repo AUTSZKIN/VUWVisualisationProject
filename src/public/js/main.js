@@ -10,7 +10,8 @@ function drawNav() {
   const data = [
     {
       id: "Course Pathways Visualisation",
-      url: "http://localhost:8080/",
+      url: "https://vuwvisual.herokuapp.com/",
+      // url: "http://localhost:8080/",
       status: "active",
     },
     { id: "Future Student", url: "https://www.wgtn.ac.nz/study" },
@@ -49,11 +50,11 @@ function drawHeader() {
       </div>
       
       <div id="site-intro">
-        <a href="localhost:8080"><h2 id="maintitle">Course Pathway Visualisation</h2></a>
+        <a href="https://vuwvisual.herokuapp.com/"><h2 id="maintitle">I LOVE ABI</h2></a>
         <a href="https://www.wgtn.ac.nz/ecs"><h3 id="schooltitle">School of <a id="schoolname"> Engineering and Computer Science</a></h3></a>
       </div>
       `
-  );
+  ); // Course Pathway Visualisation
   const mainheader = d3.select("body").append("div").attr("id", "mainheader");
   mainheader.append("h3").text("Course Filter");
 }

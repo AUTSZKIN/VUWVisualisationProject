@@ -193,13 +193,11 @@ export default function () {
       .attr("class", "popUpWindow");
 
     function mouseover(courseNode) {
-      console.log("mouseover");
       popUpWindow.transition().duration(200).style("opacity", 0.95);
       highlightPrereq(courseNode);
     }
 
     function mousemove(mouseEvent, courseNode) {
-      console.log("mousemove");
       var x = mouseEvent.pageX;
       var y = mouseEvent.pageY;
       const popUpWindowWidth = popUpWindow.node().offsetWidth;
@@ -213,7 +211,6 @@ export default function () {
     }
 
     function mouseleave(courseNode) {
-      console.log("mouseleave");
       popUpWindow.transition().delay(200).style("opacity", 0);
       deHighlightPrereq(courseNode);
     }
