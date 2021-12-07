@@ -3,7 +3,7 @@
 
 /******************************** */
 import * as d3_basic from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
-import * as d3_dag from "./d3-dag-047.js"; // import local modified d3-dag library
+import * as d3_dag from "../d3-dag/d3-dag-047.js"; // import local modified d3-dag library
 
 export default function () {
   const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
@@ -161,10 +161,9 @@ export default function () {
       //.on("click", (e, courseNode) => directToCoursePage(courseNode)) // e = mouseEvent
       .on("click", (e, courseNode) => {
         isCourseHighlighted = true;
-        // hide popup window
-        popUpWindow.style("visibility", "hidden");
+        popUpWindow.style("visibility", "hidden"); // hide popup window
         showCourseInfo(courseNode);
-        mouseover(courseNode);
+        highlightPrereq(courseNode);
       })
       .on("mouseover", (e, courseNode) => {
         // If a course Highlighted/highlighted, we stop highlighting other course
