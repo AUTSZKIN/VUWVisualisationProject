@@ -9,6 +9,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "open http://127.0.0.1:5000 && node app.js ",
+    "git": "git add . && git commit -m",
+    "postgit": "git push --all",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stop": "lsof -P | grep ':5000' | awk '{print $2}' | xargs kill -9 & lsof -P | grep ':7078' | awk '{print $2}' | xargs kill -9 & killall node"
   },
