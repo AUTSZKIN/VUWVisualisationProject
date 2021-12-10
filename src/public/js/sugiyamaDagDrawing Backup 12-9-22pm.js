@@ -8,8 +8,8 @@ import * as d3_dag from "/public/d3-dag/d3-dag-047.js"; // import local modified
 
 export default function () {
   const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
-  const highlightStyle = "stroke:red; stroke-width:4.5";
-  const hoverHighlightStyle = "stroke:purple; stroke-width:3.5";
+  var relatedIdSet = new Set(); // contains all ancestor ids of a node when the mouse is hover on it
+  const highlightStyle = "stroke:red; stroke-width:3";
   const defaultUnhighlightedStyle = "stroke:grey; stroke-width:1";
 
   function sugiyama(dag) {
@@ -140,7 +140,7 @@ export default function () {
       })
       .attr("style", defaultUnhighlightedStyle)
       .attr("class", "nodeRect")
-      .attr("id", (courseNode) => courseNode.id + "Rect");
+      .attr("id", (courseNode) => courseNode.id);
 
     // Add text to nodes
     courseNodes
@@ -155,69 +155,56 @@ export default function () {
   }
 
   function drawTooltipAndCourseInfoPanel() {
+    //Highlighted course should be highlighted
     var isCourseHighlighted = false;
+
+    d3.selectAll(".courseNode") // replace the courseNodes
+      //.on("click", (e, courseNode) => directToCoursePage(courseNode)) // e = mouseEvent
+      .on("click", (e, courseNode) => {
+        isCourseHighlighted = true;
+        popUpWindow.style("visibility", "hidden"); // hide popup window
+        showCourseInfo(courseNode);
+        highlightPrereq(courseNode);
+      })
+      .on("mouseover", (e, courseNode) => {
+        // If a course Highlighted/highlighted, we stop highlighting other course
+        isCourseHighlighted ? null : mouseover(courseNode);
+        isCourseHighlighted ? null : popUpWindow.style("visibility", "visible");
+      })
+      .on("mousemove", (e, courseNode) => mousemove(e, courseNode))
+      .on("mouseout", (e, courseNode) =>
+        // If a course Highlighted, we stop de-highlighting the Highlighted course
+        isCourseHighlighted ? null : mouseleave(courseNode)
+      );
+
+    //**********************************************************************
+    // Click outside of a node within the canvas to the hide highlighted elements
+    d3.selectAll(".layerRect").on("click", () => {
+      //, .courseEdge *" //include all children node
+      var highlighted = d3.selectAll(".nodeRect,.courseEdge");
+      highlighted.attr("style", defaultUnhighlightedStyle);
+      isCourseHighlighted = false;
+    });
+    //**********************************************************************
 
     const popUpWindow = d3
       .select("body")
       .append("div")
       .attr("class", "popUpWindow");
 
-    d3.selectAll(".courseNode") // replace the courseNodes
-      .on("click", (e, courseNode) => {
-        clickOnNode(courseNode);
-      })
-      .on("mouseover", (e, courseNode) => {
-        mouseover(courseNode);
-      })
-      .on("mousemove", (e, courseNode) => mousemove(e, courseNode))
-      .on("mouseout", (e, courseNode) => mouseleave(courseNode));
-
-    function clickOnNode(courseNode) {
-      // Highlight/Dehighlight clicked course node (Rect element)
-      const node = d3.select("#" + courseNode.id + "Node");
-      const rect = node.select(".nodeRect");
-      var isRectHighlighted = rect.classed("highlighted");
-
-      // console.log("Node: ");
-      // console.log(node);
-      // console.log(" Rect: ");
-      // console.log(rect);
-      // console.log("isRectHighlight?: " + isRectHighlighted);
-
-      if (isRectHighlighted) {
-        d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
-        $(".highlighted").removeClass("highlighted");
-        //return;
-      } else {
-        classifyHighlightNodes(courseNode);
-        d3.selectAll(".highlighted").attr("style", highlightStyle);
-        popUpWindow.style("visibility", "hidden"); // hide popup window
-        showCourseInfo(courseNode);
-        isCourseHighlighted = true;
-        //return;
-      }
-    }
-    //**********************************************************************
-    // Click outside of a node within the canvas to the hide highlighted elements
-    d3.selectAll(".layerRect,.highlighted").on("click", () => {
-      d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
-      $(".highlighted").removeClass("highlighted");
-    });
-    //**********************************************************************
-
     function mouseover(courseNode) {
       popUpWindow.transition().duration(200).style("opacity", 0.95);
-      popUpWindow.style("visibility", "visible");
-      highlightHoverOnCourse(courseNode);
+      highlightPrereq(courseNode);
     }
 
     function mousemove(mouseEvent, courseNode) {
+      var x = mouseEvent.pageX;
+      var y = mouseEvent.pageY;
       const popUpWindowWidth = popUpWindow.node().offsetWidth;
       const popUpWindowHeight = popUpWindow.node().offsetHeight;
-      var x = mouseEvent.pageX - popUpWindowWidth - 6;
-      var y = mouseEvent.pageY - popUpWindowHeight - 6;
-
-      popUpWindow.style("left", x + "px").style("top", y + "px"); // set popUpWindow position on the top left.  TODO: remove "px"
+      popUpWindow
+        .style("left", x - popUpWindowWidth + "px")
+        .style("top", y - popUpWindowHeight + "px"); // set popUpWindow position on the top left.  TODO: remove "px"
       popUpWindow.html(
         `<p id="TooltipCourseName">${courseNode.data.courseTitle}</p>`
       );
@@ -225,8 +212,7 @@ export default function () {
 
     function mouseleave(courseNode) {
       popUpWindow.transition().delay(200).style("opacity", 0);
-      deHighlightHoverOnCourse(courseNode);
-      d3.selectAll(".highlighted").attr("style", highlightStyle); //Keep highlighted course
+      deHighlightPrereq(courseNode);
     }
 
     function showCourseInfo(courseNode) {
@@ -343,31 +329,9 @@ export default function () {
     }
   }
 
-  function deHighlightHoverOnCourse(courseNode) {
-    d3.selectAll("#" + courseNode.id + "Rect").attr(
-      "style",
-      defaultUnhighlightedStyle
-    );
-    courseNode.data.parentIds.forEach((parentId) => {
-      const parentNode = d3
-        .selectAll(".courseNode")
-        .filter("#" + parentId + "Node")._groups[0][0].__data__;
-      deHighlightHoverOnCourse(parentNode);
-      //*************************************************/
-      const pathId = "#" + parentId + "To" + courseNode.id;
-      d3.selectAll(pathId).attr("style", defaultUnhighlightedStyle);
-      d3.selectAll("#" + parentId + "Rect").attr(
-        "style",
-        defaultUnhighlightedStyle
-      );
-    });
-  }
-
-  function highlightHoverOnCourse(courseNode) {
-    d3.selectAll("#" + courseNode.id + "Rect").attr(
-      "style",
-      hoverHighlightStyle
-    );
+  // Highlight element with id attached (Rect and Path)
+  function highlightPrereq(courseNode) {
+    d3.selectAll("#" + courseNode.id).attr("style", highlightStyle);
     courseNode.data.parentIds.forEach((parentId) => {
       /**
        * RECURSIVELY HIGHLIGHT GRANDPARENTS NODE
@@ -376,40 +340,61 @@ export default function () {
       const parentNode = d3
         .selectAll(".courseNode")
         .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
-      highlightHoverOnCourse(parentNode);
+      // ***
+      highlightPrereq(parentNode);
       //*******************************************************************************/
       const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
-      d3.selectAll(pathId).attr("style", hoverHighlightStyle);
-      d3.selectAll("#" + parentId + "Rect").attr("style", hoverHighlightStyle);
+      d3.selectAll(pathId).attr("style", highlightStyle);
+      d3.selectAll("#" + parentId).attr("style", highlightStyle);
     });
   }
 
-  // Add class "highlighted" to Highlight elements with id attached (Rect and Path)
-  function classifyHighlightNodes(courseNode) {
-    // Add Highlighted class to the highlighted node
-    d3.selectAll("#" + courseNode.id + "Rect")
-      .node()
-      .classList.add("highlighted");
-
+  function deHighlightPrereq(courseNode) {
+    d3.selectAll("#" + courseNode.id).attr("style", defaultUnhighlightedStyle);
     courseNode.data.parentIds.forEach((parentId) => {
-      /**
-       * RECURSIVELY ADD HIGHLIGHTED CLASS TO GRANDPARENTS NODE
-       */
       const parentNode = d3
         .selectAll(".courseNode")
-        .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
-      classifyHighlightNodes(parentNode);
-      //******************************************/
-
-      const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
-      const pathIdNode = d3.selectAll(pathId).node();
-      if (pathIdNode !== null) {
-        pathIdNode.classList.add("highlighted");
-      }
-
-      d3.selectAll("#" + parentId + "Rect")
-        .node()
-        .classList.add("highlighted");
+        .filter("#" + parentId + "Node")._groups[0][0].__data__;
+      deHighlightPrereq(parentNode);
+      //*************************************************/
+      const pathId = "#" + parentId + "To" + courseNode.id;
+      d3.selectAll(pathId).attr("style", defaultUnhighlightedStyle);
+      d3.selectAll("#" + parentId).attr("style", defaultUnhighlightedStyle);
     });
+  }
+
+  function deHighlightSelectedCourse() {}
+
+  // Recursively find and add all Ancestor Ids to set, so no duplicate will be added.
+  function addAllrelatedIdSetToSet(courseNode) {
+    var node = courseNode.data; //["id", "parentIds", ...]
+    // If the node is valid, continue
+    if (
+      node !== undefined &&
+      node.id !== undefined &&
+      node.parentIds !== undefined
+    ) {
+      const id = node.id.toString(); // note: must use string
+      const parentIds = node.parentIds; // parentIds array
+      relatedIdSet.add(id); // Add itself TODO: Maybe remove itself?
+      // If more than 1 parent
+      if (parentIds.length > 1) {
+        parentIds // add each parent id to the Set
+          .toString()
+          .split(",")
+          .forEach((p) => relatedIdSet.add(p));
+        // var parentElements = "#" + parentIds.join(",#");
+        // d3.selectAll(parentElements).select((node) =>
+        //   addAllrelatedIdSetToSet(node)
+        // );
+      }
+      // If only one parent
+      else if (parentIds.length == 1) {
+        d3.selectAll("#" + parentIds).select((node) =>
+          addAllrelatedIdSetToSet(node)
+        );
+      }
+      return; // If no more parent
+    }
   }
 }

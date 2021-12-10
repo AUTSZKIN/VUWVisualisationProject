@@ -11,7 +11,7 @@ var app = express();
 app.set("port", process.env.PORT || 5000);
 
 //Express:这里设置了index.html要读取的所有文档js起始点，所以路径是从这里开始的，注意了！
-app.use(express.static(__dirname + "/src/public"));
+app.use(express.static(__dirname + "/src"));
 
 // views is directory for all template files
 app.set("views", __dirname + "/src/views");
