@@ -3488,8 +3488,8 @@ Tableau_1.prototype.updateCost = function (variable, difference) {
         costRow[c] += difference * variableRow[c];
       }
     } else {
-      var reducedCosts = this.objectivesByPriority[variable.priority]
-        .reducedCosts;
+      var reducedCosts =
+        this.objectivesByPriority[variable.priority].reducedCosts;
       for (c = 0; c <= lastColumn; c += 1) {
         reducedCosts[c] += difference * variableRow[c];
       }
@@ -3927,9 +3927,8 @@ Tableau_1.prototype.restore = function () {
     for (var o = 0; o < save.optionalObjectives.length; o++) {
       var optionalObjectiveCopy = save.optionalObjectives[o].copy();
       this.optionalObjectives[o] = optionalObjectiveCopy;
-      this.optionalObjectivePerPriority[
-        optionalObjectiveCopy.priority
-      ] = optionalObjectiveCopy;
+      this.optionalObjectivePerPriority[optionalObjectiveCopy.priority] =
+        optionalObjectiveCopy;
     }
   }
 };
@@ -4275,9 +4274,8 @@ Tableau_1.prototype.branchAndCut = function () {
       bestBranch = branch;
       bestEvaluation = evaluation;
       for (var oCopy = 0; oCopy < this.optionalObjectives.length; oCopy += 1) {
-        bestOptionalObjectivesEvaluations[oCopy] = this.optionalObjectives[
-          oCopy
-        ].reducedCosts[0];
+        bestOptionalObjectivesEvaluations[oCopy] =
+          this.optionalObjectives[oCopy].reducedCosts[0];
       }
     } else {
       if (iterations === 1) {
@@ -6580,7 +6578,7 @@ function topological(...args) {
   }
   return topologicalCall;
 }
-
+/******************************** */
 /** @internal */
 function buildOperator$7(topDownVal) {
   // Additional Function for ENGR489
@@ -6653,6 +6651,8 @@ function buildOperator$7(topDownVal) {
   longestPathCall.topDown = topDown;
   return longestPathCall;
 }
+/******************************** */
+
 /** Create a default [[LongestPathOperator]]. */
 function longestPath(...args) {
   if (args.length) {

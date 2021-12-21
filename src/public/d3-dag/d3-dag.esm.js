@@ -1,7 +1,4 @@
-// d3-dag Version 0.6.0. Copyright 2020 Erik Brinkman.
-import require$$1 from "https://unpkg.com/fs@latest?module";
-import require$$2 from "https://unpkg.com/child_process@latest?module";
-
+// d3-dag Version 0.4.7. Copyright 2020 Erik Brinkman.
 class LazyFluentIterable {
   constructor(base) {
     this.base = base;
@@ -202,7 +199,6 @@ class LazyFluentIterable {
     return this;
   }
 }
-
 function isIterable(seq) {
   return typeof seq[Symbol.iterator] === "function";
 }
@@ -296,7 +292,6 @@ class LayoutChildLink {
     this.points = points;
   }
 }
-
 /**
  * The concrete class backing the [[Link]] interface.
  */
@@ -316,7 +311,6 @@ class LayoutLink {
     this.points = points;
   }
 }
-
 /**
  * The concreate implementation of [[DagNode]], this forwards most calls to a
  * singleton [[LayoutDagRoot]] with the exception of children methods, as
@@ -403,7 +397,6 @@ class LayoutDagNode {
     return true;
   }
 }
-
 /**
  * The concrete implementation backing [[DagRoot]] which also contains the
  * implementation of most methods in [[DagNode]].
@@ -1147,37 +1140,6 @@ function hierarchy(...args) {
   );
 }
 
-/*! *****************************************************************************
-  Copyright (c) Microsoft Corporation.
-  
-  Permission to use, copy, modify, and/or distribute this software for any
-  purpose with or without fee is hereby granted.
-  
-  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-  PERFORMANCE OF THIS SOFTWARE.
-  ***************************************************************************** */
-
-function __rest(s, e) {
-  var t = {};
-  for (var p in s)
-    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-      t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function")
-    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-      if (
-        e.indexOf(p[i]) < 0 &&
-        Object.prototype.propertyIsEnumerable.call(s, p[i])
-      )
-        t[p[i]] = s[p[i]];
-    }
-  return t;
-}
-
 let epsilon = 1.0e-60;
 let tmpa;
 let tmpb;
@@ -1817,11 +1779,25 @@ var quadprog = {
 
 var quadprog$1 = quadprog;
 
-/** @internal wrapper for solveQP */
-function qp(Q, c, A, b, meq) {
-  if (!c.length) {
-    return [];
+function coordSingleLayer(layer, sep) {
+  let [prev, ...rest] = layer;
+  let prevx = (prev.x = 0);
+  for (const curr of rest) {
+    prevx = curr.x = prevx + sep(prev, curr);
+    prev = curr;
   }
+  if (prevx > 0) {
+    for (const node of layer) {
+      node.x /= prevx;
+    }
+  } else {
+    for (const node of layer) {
+      node.x = 0.5;
+    }
+  }
+}
+// wrapper for solveQP
+function qp(Q, c, A, b, meq) {
   const Dmat = [[0]];
   const dvec = [0];
   const Amat = [[0]];
@@ -1847,7 +1823,7 @@ function qp(Q, c, A, b, meq) {
   solution.shift();
   return solution;
 }
-/** @internal solve for node positions */
+// solve for node positions
 function solve(Q, c, A, b, meq = 0) {
   // Arbitrarily set the last coordinate to 0 (by removing it from the
   // equation), which makes the formula valid This is simpler than special
@@ -1862,7 +1838,7 @@ function solve(Q, c, A, b, meq = 0) {
   solution.push(0);
   return solution;
 }
-/** @internal compute indices used to index arrays */
+// compute indices used to index arrays
 function indices(layers) {
   const inds = new SafeMap();
   let i = 0;
@@ -1873,8 +1849,8 @@ function indices(layers) {
   }
   return inds;
 }
-/** @interal Compute constraint arrays for layer separation */
-function init(layers, inds, nodeSize) {
+// Compute constraint arrays for layer separation
+function init(layers, inds, separation) {
   const n = 1 + Math.max(...inds.values());
   const A = [];
   const b = [];
@@ -1887,7 +1863,7 @@ function init(layers, inds, nodeSize) {
       cons[find] = 1;
       cons[sind] = -1;
       A.push(cons);
-      b.push(-(nodeSize(first)[0] + nodeSize(second)[0]) / 2);
+      b.push(-separation(first, second));
       first = second;
     }
   }
@@ -1895,20 +1871,16 @@ function init(layers, inds, nodeSize) {
   const Q = new Array(n).fill(null).map(() => new Array(n).fill(0));
   return [Q, c, A, b];
 }
-/** @internal update Q that minimizes edge distance squared */
+// update Q that minimizes edge distance squared
 function minDist(Q, pind, cind, coef) {
   Q[cind][cind] += coef;
   Q[cind][pind] -= coef;
   Q[pind][cind] -= coef;
   Q[pind][pind] += coef;
 }
-/**
- * update Q that minimizes curve of edges through a node where curve is
- * calcukates as the squared distance of the middle node from the midpoint of
- * the first and last, multiplied by four for some reason
- *
- * @internal
- */
+// update Q that minimizes curve of edges through a node
+// where curve is calcukates as the squared distance of the middle node from
+// the midpoint of the first and last, multiplied by four for some reason
 function minBend(Q, pind, nind, cind, coef) {
   Q[cind][cind] += coef;
   Q[cind][nind] -= 2 * coef;
@@ -1920,36 +1892,25 @@ function minBend(Q, pind, nind, cind, coef) {
   Q[pind][nind] -= 2 * coef;
   Q[pind][pind] += coef;
 }
-/**
- * Assign nodes x based off of solution, and return the width of the final
- * layout.
- *
- * @internal
- */
-function layout(layers, nodeSize, inds, solution) {
-  // find span of solution
-  let start = Number.POSITIVE_INFINITY;
-  let finish = Number.NEGATIVE_INFINITY;
-  for (const layer of layers) {
-    const first = layer[0];
-    const last = layer[layer.length - 1];
-    start = Math.min(
-      start,
-      solution[inds.getThrow(first.id)] - nodeSize(first)[0] / 2
-    );
-    finish = Math.max(
-      finish,
-      solution[inds.getThrow(last.id)] + nodeSize(last)[0] / 2
-    );
-  }
-  // assign inds based off of span
-  for (const layer of layers) {
-    for (const node of layer) {
-      node.x = solution[inds.getThrow(node.id)] - start;
+// Assign nodes x in [0, 1] based on solution
+function layout(layers, inds, solution) {
+  // Rescale to be in [0, 1]
+  const min = Math.min(...solution);
+  const span = Math.max(...solution) - min;
+  if (span > 0) {
+    for (const layer of layers) {
+      for (const node of layer) {
+        const index = inds.getThrow(node.id);
+        node.x = (solution[index] - min) / span;
+      }
+    }
+  } else {
+    for (const layer of layers) {
+      for (const node of layer) {
+        node.x = 0.5;
+      }
     }
   }
-  // return width
-  return finish - start;
 }
 
 class DummyNode extends LayoutDagNode {
@@ -1958,15 +1919,6 @@ class DummyNode extends LayoutDagNode {
   }
 }
 
-/**
- * This accessor positions nodes to minimize aspect of curvature and distance
- * between nodes. The coordinates are assigned by solving a quadratic program,
- * with weights for various parts of the objective function. Quadratic programs
- * can take a while to solve, but this will likely produce the most appealing
- * output.
- *
- * @packageDocumentation
- */
 /**
  * Compute a map from node ids to a connected component index. This is useful
  * to quickly compare if two nodes are in the same connected component.
@@ -2023,11 +1975,10 @@ function splitComponentLayers(layers, compMap) {
   return split;
 }
 /** @internal */
-function buildOperator$3(options) {
-  function quadComponent(layers, nodeSize, compMap) {
-    const { vertNode, vertDummy, curveNode, curveDummy, comp } = options;
+function buildOperator$3(vertNode, vertDummy, curveNode, curveDummy, comp) {
+  function quadComponent(layers, separation, compMap) {
     const inds = indices(layers);
-    const [Q, c, A, b] = init(layers, inds, nodeSize);
+    const [Q, c, A, b] = init(layers, inds, separation);
     for (const layer of layers) {
       for (const par of layer) {
         const pind = inds.getThrow(par.id);
@@ -2054,10 +2005,9 @@ function buildOperator$3(options) {
       }
     }
     const solution = solve(Q, c, A, b);
-    return layout(layers, nodeSize, inds, solution);
+    layout(layers, inds, solution);
   }
-  function quadCall(layers, nodeSize) {
-    const { vertNode, vertDummy, curveNode, curveDummy } = options;
+  function quadCall(layers, separation) {
     if (vertNode === 0 && curveNode === 0) {
       throw new Error(
         "node vertical weight or node curve weight needs to be positive"
@@ -2067,71 +2017,55 @@ function buildOperator$3(options) {
         "dummy vertical weight or dummy curve weight needs to be positive"
       );
     }
-    // split components
     const compMap = componentMap(layers);
-    const components = splitComponentLayers(layers, compMap);
-    // layout each component and get width
-    const widths = components.map((compon) =>
-      quadComponent(compon, nodeSize, compMap)
-    );
-    // center components
-    const maxWidth = Math.max(...widths);
-    if (maxWidth <= 0) {
-      throw new Error("must assign nonzero width to at least one node");
-    }
-    for (const [i, compon] of components.entries()) {
-      const offset = (maxWidth - widths[i]) / 2;
-      for (const layer of compon) {
-        for (const node of layer) {
-          node.x = def(node.x) + offset;
+    for (const comp of splitComponentLayers(layers, compMap)) {
+      if (comp.every((l) => l.length === 1)) {
+        for (const [node] of comp) {
+          node.x = 0.5;
         }
+      } else if (comp.length === 1) {
+        const [layer] = comp;
+        coordSingleLayer(layer, separation);
+      } else {
+        quadComponent(comp, separation, compMap);
       }
     }
-    return maxWidth;
   }
   function vertical(val) {
     if (val === undefined) {
-      const { vertNode, vertDummy } = options;
       return [vertNode, vertDummy];
     }
-    const [vertNode, vertDummy] = val;
-    if (vertNode < 0 || vertDummy < 0) {
+    const [valNode, valDummy] = val;
+    if (valNode < 0 || valDummy < 0) {
       throw new Error(
-        `weights must be non-negative, but were ${vertNode} and ${vertDummy}`
+        `weights must be non-negative, but were ${valNode} and ${valDummy}`
       );
     } else {
-      return buildOperator$3(
-        Object.assign(Object.assign({}, options), { vertNode, vertDummy })
-      );
+      return buildOperator$3(valNode, valDummy, curveNode, curveDummy, comp);
     }
   }
   quadCall.vertical = vertical;
   function curve(val) {
     if (val === undefined) {
-      const { curveNode, curveDummy } = options;
       return [curveNode, curveDummy];
     }
-    const [curveNode, curveDummy] = val;
-    if (curveNode < 0 || curveDummy < 0) {
+    const [valNode, valDummy] = val;
+    if (valNode < 0 || valDummy < 0) {
       throw new Error(
-        `weights must be non-negative, but were ${curveNode} and ${curveDummy}`
+        `weights must be non-negative, but were ${valNode} and ${valDummy}`
       );
     } else {
-      return buildOperator$3(
-        Object.assign(Object.assign({}, options), { curveNode, curveDummy })
-      );
+      return buildOperator$3(vertNode, vertDummy, valNode, valDummy, comp);
     }
   }
   quadCall.curve = curve;
   function component(val) {
     if (val === undefined) {
-      return options.comp;
+      return comp;
     } else if (val <= 0) {
       throw new Error(`weight must be positive, but was ${val}`);
     } else {
-      return buildOperator$3(
-        Object.assign(Object.assign({}, options), { comp: val })
-      );
+      return buildOperator$3(vertNode, vertDummy, curveNode, curveDummy, val);
     }
   }
   quadCall.component = component;
@@ -2144,16 +2078,42 @@ function quad(...args) {
       `got arguments to quad(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$3({
-    vertNode: 1,
-    vertDummy: 0,
-    curveNode: 0,
-    curveDummy: 1,
-    comp: 1,
-  });
+  return buildOperator$3(1, 0, 0, 1, 1);
+}
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+function __rest(s, e) {
+  var t = {};
+  for (var p in s)
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+      t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+      if (
+        e.indexOf(p[i]) < 0 &&
+        Object.prototype.propertyIsEnumerable.call(s, p[i])
+      )
+        t[p[i]] = s[p[i]];
+    }
+  return t;
 }
 
 /*global module*/
+
 function Solution(tableau, evaluation, feasible, bounded) {
   this.feasible = feasible;
   this.evaluation = evaluation;
@@ -2189,7 +2149,6 @@ Solution.prototype.generateSolutionSet = function () {
 };
 
 /*global module*/
-
 /*global require*/
 
 function MilpSolution(
@@ -2207,7 +2166,6 @@ MilpSolution.prototype = Object.create(Solution_1.prototype);
 MilpSolution.constructor = MilpSolution;
 
 /*global describe*/
-
 /*global require*/
 /*global module*/
 /*global it*/
@@ -2491,7 +2449,6 @@ Tableau.prototype.getSolution = function () {
 };
 
 /*global describe*/
-
 /*global require*/
 /*global module*/
 /*global it*/
@@ -3383,7 +3340,6 @@ Tableau_1.prototype.applyMIRCuts = function () {
 };
 
 /*global require*/
-
 /*global console*/
 
 //-------------------------------------------------------------------
@@ -3528,8 +3484,8 @@ Tableau_1.prototype.updateCost = function (variable, difference) {
         costRow[c] += difference * variableRow[c];
       }
     } else {
-      var reducedCosts = this.objectivesByPriority[variable.priority]
-        .reducedCosts;
+      var reducedCosts =
+        this.objectivesByPriority[variable.priority].reducedCosts;
       for (c = 0; c <= lastColumn; c += 1) {
         reducedCosts[c] += difference * variableRow[c];
       }
@@ -3696,7 +3652,6 @@ Tableau_1.prototype.removeVariable = function (variable) {
 };
 
 /*global require*/
-
 /*global console*/
 
 //-------------------------------------------------------------------
@@ -3746,14 +3701,15 @@ Tableau_1.prototype.log = function (message, force) {
 
     ///////////
     /*valueSpace = " ";
-    nameSpace = " ";
-      for (s = 0; s < nSpaces; s += 1) {
-        if (varNameLength > 5) {
-            valueSpace += " ";
-        } else {
-            nameSpace += " ";
-        }
-    }*/
+        nameSpace = " ";
+
+        for (s = 0; s < nSpaces; s += 1) {
+            if (varNameLength > 5) {
+                valueSpace += " ";
+            } else {
+                nameSpace += " ";
+            }
+        }*/
 
     ///////////
     if (varNameLength > 5) {
@@ -3776,15 +3732,15 @@ Tableau_1.prototype.log = function (message, force) {
 
   ///////////
   /*for (j = 1; j < this.width; j += 1) {
-      signSpace = firstRow[j] < 0 ? "" : " ";
-      firstRowString += signSpace;
-      firstRowString += spacePerColumn[j];
-      firstRowString += firstRow[j].toFixed(2);
-  }
-  signSpace = firstRow[0] < 0 ? "" : " ";
-  firstRowString += signSpace + spacePerColumn[0] +
-      firstRow[0].toFixed(2);
-  console.log(firstRowString + " Z");*/
+        signSpace = firstRow[j] < 0 ? "" : " ";
+        firstRowString += signSpace;
+        firstRowString += spacePerColumn[j];
+        firstRowString += firstRow[j].toFixed(2);
+    }
+    signSpace = firstRow[0] < 0 ? "" : " ";
+    firstRowString += signSpace + spacePerColumn[0] +
+        firstRow[0].toFixed(2);
+    console.log(firstRowString + " Z");*/
 
   ///////////
   for (j = 1; j < this.width; j += 1) {
@@ -3805,11 +3761,11 @@ Tableau_1.prototype.log = function (message, force) {
 
     ///////////
     /*for (c = 1; c < this.width; c += 1) {
-        signSpace = row[c] < 0 ? "" : " ";
-        rowString += signSpace + spacePerColumn[c] + row[c].toFixed(2);
-    }
-    signSpace = row[0] < 0 ? "" : " ";
-    rowString += signSpace + spacePerColumn[0] + row[0].toFixed(2);*/
+            signSpace = row[c] < 0 ? "" : " ";
+            rowString += signSpace + spacePerColumn[c] + row[c].toFixed(2);
+        }
+        signSpace = row[0] < 0 ? "" : " ";
+        rowString += signSpace + spacePerColumn[0] + row[0].toFixed(2);*/
 
     ///////////
     for (c = 1; c < this.width; c += 1) {
@@ -3968,9 +3924,8 @@ Tableau_1.prototype.restore = function () {
     for (var o = 0; o < save.optionalObjectives.length; o++) {
       var optionalObjectiveCopy = save.optionalObjectives[o].copy();
       this.optionalObjectives[o] = optionalObjectiveCopy;
-      this.optionalObjectivePerPriority[
-        optionalObjectiveCopy.priority
-      ] = optionalObjectiveCopy;
+      this.optionalObjectivePerPriority[optionalObjectiveCopy.priority] =
+        optionalObjectiveCopy;
     }
   }
 };
@@ -4131,13 +4086,11 @@ Tableau_1.prototype.computeFractionalVolume = function (ignoreIntegerValues) {
 };
 
 /*global require*/
-
 /*global module*/
 
 var Tableau$1 = Tableau_1;
 
 /*global describe*/
-
 /*global require*/
 /*global module*/
 /*global it*/
@@ -4318,9 +4271,8 @@ Tableau_1.prototype.branchAndCut = function () {
       bestBranch = branch;
       bestEvaluation = evaluation;
       for (var oCopy = 0; oCopy < this.optionalObjectives.length; oCopy += 1) {
-        bestOptionalObjectivesEvaluations[oCopy] = this.optionalObjectives[
-          oCopy
-        ].reducedCosts[0];
+        bestOptionalObjectivesEvaluations[oCopy] =
+          this.optionalObjectives[oCopy].reducedCosts[0];
       }
     } else {
       if (iterations === 1) {
@@ -4418,7 +4370,6 @@ Tableau_1.prototype.branchAndCut = function () {
 var branchAndCut = {};
 
 /*global describe*/
-
 /*global require*/
 /*global module*/
 /*global it*/
@@ -5279,8 +5230,37 @@ var Reformat = function (model) {
   }
 };
 
-/*global describe*/
+var empty = {};
 
+var empty$1 = /*#__PURE__*/ Object.freeze({
+  __proto__: null,
+  default: empty,
+});
+
+function getAugmentedNamespace(n) {
+  if (n.__esModule) return n;
+  var a = Object.defineProperty({}, "__esModule", { value: true });
+  Object.keys(n).forEach(function (k) {
+    var d = Object.getOwnPropertyDescriptor(n, k);
+    Object.defineProperty(
+      a,
+      k,
+      d.get
+        ? d
+        : {
+            enumerable: true,
+            get: function () {
+              return n[k];
+            },
+          }
+    );
+  });
+  return a;
+}
+
+var require$$2 = /*@__PURE__*/ getAugmentedNamespace(empty$1);
+
+/*global describe*/
 /*global require*/
 /*global it*/
 /*global console*/
@@ -5394,7 +5374,7 @@ var solve$1 = function (model) {
     //
     //
 
-    var fs = require$$1;
+    var fs = require$$2;
 
     fs.writeFile(model.external.tempName, data, function (fe, fd) {
       if (fe) {
@@ -5450,16 +5430,16 @@ var solve$1 = function (model) {
 };
 
 /*
-   model.external = {
-       "binPath": "C:/lpsolve/lp_solve.exe",
-       "tempName": "C:/temp/out.txt",
-       "args": [
-           "-S2"
-       ]
-       
-   }
-   
-   */
+model.external = {
+    "binPath": "C:/lpsolve/lp_solve.exe",
+    "tempName": "C:/temp/out.txt",
+    "args": [
+        "-S2"
+    ]
+    
+}
+
+*/
 
 var main = {
   reformat: reformat,
@@ -5467,7 +5447,6 @@ var main = {
 };
 
 /*global describe*/
-
 /*global require*/
 /*global it*/
 /*global console*/
@@ -5488,29 +5467,34 @@ var main$1 = {
 /*global process*/
 
 /***************************************************************
-                    * Method: polyopt
-                    * Scope: private
-                    * Agruments:
-                    *        model: The model we want solver to operate on.
-                                    Because we're in here, we're assuming that
-                                    we're solving a multi-objective optimization
-                                    problem. Poly-Optimization. polyopt.
-                                      This model has to be formed a little differently
-                                    because it has multiple objective functions.
-                                    Normally, a model has 2 attributes: opType (string,
-                                    "max" or "min"), and optimize (string, whatever
-                                    attribute we're optimizing.
-                                      Now, there is no opType attribute on the model,
-                                    and optimize is an object of attributes to be
-                                    optimized, and how they're to be optimized.
-                                    For example:
-                                      ...
-                                    "optimize": {
-                                       "pancakes": "max",
-                                       "cost": "minimize"
-                                    }
-                                    ...
-                        **************************************************************/
+     * Method: polyopt
+     * Scope: private
+     * Agruments:
+     *        model: The model we want solver to operate on.
+                     Because we're in here, we're assuming that
+                     we're solving a multi-objective optimization
+                     problem. Poly-Optimization. polyopt.
+
+                     This model has to be formed a little differently
+                     because it has multiple objective functions.
+                     Normally, a model has 2 attributes: opType (string,
+                     "max" or "min"), and optimize (string, whatever
+                     attribute we're optimizing.
+
+                     Now, there is no opType attribute on the model,
+                     and optimize is an object of attributes to be
+                     optimized, and how they're to be optimized.
+                     For example:
+
+                     ...
+                     "optimize": {
+                        "pancakes": "max",
+                        "cost": "minimize"
+                     }
+                     ...
+
+
+     **************************************************************/
 
 var Polyopt = function (solver, model) {
   // I have no idea if this is actually works, or what,
@@ -5674,7 +5658,6 @@ var Polyopt = function (solver, model) {
 };
 
 /*global describe*/
-
 /*global require*/
 /*global module*/
 /*global it*/
@@ -5919,11 +5902,11 @@ var main$2 = new Solver();
  * @packageDocumentation
  */
 /** @internal */
-function buildOperator$4(options) {
+function buildOperator$4(ranker, debugVal) {
   // use null prefixes to prevent clash
-  const prefix = options.debug ? "" : "\0";
-  const rankPrefix = options.debug ? "rank: " : "\0";
-  const delim = options.debug ? " -> " : "\0";
+  const prefix = debugVal ? "" : "\0";
+  const rankPrefix = debugVal ? "rank: " : "\0";
+  const delim = debugVal ? " -> " : "\0";
   /** node id */
   function n(node) {
     return `${prefix}${node.id}`;
@@ -5948,8 +5931,7 @@ function buildOperator$4(options) {
       variables[nid] = {
         opt: node.children.length,
       };
-
-      const rank = options.rank(node);
+      const rank = ranker(node);
       if (rank !== undefined) {
         ranks.push([rank, node]);
       }
@@ -6018,22 +6000,17 @@ function buildOperator$4(options) {
   }
   function rank(newRank) {
     if (newRank === undefined) {
-      return options.rank;
+      return ranker;
     } else {
-      const rest = __rest(options, ["rank"]);
-      return buildOperator$4(
-        Object.assign(Object.assign({}, rest), { rank: newRank })
-      );
+      return buildOperator$4(newRank, debugVal);
     }
   }
   simplexCall.rank = rank;
   function debug(val) {
     if (val === undefined) {
-      return options.debug;
+      return debugVal;
     } else {
-      return buildOperator$4(
-        Object.assign(Object.assign({}, options), { debug: val })
-      );
+      return buildOperator$4(ranker, val);
     }
   }
   simplexCall.debug = debug;
@@ -6050,7 +6027,7 @@ function simplex(...args) {
       `got arguments to simplex(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$4({ rank: defaultRank, debug: false });
+  return buildOperator$4(defaultRank, false);
 }
 
 function ascending(a, b) {
@@ -6240,21 +6217,18 @@ function median(...args) {
 // TODO Add optional greedy swapping of nodes after assignment
 // TODO Add two layer noop. This only makes sense if there's a greedy swapping ability
 /** @internal */
-function buildOperator$5(options) {
+function buildOperator$5(orderOp) {
   function twoLayerCall(layers) {
     layers
       .slice(0, layers.length - 1)
-      .forEach((layer, i) => options.order(layer, layers[i + 1]));
+      .forEach((layer, i) => orderOp(layer, layers[i + 1]));
   }
   function order(ord) {
     if (ord === undefined) {
-      return options.order;
+      return orderOp;
     } else {
       const localOrder = ord;
-      const rest = __rest(options, ["order"]);
-      return buildOperator$5(
-        Object.assign(Object.assign({}, rest), { order: localOrder })
-      );
+      return buildOperator$5(localOrder);
     }
   }
   twoLayerCall.order = order;
@@ -6267,31 +6241,7 @@ function twoLayer(...args) {
       `got arguments to twoLayer(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$5({ order: median() });
-}
-
-/**
- * A checked and cached node size accessor wrapper.
- *
- * @internal
- */
-function cachedNodeSize(nodeSize) {
-  const cache = new Map();
-  function cached(node) {
-    let val = cache.get(node.id);
-    if (val === undefined) {
-      val = nodeSize(node);
-      const [width, height] = val;
-      if (width < 0 || height < 0) {
-        throw new Error(
-          `all node sizes must be non-negative, but got width ${width} and height ${height} for node id: ${node.id}`
-        );
-      }
-      cache.set(node.id, val);
-    }
-    return val;
-  }
-  return cached;
+  return buildOperator$5(median());
 }
 
 /**
@@ -6320,9 +6270,17 @@ function cachedNodeSize(nodeSize) {
  * @packageDocumentation
  */
 /** @internal */
-function buildOperator$6(options) {
+function buildOperator$6(
+  layeringOp,
+  decrossOp,
+  coordOp,
+  nodeSized,
+  sizeVals,
+  separationOp,
+  debugVal
+) {
+  const [width, height] = sizeVals;
   function createLayers(dag) {
-    // every time
     const layers = [];
     // NOTE copy here is explicit so that modifying the graph doesn't change how we iterate
     for (const node of dag.descendants()) {
@@ -6344,7 +6302,7 @@ function buildOperator$6(options) {
         let last = link.child;
         for (let l = clayer - 1; l > nlayer; l--) {
           let dummyId;
-          if (options.debug) {
+          if (debugVal) {
             dummyId = `${node.id}->${link.child.id} (${l})`;
           } else {
             dummyId = `${node.id}\0${link.child.id}\0${l}`;
@@ -6380,7 +6338,7 @@ function buildOperator$6(options) {
   }
   function sugiyama(dag) {
     // compute layers
-    options.layering(dag);
+    layeringOp(dag);
     // create layers
     for (const node of dag) {
       const layer = node.layer;
@@ -6393,84 +6351,107 @@ function buildOperator$6(options) {
       }
     }
     const layers = createLayers(dag);
-    const nodeSize = cachedNodeSize(options.nodeSize);
     // assign y
-    let height = 0;
-    for (const layer of layers) {
-      const layerHeight = Math.max(...layer.map((n) => nodeSize(n)[1]));
+    if (layers.length === 1) {
+      const [layer] = layers;
       for (const node of layer) {
-        node.y = height + layerHeight / 2;
+        node.y = height / 2;
       }
-      height += layerHeight;
-    }
-    if (height <= 0) {
-      throw new Error(
-        "at least one node must have positive height, but total height was zero"
-      );
-    }
-    // minimize edge crossings
-    options.decross(layers);
-    // assign coordinates
-    let width = options.coord(layers, nodeSize);
-    // scale x
-    for (const layer of layers) {
-      for (const node of layer) {
-        if (node.x === undefined) {
-          throw new Error(`coord didn't assign an x to node '${node.id}'`);
-        } else if (node.x < 0 || node.x > width) {
-          throw new Error(
-            `coord assgined an x (${node.x}) outside of [0, ${width}]`
-          );
+    } else {
+      const dh = nodeSized ? height : height / (layers.length - 1);
+      for (const [i, layer] of layers.entries()) {
+        for (const node of layer) {
+          node.y = dh * i;
         }
       }
     }
-    const exed = layers;
-    if (options.size !== null) {
-      const [newWidth, newHeight] = options.size;
+    if (layers.every((l) => l.length === 1)) {
+      // next steps aren't necessary
+      for (const [node] of layers) {
+        node.x = width / 2;
+      }
+    } else if (layers.length === 1) {
+      // next steps aren't necessary
+      const [layer] = layers;
+      coordSingleLayer(layer, separationOp);
+      const exed = layer;
+      const scale = nodeSized ? exed.length - 1 : 1;
+      for (const node of exed) {
+        node.x *= width * scale;
+      }
+    } else {
+      // minimize edge crossings
+      decrossOp(layers);
+      // assign coordinates
+      coordOp(layers, separationOp);
+      // scale x
+      for (const layer of layers) {
+        for (const node of layer) {
+          if (node.x === undefined) {
+            throw new Error(`coord didn't assign an x to node '${node.id}'`);
+          }
+        }
+      }
+      const exed = layers;
+      const scale = nodeSized
+        ? Math.max(...layers.map((layer) => layer.length)) - 1
+        : 1;
       for (const layer of exed) {
         for (const node of layer) {
-          node.x *= newWidth / width;
-          node.y *= newHeight / height;
+          node.x *= width * scale;
         }
       }
-      width = newWidth;
-      height = newHeight;
     }
     // Remove dummy nodes and update edge data
     const sugied = dag;
     removeDummies(sugied);
-    // laidout dag
-    return { dag: sugied, width, height };
+    return sugied;
   }
   function layering(layer) {
     if (layer === undefined) {
-      return options.layering;
+      return layeringOp;
     } else {
-      const rest = __rest(options, ["layering"]);
+      const localLayering = layer;
       return buildOperator$6(
-        Object.assign(Object.assign({}, rest), { layering: layer })
+        localLayering,
+        decrossOp,
+        coordOp,
+        nodeSized,
+        sizeVals,
+        separationOp,
+        debugVal
       );
     }
   }
   sugiyama.layering = layering;
   function decross(dec) {
     if (dec === undefined) {
-      return options.decross;
+      return decrossOp;
     } else {
-      const rest = __rest(options, ["decross"]);
       return buildOperator$6(
-        Object.assign(Object.assign({}, rest), { decross: dec })
+        layeringOp,
+        dec,
+        coordOp,
+        nodeSized,
+        sizeVals,
+        separationOp,
+        debugVal
       );
     }
   }
   sugiyama.decross = decross;
   function coord(crd) {
     if (crd === undefined) {
-      return options.coord;
+      return coordOp;
     } else {
-      const rest = __rest(options, ["coord"]);
       return buildOperator$6(
-        Object.assign(Object.assign({}, rest), { coord: crd })
+        layeringOp,
+        decrossOp,
+        crd,
+        nodeSized,
+        sizeVals,
+        separationOp,
+        debugVal
       );
     }
   }
@@ -6478,30 +6459,68 @@ function buildOperator$6(options) {
   function size(sz) {
     if (sz !== undefined) {
       return buildOperator$6(
-        Object.assign(Object.assign({}, options), { size: sz })
+        layeringOp,
+        decrossOp,
+        coordOp,
+        false,
+        sz,
+        separationOp,
+        debugVal
       );
+    } else if (nodeSized) {
+      return null;
     } else {
-      return options.size;
+      return sizeVals;
     }
   }
   sugiyama.size = size;
   function nodeSize(sz) {
     if (sz !== undefined) {
-      const rest = __rest(options, ["nodeSize"]);
       return buildOperator$6(
-        Object.assign(Object.assign({}, rest), { nodeSize: sz })
+        layeringOp,
+        decrossOp,
+        coordOp,
+        true,
+        sz,
+        separationOp,
+        debugVal
       );
+    } else if (nodeSized) {
+      return sizeVals;
     } else {
-      return options.nodeSize;
+      return null;
     }
   }
   sugiyama.nodeSize = nodeSize;
+  function separation(sep) {
+    if (sep === undefined) {
+      return separationOp;
+    } else {
+      const localSep = sep;
+      return buildOperator$6(
+        layeringOp,
+        decrossOp,
+        coordOp,
+        nodeSized,
+        sizeVals,
+        localSep,
+        debugVal
+      );
+    }
+  }
+  sugiyama.separation = separation;
   function debug(deb) {
     if (deb === undefined) {
-      return options.debug;
+      return debugVal;
     } else {
       return buildOperator$6(
-        Object.assign(Object.assign({}, options), { debug: deb })
+        layeringOp,
+        decrossOp,
+        coordOp,
+        nodeSized,
+        sizeVals,
+        separationOp,
+        deb
       );
     }
   }
@@ -6509,9 +6528,8 @@ function buildOperator$6(options) {
   return sugiyama;
 }
 /** @internal */
-function defaultNodeSize(node) {
-  const size = +!(node instanceof DummyNode);
-  return [size, size];
+function defaultSeparation(left, right) {
+  return +!(left instanceof DummyNode) + +!(right instanceof DummyNode);
 }
 /**
  * Construct a new [[SugiyamaOperator]] with the default settings.
@@ -6522,14 +6540,15 @@ function sugiyama(...args) {
       `got arguments to sugiyama(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$6({
-    layering: simplex(),
-    decross: twoLayer(),
-    coord: quad(),
-    size: null,
-    nodeSize: defaultNodeSize,
-    debug: false,
-  });
+  return buildOperator$6(
+    simplex(),
+    twoLayer(),
+    quad(),
+    false,
+    [1, 1],
+    defaultSeparation,
+    false
+  );
 }
 
 /**
@@ -6562,52 +6581,7 @@ function topological(...args) {
 }
 
 /** @internal */
-function buildOperator$7(options) {
-  // Additional Function for ENGR489
-  function courseLevel(dag) {
-    dag.depth();
-    console.dir(dag);
-    for (const n of dag) {
-      // go through each node
-      var nLevel = n.id.match(/\d/); //Finds first digit - Level
-      var nTri = n.data.trimester; // Finds trimester - 1 or 2
-      var levelAndTri = parseInt(nLevel + nTri);
-      var layer;
-      // Assign the course depends on their level/trimester
-      switch (levelAndTri) {
-        case 10: // For "level100 root node only TODO: fix it"
-          layer = 0;
-          break;
-        case 11:
-          layer = 1;
-          break;
-        case 12:
-          layer = 2;
-          break;
-        case 21:
-          layer = 3;
-          break;
-        case 22:
-          layer = 4;
-          break;
-        case 31:
-          layer = 5;
-          break;
-        case 32:
-          layer = 6;
-          break;
-        case 41:
-          layer = 7;
-          break;
-        case 42:
-          layer = 8;
-          break;
-      }
-      n.layer = layer;
-    }
-  }
-  // *******************
-
+function buildOperator$7(topDownVal) {
   function bottomUp(dag) {
     const maxHeight = Math.max(...dag.iroots().map((d) => d.value));
     for (const node of dag) {
@@ -6615,22 +6589,19 @@ function buildOperator$7(options) {
     }
   }
   function longestPathCall(dag) {
-    if (options.topDown) {
+    if (topDownVal) {
       for (const node of dag.depth()) {
         node.layer = node.value;
       }
     } else {
-      courseLevel(dag);
-      // bottomUp(dag.height());
+      bottomUp(dag.height());
     }
   }
   function topDown(val) {
     if (val === undefined) {
-      return options.topDown;
+      return topDownVal;
     } else {
-      return buildOperator$7(
-        Object.assign(Object.assign({}, options), { topDown: val })
-      );
+      return buildOperator$7(val);
     }
   }
   longestPathCall.topDown = topDown;
@@ -6643,36 +6614,36 @@ function longestPath(...args) {
       `got arguments to longestPath(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$7({ topDown: false });
+  return buildOperator$7(true);
 }
 
 /**
-   * FastPriorityQueue.js : a fast heap-based priority queue  in JavaScript.
-   * (c) the authors
-   * Licensed under the Apache License, Version 2.0.
-   *
-   * Speed-optimized heap-based priority queue for modern browsers and JavaScript engines.
-   *
-   * Usage :
-           Installation (in shell, if you use node):
-           $ npm install fastpriorityqueue
-  
-           Running test program (in JavaScript):
-  
-           // var FastPriorityQueue = require("fastpriorityqueue");// in node
-           var x = new FastPriorityQueue();
-           x.add(1);
-           x.add(0);
-           x.add(5);
-           x.add(4);
-           x.add(3);
-           x.peek(); // should return 0, leaves x unchanged
-           x.size; // should return 5, leaves x unchanged
-           while(!x.isEmpty()) {
-             console.log(x.poll());
-           } // will print 0 1 3 4 5
-           x.trim(); // (optional) optimizes memory usage
-   */
+ * FastPriorityQueue.js : a fast heap-based priority queue  in JavaScript.
+ * (c) the authors
+ * Licensed under the Apache License, Version 2.0.
+ *
+ * Speed-optimized heap-based priority queue for modern browsers and JavaScript engines.
+ *
+ * Usage :
+         Installation (in shell, if you use node):
+         $ npm install fastpriorityqueue
+
+         Running test program (in JavaScript):
+
+         // var FastPriorityQueue = require("fastpriorityqueue");// in node
+         var x = new FastPriorityQueue();
+         x.add(1);
+         x.add(0);
+         x.add(5);
+         x.add(4);
+         x.add(3);
+         x.peek(); // should return 0, leaves x unchanged
+         x.size; // should return 5, leaves x unchanged
+         while(!x.isEmpty()) {
+           console.log(x.poll());
+         } // will print 0 1 3 4 5
+         x.trim(); // (optional) optimizes memory usage
+ */
 
 var defaultcomparator = function (a, b) {
   return a < b;
@@ -6967,11 +6938,10 @@ class Data {
     this.parents = [];
   }
 }
-
 /** @internal */
-function buildOperator$8(options) {
+function buildOperator$8(maxWidthVal) {
   function coffmanGrahamCall(dag) {
-    const maxWidth = options.width || Math.floor(Math.sqrt(dag.size() + 0.5));
+    const maxWidth = maxWidthVal || Math.floor(Math.sqrt(dag.size() + 0.5));
     // initialize node data
     const data = new SafeMap(
       dag.idescendants().map((node) => [node.id, new Data()])
@@ -7030,13 +7000,11 @@ function buildOperator$8(options) {
   }
   function width(maxWidth) {
     if (maxWidth === undefined) {
-      return options.width;
+      return maxWidthVal;
     } else if (maxWidth < 0) {
       throw new Error(`width must be non-negative: ${maxWidth}`);
     } else {
-      return buildOperator$8(
-        Object.assign(Object.assign({}, options), { width: maxWidth })
-      );
+      return buildOperator$8(maxWidth);
     }
   }
   coffmanGrahamCall.width = width;
@@ -7049,7 +7017,7 @@ function coffmanGraham(...args) {
       `got arguments to coffmanGraham(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$8({ width: 0 });
+  return buildOperator$8(0);
 }
 
 /**
@@ -7064,11 +7032,11 @@ function coffmanGraham(...args) {
  * @packageDocumentation
  */
 /** @internal */
-function buildOperator$9(options) {
+function buildOperator$9(debugVal) {
   // TODO optimize this for disconnected graphs by breaking them apart, solving
   // each, then mushing them back together
-  const joiner = options.debug ? " => " : "\0\0";
-  const slackJoiner = options.debug ? " " : "\0\0\0";
+  const joiner = debugVal ? " => " : "\0\0";
+  const slackJoiner = debugVal ? " " : "\0\0\0";
   function key(...nodes) {
     return nodes
       .map((n) => n.id)
@@ -7086,7 +7054,6 @@ function buildOperator$9(options) {
         model.constraints[pair] = Object.assign(Object.create(null), {
           max: 1,
         });
-
         model.variables[pair] = Object.assign(Object.create(null), {
           opt: 0,
           [pair]: 1,
@@ -7106,7 +7073,6 @@ function buildOperator$9(options) {
           model.constraints[triangleUp] = Object.assign(Object.create(null), {
             max: 1,
           });
-
           model.variables[pair1][triangleUp] = 1;
           model.variables[pair2][triangleUp] = -1;
           model.variables[pair3][triangleUp] = 1;
@@ -7114,7 +7080,6 @@ function buildOperator$9(options) {
           model.constraints[triangleDown] = Object.assign(Object.create(null), {
             min: 0,
           });
-
           model.variables[pair1][triangleDown] = 1;
           model.variables[pair2][triangleDown] = -1;
           model.variables[pair3][triangleDown] = 1;
@@ -7132,7 +7097,7 @@ function buildOperator$9(options) {
               continue;
             }
             const pairc = key(c1, c2);
-            const slack = options.debug
+            const slack = debugVal
               ? `slack (${pairp}) (${pairc})`
               : `${pairp}\0\0\0${pairc}`;
             const slackUp = `${slack}${slackJoiner}+`;
@@ -7142,19 +7107,16 @@ function buildOperator$9(options) {
               [slackUp]: 1,
               [slackDown]: 1,
             });
-
             const flip = +(c1.id > c2.id);
             const sign = flip || -1;
             model.constraints[slackUp] = Object.assign(Object.create(null), {
               min: flip,
             });
-
             model.variables[pairp][slackUp] = 1;
             model.variables[pairc][slackUp] = sign;
             model.constraints[slackDown] = Object.assign(Object.create(null), {
               min: -flip,
             });
-
             model.variables[pairp][slackDown] = -1;
             model.variables[pairc][slackDown] = -sign;
           }
@@ -7163,15 +7125,6 @@ function buildOperator$9(options) {
     }
   }
   function optCall(layers) {
-    // check for large input
-    if (
-      !options.clowntown &&
-      layers.reduce((t, l) => t + l.length * l.length, 0) > 2500
-    ) {
-      throw new Error(
-        "size of dag to decrossOpt is too large and will likely crash not complete, enable clowntown to run anyway"
-      );
-    }
     // initialize model
     const model = {
       optimize: "opt",
@@ -7180,7 +7133,6 @@ function buildOperator$9(options) {
       variables: Object.create(null),
       ints: Object.create(null),
     };
-
     // add variables and permutation invariants
     for (const layer of layers) {
       perms(model, layer);
@@ -7201,24 +7153,12 @@ function buildOperator$9(options) {
   }
   function debug(val) {
     if (val === undefined) {
-      return options.debug;
+      return debugVal;
     } else {
-      return buildOperator$9(
-        Object.assign(Object.assign({}, options), { debug: val })
-      );
+      return buildOperator$9(val);
     }
   }
   optCall.debug = debug;
-  function clowntown(val) {
-    if (val === undefined) {
-      return options.clowntown;
-    } else {
-      return buildOperator$9(
-        Object.assign(Object.assign({}, options), { clowntown: val })
-      );
-    }
-  }
-  optCall.clowntown = clowntown;
   return optCall;
 }
 /** Create a default [[OptOperator]]. */
@@ -7228,7 +7168,7 @@ function opt(...args) {
       `got arguments to opt(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$9({ debug: false, clowntown: false });
+  return buildOperator$9(false);
 }
 
 /**
@@ -7246,50 +7186,51 @@ function center(...args) {
       `got arguments to center(${args}), but constructor takes no aruguments.`
     );
   }
-  function centerCall(layers, nodeSize) {
-    const widths = layers.map((layer) => {
-      let width = 0;
-      for (const node of layer) {
-        const nodeWidth = nodeSize(node)[0];
-        node.x = width + nodeWidth / 2;
-        width += nodeWidth;
+  function centerCall(layers, separation) {
+    const maxWidth = Math.max(
+      ...layers.map((layer) => {
+        let [prev, ...rest] = layer;
+        let prevx = (prev.x = 0);
+        for (const node of rest) {
+          prevx = node.x = prevx + separation(prev, node);
+          prev = node;
+        }
+        return prevx;
+      })
+    );
+    if (maxWidth > 0) {
+      for (const layer of layers) {
+        const halfWidth = def(layer[layer.length - 1].x) / 2;
+        for (const node of layer) {
+          node.x = (def(node.x) - halfWidth) / maxWidth + 0.5;
+        }
       }
-      return width;
-    });
-    const maxWidth = Math.max(...widths);
-    if (maxWidth <= 0) {
-      throw new Error("must assign nonzero width to at least one node");
-    }
-    for (const [i, layer] of layers.entries()) {
-      const width = widths[i];
-      const offset = (maxWidth - width) / 2;
-      for (const node of layer) {
-        node.x = def(node.x) + offset;
+    } else {
+      for (const layer of layers) {
+        for (const node of layer) {
+          node.x = 0.5;
+        }
       }
     }
-    return maxWidth;
   }
   return centerCall;
 }
 
 /** @internal */
-function buildOperator$a(options) {
-  function minCurveCall(layers, nodeSize) {
-    const { weight } = options;
-    return quad()
-      .vertical([(1 - weight) / 2, (1 - weight) / 2])
-      .curve([weight, weight])
-      .component(0.5)(layers, nodeSize);
+function buildOperator$a(weightVal) {
+  function minCurveCall(layers, separation) {
+    quad()
+      .vertical([(1 - weightVal) / 2, (1 - weightVal) / 2])
+      .curve([weightVal, weightVal])
+      .component(0.5)(layers, separation);
   }
   function weight(val) {
     if (val === undefined) {
-      return options.weight;
+      return weightVal;
     } else if (val < 0 || val >= 1) {
-      throw new Error(`weight must be in [0, 1), but was ${val}`);
+      throw new Error(`weight must be in [0, 1), but was ${weightVal}`);
     } else {
-      return buildOperator$a(
-        Object.assign(Object.assign({}, options), { weight: val })
-      );
+      return buildOperator$a(val);
     }
   }
   minCurveCall.weight = weight;
@@ -7305,7 +7246,7 @@ function minCurve(...args) {
       `got arguments to minCurve(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$a({ weight: 0.5 });
+  return buildOperator$a(0.5);
 }
 
 /**
@@ -7327,7 +7268,7 @@ function greedy(...args) {
       `got arguments to greedy(${args}), but constructor takes no aruguments.`
     );
   }
-  function greedyCall(layers, nodeSize) {
+  function greedyCall(layers, separation) {
     // TODO other initial assignments
     const assignment = meanAssignment;
     // assign degrees
@@ -7352,12 +7293,11 @@ function greedy(...args) {
     }
     // set first layer
     let [lastLayer, ...restLayers] = layers;
-    let start = 0;
-    let finish = 0;
-    for (const node of lastLayer) {
-      const size = nodeSize(node)[0];
-      node.x = finish + size / 2;
-      finish += size;
+    let [last, ...rest] = lastLayer;
+    let lastX = (last.x = 0);
+    for (const node of rest) {
+      lastX = node.x = lastX + separation(last, node);
+      last = node;
     }
     // assign the rest of nodes
     for (const layer of restLayers) {
@@ -7375,36 +7315,49 @@ function greedy(...args) {
       for (const [j, node] of ordered) {
         // first push nodes over to left
         // TODO we do left than right, but really we should do both and average
-        const nwidth = nodeSize(node)[0];
-        let end = def(node.x) + nwidth / 2;
+        let last = node;
+        let lastX = def(last.x);
         for (const next of layer.slice(j + 1)) {
-          const hsize = nodeSize(next)[0] / 2;
-          const nx = (next.x = Math.max(def(next.x), end + hsize));
-          end = nx + hsize;
+          lastX = next.x = Math.max(
+            def(next.x),
+            lastX + separation(last, next)
+          );
+          last = next;
         }
-        finish = Math.max(finish, end);
         // then push from the right
-        let begin = def(node.x) - nwidth / 2;
+        last = node;
+        lastX = def(last.x);
         for (const next of layer.slice(0, j).reverse()) {
-          const hsize = nodeSize(next)[0] / 2;
-          const nx = (next.x = Math.min(def(next.x), begin - hsize));
-          begin = nx - hsize;
+          lastX = next.x = Math.min(
+            def(next.x),
+            lastX - separation(next, last)
+          );
+          last = next;
         }
-        start = Math.min(start, begin);
       }
       lastLayer = layer;
     }
-    // separate for zero based
-    for (const layer of layers) {
-      for (const node of layer) {
-        node.x = def(node.x) - start;
+    // scale
+    const min = Math.min(
+      ...layers.map((layer) => Math.min(...layer.map((node) => def(node.x))))
+    );
+    const span =
+      Math.max(
+        ...layers.map((layer) => Math.max(...layer.map((node) => def(node.x))))
+      ) - min;
+    if (span > 0) {
+      for (const layer of layers) {
+        for (const node of layer) {
+          node.x = (def(node.x) - min) / span;
+        }
+      }
+    } else {
+      for (const layer of layers) {
+        for (const node of layer) {
+          node.x = 0.5;
+        }
       }
     }
-    const width = finish - start;
-    if (width <= 0) {
-      throw new Error("must assign nonzero width to at least one node");
-    }
-    return width;
   }
   return greedyCall;
 }
@@ -7437,7 +7390,7 @@ function topological$1(...args) {
       `got arguments to topological(${args}), but constructor takes no aruguments.`
     );
   }
-  function topologicalCall(layers, nodeSize) {
+  function topologicalCall(layers, separation) {
     for (const layer of layers) {
       const numNodes = layer.reduce(
         (count, node) => count + +!(node instanceof DummyNode),
@@ -7465,7 +7418,7 @@ function topological$1(...args) {
         }
       }
     }
-    const [Q, c, A, b] = init(layers, inds, nodeSize);
+    const [Q, c, A, b] = init(layers, inds, separation);
     for (const layer of layers) {
       for (const par of layer) {
         const pind = inds.getThrow(par.id);
@@ -7481,11 +7434,7 @@ function topological$1(...args) {
       }
     }
     const solution = solve(Q, c, A, b);
-    const width = layout(layers, nodeSize, inds, solution);
-    if (width <= 0) {
-      throw new Error("must assign nonzero width to at least one node");
-    }
-    return width;
+    layout(layers, inds, solution);
   }
   return topologicalCall;
 }
@@ -7500,7 +7449,6 @@ class Mean {
     this.mean += (val - this.mean) / ++this.count;
   }
 }
-
 /** Create a mean two layer ordering operator. */
 function mean(...args) {
   if (args.length) {
@@ -7532,8 +7480,8 @@ function mean(...args) {
  * @packageDocumentation
  */
 /** @internal */
-function buildOperator$b(options) {
-  const joiner = options.debug ? " => " : "\0\0";
+function buildOperator$b(debugVal) {
+  const joiner = debugVal ? " => " : "\0\0";
   function key(...nodes) {
     return nodes
       .map((n) => n.id)
@@ -7541,12 +7489,6 @@ function buildOperator$b(options) {
       .join(joiner);
   }
   function optCall(topLayer, bottomLayer) {
-    // check if input is too large
-    if (!options.clowntown && bottomLayer.length > 50) {
-      throw new Error(
-        "bottomLayer to twolayerOpt is too large and will likely crash, enable clowntown to run anyway"
-      );
-    }
     // initialize model
     const model = {
       optimize: "opt",
@@ -7555,7 +7497,6 @@ function buildOperator$b(options) {
       variables: Object.create(null),
       ints: Object.create(null),
     };
-
     // sort bottom layer so ids can be used to see if one node was originally
     // before another one
     bottomLayer.sort((n1, n2) => +(n1.id > n2.id) || -1);
@@ -7570,7 +7511,6 @@ function buildOperator$b(options) {
         model.constraints[pair] = Object.assign(Object.create(null), {
           max: 1,
         });
-
         model.variables[pair] = Object.assign(Object.create(null), {
           opt: 0,
           [pair]: 1,
@@ -7592,7 +7532,6 @@ function buildOperator$b(options) {
           model.constraints[triangleUp] = Object.assign(Object.create(null), {
             max: 1,
           });
-
           model.variables[pair1][triangleUp] = 1;
           model.variables[pair2][triangleUp] = -1;
           model.variables[pair3][triangleUp] = 1;
@@ -7600,7 +7539,6 @@ function buildOperator$b(options) {
           model.constraints[triangleDown] = Object.assign(Object.create(null), {
             min: 0,
           });
-
           model.variables[pair1][triangleDown] = 1;
           model.variables[pair2][triangleDown] = -1;
           model.variables[pair3][triangleDown] = 1;
@@ -7631,24 +7569,12 @@ function buildOperator$b(options) {
   }
   function debug(val) {
     if (val === undefined) {
-      return options.debug;
+      return debugVal;
     } else {
-      return buildOperator$b(
-        Object.assign(Object.assign({}, options), { debug: val })
-      );
+      return buildOperator$b(val);
     }
   }
   optCall.debug = debug;
-  function clowntown(val) {
-    if (val === undefined) {
-      return options.clowntown;
-    } else {
-      return buildOperator$b(
-        Object.assign(Object.assign({}, options), { clowntown: val })
-      );
-    }
-  }
-  optCall.clowntown = clowntown;
   return optCall;
 }
 /** Create a default [[OptOperator]]. */
@@ -7658,7 +7584,7 @@ function opt$1(...args) {
       `got arguments to opt(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$b({ debug: false, clowntown: false });
+  return buildOperator$b(false);
 }
 
 // TODO turn this into an operator for zherebko
@@ -8406,7 +8332,6 @@ function buildOperator$f(centerVal) {
           const childrenColumnIndices = [
             ...node.ichildren().map((child) => def(child.columnIndex)),
           ];
-
           if (centerVal) {
             // return column index of middle child
             return childrenColumnIndices.sort((a, b) => a - b)[

@@ -199,7 +199,6 @@ class LazyFluentIterable {
     return this;
   }
 }
-
 function isIterable(seq) {
   return typeof seq[Symbol.iterator] === "function";
 }
@@ -293,7 +292,6 @@ class LayoutChildLink {
     this.points = points;
   }
 }
-
 /**
  * The concrete class backing the [[Link]] interface.
  */
@@ -313,7 +311,6 @@ class LayoutLink {
     this.points = points;
   }
 }
-
 /**
  * The concreate implementation of [[DagNode]], this forwards most calls to a
  * singleton [[LayoutDagRoot]] with the exception of children methods, as
@@ -400,7 +397,6 @@ class LayoutDagNode {
     return true;
   }
 }
-
 /**
  * The concrete implementation backing [[DagRoot]] which also contains the
  * implementation of most methods in [[DagNode]].
@@ -2086,19 +2082,19 @@ function quad(...args) {
 }
 
 /*! *****************************************************************************
-  Copyright (c) Microsoft Corporation.
-  
-  Permission to use, copy, modify, and/or distribute this software for any
-  purpose with or without fee is hereby granted.
-  
-  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-  REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-  AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-  INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-  LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-  OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-  PERFORMANCE OF THIS SOFTWARE.
-  ***************************************************************************** */
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
 
 function __rest(s, e) {
   var t = {};
@@ -3705,14 +3701,15 @@ Tableau_1.prototype.log = function (message, force) {
 
     ///////////
     /*valueSpace = " ";
-    nameSpace = " ";
-      for (s = 0; s < nSpaces; s += 1) {
-        if (varNameLength > 5) {
-            valueSpace += " ";
-        } else {
-            nameSpace += " ";
-        }
-    }*/
+        nameSpace = " ";
+
+        for (s = 0; s < nSpaces; s += 1) {
+            if (varNameLength > 5) {
+                valueSpace += " ";
+            } else {
+                nameSpace += " ";
+            }
+        }*/
 
     ///////////
     if (varNameLength > 5) {
@@ -3735,15 +3732,15 @@ Tableau_1.prototype.log = function (message, force) {
 
   ///////////
   /*for (j = 1; j < this.width; j += 1) {
-      signSpace = firstRow[j] < 0 ? "" : " ";
-      firstRowString += signSpace;
-      firstRowString += spacePerColumn[j];
-      firstRowString += firstRow[j].toFixed(2);
-  }
-  signSpace = firstRow[0] < 0 ? "" : " ";
-  firstRowString += signSpace + spacePerColumn[0] +
-      firstRow[0].toFixed(2);
-  console.log(firstRowString + " Z");*/
+        signSpace = firstRow[j] < 0 ? "" : " ";
+        firstRowString += signSpace;
+        firstRowString += spacePerColumn[j];
+        firstRowString += firstRow[j].toFixed(2);
+    }
+    signSpace = firstRow[0] < 0 ? "" : " ";
+    firstRowString += signSpace + spacePerColumn[0] +
+        firstRow[0].toFixed(2);
+    console.log(firstRowString + " Z");*/
 
   ///////////
   for (j = 1; j < this.width; j += 1) {
@@ -3764,11 +3761,11 @@ Tableau_1.prototype.log = function (message, force) {
 
     ///////////
     /*for (c = 1; c < this.width; c += 1) {
-        signSpace = row[c] < 0 ? "" : " ";
-        rowString += signSpace + spacePerColumn[c] + row[c].toFixed(2);
-    }
-    signSpace = row[0] < 0 ? "" : " ";
-    rowString += signSpace + spacePerColumn[0] + row[0].toFixed(2);*/
+            signSpace = row[c] < 0 ? "" : " ";
+            rowString += signSpace + spacePerColumn[c] + row[c].toFixed(2);
+        }
+        signSpace = row[0] < 0 ? "" : " ";
+        rowString += signSpace + spacePerColumn[0] + row[0].toFixed(2);*/
 
     ///////////
     for (c = 1; c < this.width; c += 1) {
@@ -5433,16 +5430,16 @@ var solve$1 = function (model) {
 };
 
 /*
-   model.external = {
-       "binPath": "C:/lpsolve/lp_solve.exe",
-       "tempName": "C:/temp/out.txt",
-       "args": [
-           "-S2"
-       ]
-       
-   }
-   
-   */
+model.external = {
+    "binPath": "C:/lpsolve/lp_solve.exe",
+    "tempName": "C:/temp/out.txt",
+    "args": [
+        "-S2"
+    ]
+    
+}
+
+*/
 
 var main = {
   reformat: reformat,
@@ -5470,29 +5467,34 @@ var main$1 = {
 /*global process*/
 
 /***************************************************************
-                    * Method: polyopt
-                    * Scope: private
-                    * Agruments:
-                    *        model: The model we want solver to operate on.
-                                    Because we're in here, we're assuming that
-                                    we're solving a multi-objective optimization
-                                    problem. Poly-Optimization. polyopt.
-                                      This model has to be formed a little differently
-                                    because it has multiple objective functions.
-                                    Normally, a model has 2 attributes: opType (string,
-                                    "max" or "min"), and optimize (string, whatever
-                                    attribute we're optimizing.
-                                      Now, there is no opType attribute on the model,
-                                    and optimize is an object of attributes to be
-                                    optimized, and how they're to be optimized.
-                                    For example:
-                                      ...
-                                    "optimize": {
-                                       "pancakes": "max",
-                                       "cost": "minimize"
-                                    }
-                                    ...
-                        **************************************************************/
+     * Method: polyopt
+     * Scope: private
+     * Agruments:
+     *        model: The model we want solver to operate on.
+                     Because we're in here, we're assuming that
+                     we're solving a multi-objective optimization
+                     problem. Poly-Optimization. polyopt.
+
+                     This model has to be formed a little differently
+                     because it has multiple objective functions.
+                     Normally, a model has 2 attributes: opType (string,
+                     "max" or "min"), and optimize (string, whatever
+                     attribute we're optimizing.
+
+                     Now, there is no opType attribute on the model,
+                     and optimize is an object of attributes to be
+                     optimized, and how they're to be optimized.
+                     For example:
+
+                     ...
+                     "optimize": {
+                        "pancakes": "max",
+                        "cost": "minimize"
+                     }
+                     ...
+
+
+     **************************************************************/
 
 var Polyopt = function (solver, model) {
   // I have no idea if this is actually works, or what,
@@ -5929,7 +5931,6 @@ function buildOperator$4(ranker, debugVal) {
       variables[nid] = {
         opt: node.children.length,
       };
-
       const rank = ranker(node);
       if (rank !== undefined) {
         ranks.push([rank, node]);
@@ -6397,7 +6398,7 @@ function buildOperator$6(
         : 1;
       for (const layer of exed) {
         for (const node of layer) {
-          node.x *= width * scale; // ENGR489 node x position/space
+          node.x *= width * scale;
         }
       }
     }
@@ -6578,53 +6579,9 @@ function topological(...args) {
   }
   return topologicalCall;
 }
-/******************************** */
+
 /** @internal */
 function buildOperator$7(topDownVal) {
-  // Additional Function for ENGR489
-  function courseLevel(dag) {
-    dag.depth();
-    for (const n of dag) {
-      // go through each node
-      var nLevel = n.id.match(/\d/); //Finds first digit - Level
-      var nTri = n.data.trimester; // Finds trimester - 1 or 2
-      var levelAndTri = parseInt(nLevel + nTri);
-      var layer;
-      // Assign the course depends on their level/trimester
-      switch (levelAndTri) {
-        case 10: // For "level100 root node only TODO: fix it"
-          layer = 0;
-          break;
-        case 11:
-          layer = 1;
-          break;
-        case 12:
-          layer = 2;
-          break;
-        case 21:
-          layer = 3;
-          break;
-        case 22:
-          layer = 4;
-          break;
-        case 31:
-          layer = 5;
-          break;
-        case 32:
-          layer = 6;
-          break;
-        case 41:
-          layer = 7;
-          break;
-        case 42:
-          layer = 8;
-          break;
-      }
-      n.layer = layer;
-    }
-  }
-  // *******************
-
   function bottomUp(dag) {
     const maxHeight = Math.max(...dag.iroots().map((d) => d.value));
     for (const node of dag) {
@@ -6637,8 +6594,7 @@ function buildOperator$7(topDownVal) {
         node.layer = node.value;
       }
     } else {
-      courseLevel(dag);
-      // bottomUp(dag.height());
+      bottomUp(dag.height());
     }
   }
   function topDown(val) {
@@ -6651,8 +6607,6 @@ function buildOperator$7(topDownVal) {
   longestPathCall.topDown = topDown;
   return longestPathCall;
 }
-/******************************** */
-
 /** Create a default [[LongestPathOperator]]. */
 function longestPath(...args) {
   if (args.length) {
@@ -6660,36 +6614,36 @@ function longestPath(...args) {
       `got arguments to longestPath(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$7(false);
+  return buildOperator$7(true);
 }
 
 /**
-   * FastPriorityQueue.js : a fast heap-based priority queue  in JavaScript.
-   * (c) the authors
-   * Licensed under the Apache License, Version 2.0.
-   *
-   * Speed-optimized heap-based priority queue for modern browsers and JavaScript engines.
-   *
-   * Usage :
-           Installation (in shell, if you use node):
-           $ npm install fastpriorityqueue
-  
-           Running test program (in JavaScript):
-  
-           // var FastPriorityQueue = require("fastpriorityqueue");// in node
-           var x = new FastPriorityQueue();
-           x.add(1);
-           x.add(0);
-           x.add(5);
-           x.add(4);
-           x.add(3);
-           x.peek(); // should return 0, leaves x unchanged
-           x.size; // should return 5, leaves x unchanged
-           while(!x.isEmpty()) {
-             console.log(x.poll());
-           } // will print 0 1 3 4 5
-           x.trim(); // (optional) optimizes memory usage
-   */
+ * FastPriorityQueue.js : a fast heap-based priority queue  in JavaScript.
+ * (c) the authors
+ * Licensed under the Apache License, Version 2.0.
+ *
+ * Speed-optimized heap-based priority queue for modern browsers and JavaScript engines.
+ *
+ * Usage :
+         Installation (in shell, if you use node):
+         $ npm install fastpriorityqueue
+
+         Running test program (in JavaScript):
+
+         // var FastPriorityQueue = require("fastpriorityqueue");// in node
+         var x = new FastPriorityQueue();
+         x.add(1);
+         x.add(0);
+         x.add(5);
+         x.add(4);
+         x.add(3);
+         x.peek(); // should return 0, leaves x unchanged
+         x.size; // should return 5, leaves x unchanged
+         while(!x.isEmpty()) {
+           console.log(x.poll());
+         } // will print 0 1 3 4 5
+         x.trim(); // (optional) optimizes memory usage
+ */
 
 var defaultcomparator = function (a, b) {
   return a < b;
@@ -6984,7 +6938,6 @@ class Data {
     this.parents = [];
   }
 }
-
 /** @internal */
 function buildOperator$8(maxWidthVal) {
   function coffmanGrahamCall(dag) {
@@ -7101,7 +7054,6 @@ function buildOperator$9(debugVal) {
         model.constraints[pair] = Object.assign(Object.create(null), {
           max: 1,
         });
-
         model.variables[pair] = Object.assign(Object.create(null), {
           opt: 0,
           [pair]: 1,
@@ -7121,7 +7073,6 @@ function buildOperator$9(debugVal) {
           model.constraints[triangleUp] = Object.assign(Object.create(null), {
             max: 1,
           });
-
           model.variables[pair1][triangleUp] = 1;
           model.variables[pair2][triangleUp] = -1;
           model.variables[pair3][triangleUp] = 1;
@@ -7129,7 +7080,6 @@ function buildOperator$9(debugVal) {
           model.constraints[triangleDown] = Object.assign(Object.create(null), {
             min: 0,
           });
-
           model.variables[pair1][triangleDown] = 1;
           model.variables[pair2][triangleDown] = -1;
           model.variables[pair3][triangleDown] = 1;
@@ -7157,19 +7107,16 @@ function buildOperator$9(debugVal) {
               [slackUp]: 1,
               [slackDown]: 1,
             });
-
             const flip = +(c1.id > c2.id);
             const sign = flip || -1;
             model.constraints[slackUp] = Object.assign(Object.create(null), {
               min: flip,
             });
-
             model.variables[pairp][slackUp] = 1;
             model.variables[pairc][slackUp] = sign;
             model.constraints[slackDown] = Object.assign(Object.create(null), {
               min: -flip,
             });
-
             model.variables[pairp][slackDown] = -1;
             model.variables[pairc][slackDown] = -sign;
           }
@@ -7186,7 +7133,6 @@ function buildOperator$9(debugVal) {
       variables: Object.create(null),
       ints: Object.create(null),
     };
-
     // add variables and permutation invariants
     for (const layer of layers) {
       perms(model, layer);
@@ -7503,7 +7449,6 @@ class Mean {
     this.mean += (val - this.mean) / ++this.count;
   }
 }
-
 /** Create a mean two layer ordering operator. */
 function mean(...args) {
   if (args.length) {
@@ -7552,7 +7497,6 @@ function buildOperator$b(debugVal) {
       variables: Object.create(null),
       ints: Object.create(null),
     };
-
     // sort bottom layer so ids can be used to see if one node was originally
     // before another one
     bottomLayer.sort((n1, n2) => +(n1.id > n2.id) || -1);
@@ -7567,7 +7511,6 @@ function buildOperator$b(debugVal) {
         model.constraints[pair] = Object.assign(Object.create(null), {
           max: 1,
         });
-
         model.variables[pair] = Object.assign(Object.create(null), {
           opt: 0,
           [pair]: 1,
@@ -7589,7 +7532,6 @@ function buildOperator$b(debugVal) {
           model.constraints[triangleUp] = Object.assign(Object.create(null), {
             max: 1,
           });
-
           model.variables[pair1][triangleUp] = 1;
           model.variables[pair2][triangleUp] = -1;
           model.variables[pair3][triangleUp] = 1;
@@ -7597,7 +7539,6 @@ function buildOperator$b(debugVal) {
           model.constraints[triangleDown] = Object.assign(Object.create(null), {
             min: 0,
           });
-
           model.variables[pair1][triangleDown] = 1;
           model.variables[pair2][triangleDown] = -1;
           model.variables[pair3][triangleDown] = 1;
@@ -8391,7 +8332,6 @@ function buildOperator$f(centerVal) {
           const childrenColumnIndices = [
             ...node.ichildren().map((child) => def(child.columnIndex)),
           ];
-
           if (centerVal) {
             // return column index of middle child
             return childrenColumnIndices.sort((a, b) => a - b)[
