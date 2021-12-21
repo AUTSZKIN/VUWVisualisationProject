@@ -1,11 +1,11 @@
 {
   "name": "thridprototype",
   "version": "1.0.0",
+  "description": "",
   "engines": {
     "node": "15.5.1"
   },
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start": "open http://127.0.0.1:5000 && node app.js ",
     "git": "git add . && git commit -m",
@@ -25,8 +25,7 @@
     "express": "^4.17.1",
     "global": "^4.4.0",
     "http-module": "^0.0.5",
-    "jquery": "^3.5.1",
-    "request": "^2.88.2"
+    "jquery": "^3.5.1"
   },
   "devDependencies": {
     "patch-package": "^6.4.7"
