@@ -5,6 +5,8 @@
 //  * 3. 接收请求与响应请求：服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。
 //  */
 
+// var express = require("express");
+
 import express from "express";
 import path from "path";
 

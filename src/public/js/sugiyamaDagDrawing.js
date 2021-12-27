@@ -1,27 +1,26 @@
 // Before using express in app.js
 // import * as d3_dag from "../../../module/d3-dag-047.js"; // import local modified d3-dag library
 
-/******************************** */
-import * as d3_basic from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
-import * as d3_dag from "/public/d3-dag/d3-dag-047.js"; // Starting from /src/, import local modified d3-dag library
+/*********************************/
+import * as d3 from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
+// Starting from /src/, import local modified d3-dag library
+import * as d3_dag from "/src/public/d3-dag/d3-dag-082.js";
 
 export default function () {
-  const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
+  // const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
   const highlightStyle = "stroke:red; stroke-width:4.5";
   const hoverHighlightStyle = "stroke:purple; stroke-width:3.5";
   const defaultUnhighlightedStyle = "stroke:grey; stroke-width:1";
 
-  console.log("what's in d3-dag 0.8.2:");
-
   function sugiyama(dag) {
-    const layering = d3.layeringLongestPath();
-    const decross = d3.decrossTwoLayer();
-    const coord = d3.coordCenter();
+    const layering = d3_dag.layeringLongestPath();
+    const decross = d3_dag.decrossTwoLayer();
+    const coord = d3_dag.coordCenter();
 
     var xSep = 3600,
       ySep = 2250; // Controling Node Seperation/Position  FIXME: Find a better way
 
-    const sugiyamaOperator = d3
+    const sugiyamaOperator = d3_dag
       .sugiyama()
       .size([xSep, ySep]) //node size
       .layering(layering)
@@ -29,43 +28,12 @@ export default function () {
       .coord(coord);
 
     sugiyamaOperator(dag);
-    draw(dag);
+    drawPaths(dag);
+    drawNodes(dag);
     zoomPan();
   }
 
   return sugiyama;
-
-  function draw(dag) {
-    // console.dir(dag);
-    // const defs = svgSelection.append("defs"); // For gradients
-    // Use computed sugiyamaOperator (formerly layout)
-    // sugiyamaOperator(dag);
-
-    const steps = dag.size();
-    const interp = d3.interpolateRainbow;
-    const colorMap = {};
-
-    // console.log("class of dag: " + dag.constructor.name); //get object class
-    // console.log(Object.getOwnPropertyNames(dag)); //get object properties
-    // console.log(dag.dagRoots);
-    // console.log("dag.links: " + Object.getOwnPropertyNames(dag.links()[0]));
-    //dag.dagRoots.forEach((d) => console.log(d));
-    //LayoutDagRoot {dagRoots: Array(6)}//
-    // var dagit = dag[Symbol.iterator]();
-    // var next = dagit.next();
-    // while (!dagit.next().done) {
-    //   console.log(next.value);
-    //   next = dagit.next();
-    // }
-
-    dag.dagRoots.forEach((node, i) => {
-      colorMap[node.id] = interp(i / steps);
-    });
-
-    drawPaths(dag);
-    drawNodes(dag);
-    d3.selectAll(".level100 *,#level100 *").style("opacity", 0);
-  }
 
   function drawPaths(dag) {
     // Draw edges
@@ -153,11 +121,14 @@ export default function () {
       .attr("alignment-baseline", "middle")
       .attr("fill", "black")
       .attr("class", "nodeText");
+
+    // Hide root node
+    d3.selectAll(".level100Node *,#level100Node *")
+      .attr("transform", "translate(-3000, -3000)")
+      .style("display", "none");
   }
 
   function drawTooltipAndCourseInfoPanel() {
-    var isCourseHighlighted = false;
-
     const popUpWindow = d3
       .select("body")
       .append("div")
@@ -179,23 +150,14 @@ export default function () {
       const rect = node.select(".nodeRect");
       var isRectHighlighted = rect.classed("highlighted");
 
-      // console.log("Node: ");
-      // console.log(node);
-      // console.log(" Rect: ");
-      // console.log(rect);
-      // console.log("isRectHighlight?: " + isRectHighlighted);
-
       if (isRectHighlighted) {
         d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
         $(".highlighted").removeClass("highlighted");
-        //return;
       } else {
         classifyHighlightNodes(courseNode);
         d3.selectAll(".highlighted").attr("style", highlightStyle);
         popUpWindow.style("visibility", "hidden"); // hide popup window
         showCourseInfo(courseNode);
-        isCourseHighlighted = true;
-        //return;
       }
     }
     //**********************************************************************

@@ -6580,7 +6580,7 @@ function topological(...args) {
 }
 /******************************** */
 /** @internal */
-function buildOperator$7(topDownVal) {
+function buildOperator$7() {
   // Additional Function for ENGR489
   function courseLevel(dag) {
     dag.depth();
@@ -6623,38 +6623,9 @@ function buildOperator$7(topDownVal) {
       n.layer = layer;
     }
   }
-  // *******************
-
-  function bottomUp(dag) {
-    const maxHeight = Math.max(...dag.iroots().map((d) => d.value));
-    for (const node of dag) {
-      node.layer = maxHeight - node.value;
-    }
-  }
-
-  function longestPathCall(dag) {
-    if (topDownVal) {
-      for (const node of dag.depth()) {
-        node.layer = node.value;
-      }
-    } else {
-      courseLevel(dag);
-      // bottomUp(dag.height());
-    }
-  }
-
-  function topDown(val) {
-    if (val === undefined) {
-      return topDownVal;
-    } else {
-      return buildOperator$7(val);
-    }
-  }
-
-  longestPathCall.topDown = topDown;
-  return longestPathCall;
+  return courseLevel;
 }
-/******************************** */
+/*********************************/
 
 /** Create a default [[LongestPathOperator]]. */
 function longestPath(...args) {
@@ -6663,7 +6634,7 @@ function longestPath(...args) {
       `got arguments to longestPath(${args}), but constructor takes no aruguments.`
     );
   }
-  return buildOperator$7(false);
+  return buildOperator$7();
 }
 
 /**

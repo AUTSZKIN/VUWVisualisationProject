@@ -6,6 +6,7 @@
     "node": "15.5.1"
   },
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "open http://127.0.0.1:5000 && node app.js ",
     "git": "git add . && git commit -m",
