@@ -34,7 +34,7 @@ export default function () {
     // Draw edges
     const line = d3
       .line()
-      .curve(d3.curveBundle.beta(0.5))
+      .curve(d3.curveBundle.beta(0.3))
       .x((d) => d.x)
       .y((d) => d.y);
 
@@ -198,6 +198,16 @@ export default function () {
           ? getPrereqHerfElement()
           : "No Prerequisite";
 
+      const specificPrereq =
+        courseNode.data.specificPrereq === ""
+          ? courseNode.data.specificPrereq
+          : "No Other Prerequisite";
+
+      console.log(
+        "courseNode.data.specificPrereq: " + courseNode.data.specificPrereq
+      );
+      console.log(courseNode);
+
       function getPrereqHerfElement() {
         var prereqList = ``;
         courseNode.data.parentIds.forEach(function (parentCourse) {
@@ -218,6 +228,9 @@ export default function () {
         <br>
         <label>Prerequisites: </label>
         ${prereq}
+        <br>
+        <label>Other requirements: </label>
+        ${specificPrereq}
         <br>
         <label>Trimester: </label>
         ${courseNode.data.trimester}<br>
