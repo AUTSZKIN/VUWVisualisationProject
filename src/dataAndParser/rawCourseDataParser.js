@@ -59,17 +59,18 @@ export function rawCourseDataToJsonArray(data) {
         !/P\s[A-Z]{4}[0-9]{3}/.test(prereqLine) // 3.3.3 If do not contains any pattern like ("P ENGR101")
       ) {
         // 3.4 Remove P and split with space we have a clean line
-        const cleanPrereqLine = prereqLine.replace(/P\s/, "");
+        const prereqLineCleaned = prereqLine.replace(/P\s/, "");
         if (complexPrereqRegex.test(prereqLine)) {
           // 3.5 Extract course code from complex prereq
-          const rawPrereqTokensArray = cleanPrereqLine.split(/\s/);
+          const rawPrereqTokensArray = prereqLineCleaned.split(/\s/);
           const extractedCourseArray =
             extractComplexPrereq(rawPrereqTokensArray);
           complexPrereq.push(extractedCourseArray); // FIXME:那些只有复杂必修课的课parentIds是空的，找到一个方法让课程正确显示.
         }
         // 3.6 If it not contains any brackets therefore it must have some specific requriements (e.g. "60 300-level pts")
         else if (!complexPrereqRegex.test(prereqLine)) {
-          specificPrereq = cleanPrereqLine;
+          specificPrereq = prereqLineCleaned.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
+          console.log("specificPrereq:" + specificPrereq);
         }
       }
       // 3.7 Normal one prerequisite line. NOTE: EACH LINE ONLY CONTIANS ONE NORMAL COURSE CODE!

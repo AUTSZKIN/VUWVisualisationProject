@@ -1,10 +1,5 @@
-// Before using express in app.js
-// import * as d3_dag from "../../../module/d3-dag-047.js"; // import local modified d3-dag library
-
-/*********************************/
 import * as d3 from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
-// Starting from /src/, import local modified d3-dag library
-import * as d3_dag from "/src/public/d3-dag/d3-dag-082.js";
+import * as d3_dag from "/src/public/d3-dag/d3-dag-082.js"; // Starting from /src/, import local modified d3-dag library
 
 export default function () {
   // const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
@@ -17,12 +12,12 @@ export default function () {
     const decross = d3_dag.decrossTwoLayer();
     const coord = d3_dag.coordCenter();
 
-    var xSep = 3600,
-      ySep = 2250; // Controling Node Seperation/Position  FIXME: Find a better way
+    var xSep = 3700,
+      ySep = 2500; // Controling Node Seperation/Position FIXME: Find a better way -> ALSO CHECK function sugiyama2() in d3-dag
 
     const sugiyamaOperator = d3_dag
       .sugiyama()
-      .size([xSep, ySep]) //node size
+      .size([xSep, ySep]) //node sepration
       .layering(layering)
       .decross(decross)
       .coord(coord);
@@ -91,9 +86,8 @@ export default function () {
     drawTooltipAndCourseInfoPanel();
 
     // Draw node rectangle
-    const nodeW = 90,
+    const nodeW = 95,
       nodeH = nodeW / 2;
-
     courseNodes
       .append("rect")
       .attr("width", nodeW)
@@ -120,9 +114,10 @@ export default function () {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("fill", "black")
-      .attr("class", "nodeText");
+      .attr("class", "nodeText")
+      .attr("font-size", "115%");
 
-    // Hide root node
+    // Hide level100 root node
     d3.selectAll(".level100Node *,#level100Node *")
       .attr("transform", "translate(-3000, -3000)")
       .style("display", "none");

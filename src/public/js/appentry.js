@@ -8,7 +8,7 @@ import { draw } from "./main.js";
 import sugiyama from "./sugiyamaDagDrawing.js";
 
 const courseJsonDataUrl =
-  "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/ecs-sms-courses.json";
+  "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/ecs-sms-courses-withLayers.json";
 
 drawLocalData();
 
@@ -31,6 +31,7 @@ const rawDataUrl =
 fetch(rawDataUrl).then((response) => {
   response.text().then((data) => {
     var courseJsonArray = rawCourseDataToJsonArray(data);
+    // PRINT THE PARSED DATA
     console.log(JSON.stringify(courseJsonArray));
   });
 });

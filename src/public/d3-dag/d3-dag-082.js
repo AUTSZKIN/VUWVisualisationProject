@@ -5564,7 +5564,8 @@ function buildOperator5(options) {
     for (const layer of layers) {
       const layerHeight = Math.max(...layer.map(ySize));
       for (const node of layer) {
-        node.y = height + layerHeight / 2;
+        // AUTSZKIN CHANGED
+        node.y = height; //+ layerHeight / 2; TODO:
       }
       height += layerHeight;
     }
@@ -5625,6 +5626,7 @@ function buildOperator5(options) {
     }
     return { width, height };
   }
+
   function layering(layer) {
     if (layer === void 0) {
       return options.layering;
@@ -5763,50 +5765,14 @@ function buildOperator6(options) {
   longestPathCall.topDown = topDown;
   return longestPathCall;
 }
-/****************AUTZS*****************/
+/****************AUTSZKIN CHANGED*****************/
 function setCourseLayers() {
   function courseLevel(dag) {
     dag.depth();
     for (const n of dag) {
-      // go through each node
-      var nLevel = n.id.match(/\d/); //Finds first digit - Level
-      var nTri = n.data.trimester; // Finds trimester - 1 or 2
-      var levelAndTri = parseInt(nLevel + nTri);
-      var layer;
-      // Assign the course depends on their level/trimester
-      switch (levelAndTri) {
-        case 10: // For "level100 root node only TODO: fix it"
-          layer = 0;
-          break;
-        case 11:
-          layer = 1;
-          break;
-        case 12:
-          layer = 2;
-          break;
-        case 21:
-          layer = 3;
-          break;
-        case 22:
-          layer = 4;
-          break;
-        case 31:
-          layer = 5;
-          break;
-        case 32:
-          layer = 6;
-          break;
-        case 41:
-          layer = 7;
-          break;
-        case 42:
-          layer = 8;
-          break;
-      }
-      n.value = layer;
+      n.value = n.data.layer;
     }
   }
-  console.log("Line 5809 setting course layers");
   return courseLevel;
 }
 
@@ -5819,7 +5785,7 @@ function longestPath(...args) {
   return setCourseLayers();
   // return buildOperator6({ topDown: true });
 }
-/****************AUTZS*****************/
+/*********************************/
 
 // dist/sugiyama/layering/coffman-graham.js
 var import_fastpriorityqueue = __toModule(require_FastPriorityQueue());
@@ -6154,7 +6120,8 @@ function center(...args) {
       let width = 0;
       for (const node of layer) {
         const nodeWidth = nodeSize(node);
-        node.x = width + nodeWidth / 2;
+        // AUTSZKIN CHANGED
+        node.x = width; // + nodeWidth / 2;
         width += nodeWidth;
       }
       return width;

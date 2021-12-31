@@ -57,9 +57,6 @@ function drawHeader() {
   );
   const mainheader = d3.select("body").append("div").attr("id", "mainheader");
   mainheader.append("h3").text("Course Filter");
-}
-
-function createCardsContainer() {
   d3.select("body").append("div").attr("id", "cardsContainer");
 }
 
@@ -270,7 +267,7 @@ function drawLayer() {
         viewBoxY
       );
     })
-    .attr("font-size", "26px")
+    .attr("font-size", "220%")
     .text((d, i) => {
       return d;
     });
@@ -279,7 +276,6 @@ function drawLayer() {
 export function draw() {
   drawNav();
   drawHeader();
-  createCardsContainer();
   drawFilter();
   drawCourseInfoField();
   drawSVG();
