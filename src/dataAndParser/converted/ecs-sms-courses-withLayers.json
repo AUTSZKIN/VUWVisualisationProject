@@ -24,7 +24,7 @@
     "courseTitle": "Digital Electronics",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["ENGR101", "PHYS115"] }],
-    "specificPrereq": "15 pts from (ENGR 121, 122, 123, MATH 141, 142, 151, 161)",
+    "specificPrereq": "\"15 pts from (ENGR 121, 122, 123, MATH 141, 142, 151, 161)\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -89,7 +89,7 @@
   },
   {
     "id": "ECEN320",
-    "courseTitle": "Introducty Signal Processing",
+    "courseTitle": "Introductory Signal Processing",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["ECEN220", "MATH244"] }],
     "specificPrereq": "",
@@ -137,7 +137,7 @@
   },
   {
     "id": "AIML425",
-    "courseTitle": "Neural Netwks and Deep Learning",
+    "courseTitle": "Neural Networks and Deep Learning",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["AIML420", "COMP307"] }],
     "specificPrereq": "",
@@ -210,7 +210,7 @@
     "courseTitle": "Applications and Implications of Artificial Intelligence",
     "parentIds": [],
     "parentIdsComplex": [],
-    "specificPrereq": "60 300-level pts",
+    "specificPrereq": "\"60 300-level pts\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -289,7 +289,7 @@
   },
   {
     "id": "CGRA409",
-    "courseTitle": "Geometry Processing Algithms",
+    "courseTitle": "Geometry Processing Algorithms",
     "parentIds": [],
     "parentIdsComplex": [
       { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
@@ -324,7 +324,7 @@
   },
   {
     "id": "COMP103",
-    "courseTitle": "Introduction to Data Structures and Algithms",
+    "courseTitle": "Introduction to Data Structures and Algorithms",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["COMP102", "COMP112"] }],
     "specificPrereq": "",
@@ -338,7 +338,7 @@
     "courseTitle": "Introduction to Computer Science",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["NCEA", "COMP132"] }],
-    "specificPrereq": "14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming,  COMP132,  equivalent programming experience",
+    "specificPrereq": "\"14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -346,7 +346,7 @@
   },
   {
     "id": "COMP132",
-    "courseTitle": "Programming f the Natural and Social Sciences",
+    "courseTitle": "Programming for the Natural and Social Sciences",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -357,7 +357,7 @@
   },
   {
     "id": "COMP261",
-    "courseTitle": "Algithms and Data Structures",
+    "courseTitle": "Algorithms and Data Structures",
     "parentIds": ["COMP103"],
     "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
     "specificPrereq": "",
@@ -450,7 +450,7 @@
   },
   {
     "id": "COMP361",
-    "courseTitle": "Design and Analysis of Algithms",
+    "courseTitle": "Design and Analysis of Algorithms",
     "parentIds": ["COMP261"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -494,7 +494,7 @@
   },
   {
     "id": "CYBR371",
-    "courseTitle": "System and Netwk Security",
+    "courseTitle": "System and Network Security",
     "parentIds": ["CYBR171", "NWEN241", "NWEN243"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -516,7 +516,7 @@
   },
   {
     "id": "CYBR373",
-    "courseTitle": "Human and ganisational Security",
+    "courseTitle": "Human and Organisational Security",
     "parentIds": ["CYBR371"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -538,7 +538,7 @@
   },
   {
     "id": "CYBR472",
-    "courseTitle": "Digital Fensics",
+    "courseTitle": "Digital Forensics",
     "parentIds": ["CYBR271", "CYBR371"],
     "parentIdsComplex": [
       { "2of": ["CYBR3xx", "NWEN3xx", "SWEN324", "SWEN326"] }
@@ -609,7 +609,7 @@
   },
   {
     "id": "DATA303",
-    "courseTitle": "Statistics f Data Science",
+    "courseTitle": "Statistics for Data Science",
     "parentIds": [],
     "parentIdsComplex": [
       { "1of": ["STAT293", "DATA202"] },
@@ -653,7 +653,7 @@
       { "1of": ["MATH277", "STAT292"] },
       { "1of": ["DATA202", "QUAN203"] }
     ],
-    "specificPrereq": "prereq courses must have an average of B+  better",
+    "specificPrereq": "\"prereq courses must have an average of B+ or better\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -804,7 +804,7 @@
   },
   {
     "id": "EEEN202",
-    "courseTitle": "Digital Electronics and Microprocesss",
+    "courseTitle": "Digital Electronics and Microprocessors",
     "parentIds": [],
     "parentIdsComplex": [
       { "1of": ["COMP102", "COMP112", "ENGR101", "ENGR121", "MATH161"] }
@@ -935,7 +935,7 @@
     "courseTitle": "Engineering in Context",
     "parentIds": ["ENGR101", "ENGR110"],
     "parentIdsComplex": [],
-    "specificPrereq": "45 further points from Part 1 of the BE(Hons) schedule",
+    "specificPrereq": "\"45 further points from Part 1 of the BE(Hons) schedule\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -959,7 +959,7 @@
     "courseTitle": "Engineering Project Management 1",
     "parentIds": ["ENGR201"],
     "parentIdsComplex": [],
-    "specificPrereq": "60 200-level pts from (CYBR, COMP, ECEN, NWEN, RESE, SWEN)",
+    "specificPrereq": "\"60 200-level pts from (CYBR, COMP, ECEN, NWEN, RESE, SWEN)\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -1070,7 +1070,7 @@
     "courseTitle": "Discrete Mathematics and Logic",
     "parentIds": [],
     "parentIdsComplex": [],
-    "specificPrereq": "Approved level of achievement in NCEA Level 3 Calculus  one of (ENGR121-123, B+  better in MATH132, MATH141-177, QUAN111)  equivalent background in mathematics.",
+    "specificPrereq": "\"Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR121-123, B+ or better in MATH132, MATH141-177, QUAN111) or equivalent background in mathematics.\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1081,7 +1081,7 @@
     "courseTitle": "Probability and Decision Modelling",
     "parentIds": [],
     "parentIdsComplex": [],
-    "specificPrereq": "Approved level of achievement in NCEA Level 3 Calculus  one of (ENGR122, 123, MATH141, QUAN111)  equivalent background in mathematics.",
+    "specificPrereq": "\"Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR122, 123, MATH141, QUAN111) or equivalent background in mathematics.\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1092,7 +1092,7 @@
     "courseTitle": "Introduction to Real Analysis",
     "parentIds": ["MATH142", "MATH161"],
     "parentIdsComplex": [],
-    "specificPrereq": "Alternatively, B+  better in both (ENGR122, 123)",
+    "specificPrereq": "\"Alternatively, B+ or better in both (ENGR122, 123)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1103,7 +1103,7 @@
     "courseTitle": "Multivariable Calculus",
     "parentIds": ["MATH142", "MATH151"],
     "parentIdsComplex": [],
-    "specificPrereq": "Alternatively, B+  better in ENGR122",
+    "specificPrereq": "\"Alternatively, B+ or better in ENGR122\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1151,7 +1151,7 @@
     "courseTitle": "Linear Algebra",
     "parentIds": ["MATH151", "MATH161"],
     "parentIdsComplex": [],
-    "specificPrereq": "Alternatively, B+  better in (ENGR122  MATH151)",
+    "specificPrereq": "\"Alternatively, B+ or better in (ENGR122 or MATH151)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1162,7 +1162,7 @@
     "courseTitle": "Discrete Mathematics 2",
     "parentIds": ["MATH161"],
     "parentIdsComplex": [],
-    "specificPrereq": "Alternatively, B+  better in ENGR123",
+    "specificPrereq": "\"Alternatively, B+ or better in ENGR123\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1173,7 +1173,7 @@
     "courseTitle": "Mathematical Statistics",
     "parentIds": ["MATH142", "MATH177"],
     "parentIdsComplex": [],
-    "specificPrereq": "Alternatively B+  better in both (ENGR122, 123)",
+    "specificPrereq": "\"Alternatively B+ or better in both (ENGR122, 123)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1283,7 +1283,7 @@
   },
   {
     "id": "MATH323",
-    "courseTitle": "Mathematics f Earth Sciences",
+    "courseTitle": "Mathematics for Earth Sciences",
     "parentIds": [],
     "parentIdsComplex": [
       {
@@ -1351,7 +1351,7 @@
   },
   {
     "id": "MATH361",
-    "courseTitle": "Graph They",
+    "courseTitle": "Graph Theory",
     "parentIds": ["MATH161"],
     "parentIdsComplex": [],
     "specificPrereq": "MATH2xx",
@@ -1384,7 +1384,7 @@
   },
   {
     "id": "NWEN243",
-    "courseTitle": "Clouds and Netwking",
+    "courseTitle": "Clouds and Networking",
     "parentIds": ["COMP103"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -1406,7 +1406,7 @@
   },
   {
     "id": "NWEN302",
-    "courseTitle": "Computer Netwk Design",
+    "courseTitle": "Computer Network Design",
     "parentIds": ["NWEN241", "NWEN243"],
     "parentIdsComplex": [
       {
@@ -1438,7 +1438,7 @@
   },
   {
     "id": "NWEN304",
-    "courseTitle": "Advanced Netwk Applications",
+    "courseTitle": "Advanced Network Applications",
     "parentIds": ["NWEN243"],
     "parentIdsComplex": [
       { "1of": ["ENGR123", "MATH161"] },
@@ -1452,7 +1452,7 @@
   },
   {
     "id": "NWEN342",
-    "courseTitle": "Computer ganisation",
+    "courseTitle": "Computer Organisation",
     "parentIds": ["NWEN241"],
     "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
     "specificPrereq": "",
@@ -1487,7 +1487,7 @@
   },
   {
     "id": "NWEN403",
-    "courseTitle": "Advanced Netwk Engineering",
+    "courseTitle": "Advanced Network Engineering",
     "parentIds": ["NWEN302"],
     "parentIdsComplex": [
       { "3of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
@@ -1537,7 +1537,7 @@
   },
   {
     "id": "NWEN438",
-    "courseTitle": "Special Topic: System and Netwk Security",
+    "courseTitle": "Special Topic: System and Network Security",
     "parentIds": ["NWEN241", "NWEN243"],
     "parentIdsComplex": [{ "4of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
     "specificPrereq": "",
@@ -1548,7 +1548,7 @@
   },
   {
     "id": "NWEN439",
-    "courseTitle": "Special Topic: Protocols and Architecture f the Internet of Things",
+    "courseTitle": "Special Topic: Protocols and Architecture for the Internet of Things",
     "parentIds": ["NWEN241", "NWEN243"],
     "parentIdsComplex": [
       { "4of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
@@ -1587,7 +1587,7 @@
   },
   {
     "id": "RESE212",
-    "courseTitle": "Renewable Energy Conversion and Stage",
+    "courseTitle": "Renewable Energy Conversion and Storage",
     "parentIds": [],
     "parentIdsComplex": [
       { "1of": ["ENGR110", "RESE111"] },
@@ -1671,7 +1671,7 @@
     "courseTitle": "Applied Statistics 2A",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["STAT193", "ENGR123", "QUAN102"] }],
-    "specificPrereq": "Alternatively, a comparable background in Statistics.",
+    "specificPrereq": "\"Alternatively, a comparable background in Statistics.\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1701,7 +1701,7 @@
   },
   {
     "id": "STAT335",
-    "courseTitle": "Statistical Models f Actuarial Science",
+    "courseTitle": "Statistical Models for Actuarial Science",
     "parentIds": ["MATH277"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -1712,7 +1712,7 @@
   },
   {
     "id": "STAT391",
-    "courseTitle": "Mathematical Methods f Applied Statistics",
+    "courseTitle": "Mathematical Methods for Applied Statistics",
     "parentIds": ["STAT292"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -1726,7 +1726,7 @@
     "courseTitle": "Sample Surveys",
     "parentIds": [],
     "parentIdsComplex": [{ "1of": ["STAT193", "QUAN102", "ENGR123"] }],
-    "specificPrereq": "30 approved 200  300-level pts",
+    "specificPrereq": "\"30 approved 200 or 300-level pts\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1823,7 +1823,7 @@
   },
   {
     "id": "SWEN324",
-    "courseTitle": "Software Crectness",
+    "courseTitle": "Software Correctness",
     "parentIds": ["COMP103"],
     "parentIdsComplex": [
       { "1of": ["ENGR123", "MATH161"] },
@@ -1837,7 +1837,7 @@
   },
   {
     "id": "SWEN325",
-    "courseTitle": "Software Development f Mobile Platfms",
+    "courseTitle": "Software Development for Mobile Platforms",
     "parentIds": ["NWEN243", "SWEN225"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -1859,7 +1859,7 @@
   },
   {
     "id": "SWEN421",
-    "courseTitle": "Fmal Software Engineering",
+    "courseTitle": "Formal Software Engineering",
     "parentIds": ["SWEN324"],
     "parentIdsComplex": [{ "2of": ["COMP3xx", "SWEN3xx"] }],
     "specificPrereq": "",
@@ -1881,7 +1881,7 @@
   },
   {
     "id": "SWEN423",
-    "courseTitle": "Design: Patterns, Framewks and Languages",
+    "courseTitle": "Design: Patterns, Frameworks and Languages",
     "parentIds": ["SWEN225"],
     "parentIdsComplex": [{ "2of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
     "specificPrereq": "",
@@ -1972,7 +1972,7 @@
   },
   {
     "id": "SWEN433",
-    "courseTitle": "Web Infmation Systems Engineering",
+    "courseTitle": "Web Information Systems Engineering",
     "parentIds": ["SWEN304"],
     "parentIdsComplex": [{ "2of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
     "specificPrereq": "",

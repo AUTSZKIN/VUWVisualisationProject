@@ -31,6 +31,6 @@ fetch(rawDataUrl).then((response) => {
   response.text().then((data) => {
     var courseJsonArray = rawCourseDataToJsonArray(data);
     // PRINT THE PARSED DATA
-    // console.log(JSON.stringify(courseJsonArray));
+    console.log(JSON.stringify(courseJsonArray));
   });
 });
