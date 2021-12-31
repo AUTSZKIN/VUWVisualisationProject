@@ -9,7 +9,6 @@ import sugiyama from "./sugiyamaDagDrawing.js";
 
 const courseJsonDataUrl =
   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/ecs-sms-courses-withLayers.json";
-
 drawLocalData();
 
 function drawLocalData() {

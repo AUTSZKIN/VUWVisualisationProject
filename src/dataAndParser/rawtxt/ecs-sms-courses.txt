@@ -536,7 +536,11 @@ P ENGR301
 P ENGR302
 P ( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )
 S ECS
+<<<<<<< HEAD
   "trimesters":F
+=======
+T 1,3
+>>>>>>> b679661264a8f5bb6780613d20662933053ae68d
 
 MATH132
 Introduction to Mathematical Thinking
