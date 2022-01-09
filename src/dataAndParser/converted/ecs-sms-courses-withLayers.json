@@ -708,12 +708,7 @@
     "courseTitle": "Engineering Statistics",
     "parentIds": [],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["ENGR121", "ENGR122"] },
-          { "and": ["MATH142", "MATH151"] }
-        ]
-      },
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] },
       { "2of": ["ECEN2xx"] }
     ],
     "specificPrereq": "",
@@ -848,12 +843,7 @@
     "courseTitle": "Signals, Systems and Statistics 1",
     "parentIds": [],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["ENGR121", "ENGR122"] },
-          { "and": ["MATH142", "MATH151"] }
-        ]
-      }
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
@@ -946,7 +936,7 @@
     "courseTitle": "Computational Algebra and Calculus",
     "parentIds": [],
     "parentIdsComplex": [
-      { "1of": [{ "and": ["ENGR121", "ENGR122"] }, { "MATH142": ["MATH151"] }] }
+      { "1of": ["ENGR121", "ENGR122", "", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "SMS",
@@ -1013,8 +1003,20 @@
   {
     "id": "ENGR489",
     "courseTitle": "Engineering Project",
-    "parentIds": [],
-    "parentIdsComplex": [],
+    "parentIds": ["ENGR201", "ENGR301", "ENGR302"],
+    "parentIdsComplex": [
+      {
+        "3of": [
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "EEEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      }
+    ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
