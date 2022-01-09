@@ -67,7 +67,10 @@ function drawFilter() {
     .attr("class", "form form-horizontal")
     .attr("id", "filterCard")
     .attr("role", "form");
-  const formCard = filterForm.append("div").attr("class", "card");
+  const formCard = filterForm
+    .append("div")
+    .attr("class", "card")
+    .attr("id", "filterCardContent");
   const cardHeading = formCard.append("div").attr("class", "card-header");
   cardHeading.append("h5").text("Filter and display options");
   const cardBody = formCard
@@ -138,15 +141,17 @@ function drawCourseInfoField() {
     .attr("role", "form");
   const formCard = infoFieldForm
     .append("div")
-    .attr("class", "card text-black bg-warning mb-3");
+    .attr("class", "card text-black bg-warning mb-3")
+    .attr("id", "courseInfoCardContent");
   const courseInfoCardHeading = formCard
     .append("div")
-    .attr("class", "card-header");
+    .attr("class", "card-header")
+    .attr("id", "courseInfoHeaderDiv");
 
   // Card Heading:Course Code
   courseInfoCardHeading
     .append("h5")
-    .text("Course code: Click a course node to view more. ")
+    .text("Course Info:")
     .attr("id", "courseInfoHeader");
 
   // Card Body: Course detail
@@ -157,15 +162,9 @@ function drawCourseInfoField() {
   courseInfoCardBody
     .append("div")
     .attr("id", "courseInfoCardBody")
-    .text(
-      `Course detail: Click a course node to view more. 
-      `
+    .html(
+      `<h4><i style="font-weight:250 "> Click a course node to view more the course detail. <i/><h4/>`
     );
-
-  // courseInfoCardBody
-  //   .append("p")
-  //   .attr("id", "courseNameCardBody")
-  //   .text("test text");
 }
 
 function schoolChanged() {

@@ -164,11 +164,6 @@ function drawCourseInfoField() {
       `Course detail: Click a course node to view more. 
       `
     );
-
-  // courseInfoCardBody
-  //   .append("p")
-  //   .attr("id", "courseNameCardBody")
-  //   .text("test text");
 }
 
 function schoolChanged() {

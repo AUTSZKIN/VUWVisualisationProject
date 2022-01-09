@@ -50,7 +50,7 @@
     "parentIds": [],
     "parentIdsComplex": [
       { "1of": ["ENGR122", "MATH142"] },
-      { "1of": ["ENGR142", "PHYS115"] }
+      { "1of": ["ENGR142", "or", "PHYS115"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
@@ -91,7 +91,7 @@
     "id": "ECEN320",
     "courseTitle": "Introductory Signal Processing",
     "parentIds": [],
-    "parentIdsComplex": [{ "1of": ["ECEN220", "MATH244"] }],
+    "parentIdsComplex": [{ "1of": ["ECEN220", "or", "MATH244"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
@@ -232,7 +232,7 @@
     "courseTitle": "Introduction to Computer Graphics",
     "parentIds": [],
     "parentIdsComplex": [
-      { "1of": ["COMP102", "COMP112", "DSDN142"] },
+      { "1of": ["COMP102", "COMP112", "or", "DSDN142"] },
       { "1of": ["ENGR121", "MATH1xx"] }
     ],
     "specificPrereq": "",

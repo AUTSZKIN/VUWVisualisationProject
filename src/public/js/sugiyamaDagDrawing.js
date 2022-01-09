@@ -115,8 +115,8 @@ export default function () {
       .attr("alignment-baseline", "middle")
       .attr("fill", "black")
       .attr("class", "nodeText")
-      .attr("font-size", "115%");
-
+      .attr("font-size", "115%")
+      .attr("id", (courseNode) => courseNode.id + "Text");
     // Hide level100 root node
     d3.selectAll(".level100Node *,#level100Node *")
       .attr("transform", "translate(-3000, -3000)")
@@ -129,6 +129,9 @@ export default function () {
       .append("div")
       .attr("class", "popUpWindow");
 
+    /**
+     * Actions on nodes
+     */
     d3.selectAll(".courseNode") // replace the courseNodes
       .on("click", (e, courseNode) => {
         clickOnNode(courseNode);
@@ -144,29 +147,55 @@ export default function () {
       const node = d3.select("#" + courseNode.id + "Node");
       const rect = node.select(".nodeRect");
       var isRectHighlighted = rect.classed("highlighted");
-
       if (isRectHighlighted) {
-        d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
-        $(".highlighted").removeClass("highlighted");
+        unclassifyHighlightedAndUnhighlightThem();
       } else {
-        classifyHighlightNodes(courseNode);
-        d3.selectAll(".highlighted").attr("style", highlightStyle);
+        classifyHighlightedAndHighlightThem(courseNode);
         popUpWindow.style("visibility", "hidden"); // hide popup window
         showCourseInfo(courseNode);
       }
     }
-    //**********************************************************************
-    // Click outside of a node within the canvas to the hide highlighted elements
-    d3.selectAll(".layerRect,.highlighted").on("click", () => {
-      d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
-      $(".highlighted").removeClass("highlighted");
-    });
-    //**********************************************************************
 
     function mouseover(courseNode) {
-      popUpWindow.transition().duration(200).style("opacity", 0.95);
-      popUpWindow.style("visibility", "visible");
+      popUpWindow
+        .transition()
+        .duration(100)
+        .style("opacity", 0.95)
+        .style("visibility", "visible");
       highlightHoverOnCourse(courseNode);
+      showOfsPath(courseNode);
+
+      // Highlight without classify them as highlighted, just a temporarty highlight.
+      function highlightHoverOnCourse(courseNode) {
+        d3.selectAll("#" + courseNode.id + "Rect").attr(
+          "style",
+          hoverHighlightStyle
+        );
+        courseNode.data.parentIds.forEach((parentId) => {
+          /**
+           * RECURSIVELY HIGHLIGHT GRANDPARENTS NODE
+           * TODO: CAN ADD A tickbox allow user to highlight only one level up or all the Ancestor Nodes
+           */
+          const parentNode = d3
+            .selectAll(".courseNode")
+            .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
+          highlightHoverOnCourse(parentNode);
+          //*******************************************************************************/
+          // Path connect source and target node
+          const pathId = "#" + parentId + "To" + courseNode.id;
+          // highlight edge/path
+          d3.selectAll(pathId).attr("style", hoverHighlightStyle);
+          //highlight rect boarder
+          d3.selectAll("#" + parentId + "Rect").attr(
+            "style",
+            hoverHighlightStyle
+          );
+        });
+      }
+
+      function showOfsPath(courseNode) {
+        console.log("Show the Ofs!");
+      }
     }
 
     function mousemove(mouseEvent, courseNode) {
@@ -174,7 +203,6 @@ export default function () {
       const popUpWindowHeight = popUpWindow.node().offsetHeight;
       var x = mouseEvent.pageX - popUpWindowWidth - 6;
       var y = mouseEvent.pageY - popUpWindowHeight - 6;
-
       popUpWindow.style("left", x + "px").style("top", y + "px"); // set popUpWindow position on the top left.  TODO: remove "px"
       popUpWindow.html(
         `<p id="TooltipCourseName">${courseNode.data.courseTitle}</p>`
@@ -184,29 +212,92 @@ export default function () {
     function mouseleave(courseNode) {
       popUpWindow.transition().delay(200).style("opacity", 0);
       deHighlightHoverOnCourse(courseNode);
-      d3.selectAll(".highlighted").attr("style", highlightStyle); //Keep highlighted course
+      hideOfsPath(courseNode);
+
+      function deHighlightHoverOnCourse(courseNode) {
+        d3.selectAll("#" + courseNode.id + "Rect").attr(
+          "style",
+          defaultUnhighlightedStyle
+        );
+        courseNode.data.parentIds.forEach((parentId) => {
+          const parentNode = d3
+            .selectAll(".courseNode")
+            .filter("#" + parentId + "Node")._groups[0][0].__data__;
+          deHighlightHoverOnCourse(parentNode);
+          //*************************************************/
+          const pathId = "#" + parentId + "To" + courseNode.id;
+          d3.selectAll(pathId).attr("style", defaultUnhighlightedStyle);
+          d3.selectAll("#" + parentId + "Rect").attr(
+            "style",
+            defaultUnhighlightedStyle
+          );
+        });
+        //Keep highlighted course, exclude text
+        $(".highlighted").not(".nodeText").attr("style", highlightStyle);
+      }
+
+      function hideOfsPath(courseNode) {
+        console.log("Hide the Ofs!");
+      }
+    }
+
+    function classifyHighlightedAndHighlightThem(courseNode) {
+      // Add class "highlighted" to Highlight elements with id attached (Rect and Path)
+
+      // Add Highlighted class to the highlighted node
+      d3.selectAll("#" + courseNode.id + "Rect")
+        .node()
+        .classList.add("highlighted");
+      d3.selectAll("#" + courseNode.id + "Text")
+        .node()
+        .classList.add("highlighted");
+      courseNode.data.parentIds.forEach((parentId) => {
+        /**
+         * RECURSIVELY ADD HIGHLIGHTED CLASS TO GRANDPARENTS NODE
+         */
+        const parentNode = d3
+          .selectAll(".courseNode")
+          .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
+        classifyHighlightedAndHighlightThem(parentNode);
+        //******************************************/
+
+        const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
+        const pathIdNode = d3.selectAll(pathId).node();
+        if (pathIdNode !== null) {
+          pathIdNode.classList.add("highlighted");
+        }
+
+        d3.selectAll("#" + parentId + "Rect")
+          .node()
+          .classList.add("highlighted");
+      });
+      // highlight elements when click exclude text
+      $(".highlighted").not(".nodeText").attr("style", highlightStyle);
+    }
+
+    function unclassifyHighlightedAndUnhighlightThem() {
+      d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
+      $(".highlighted").removeClass("highlighted");
+      setDefaultCourseInfoBody();
+
+      function setDefaultCourseInfoBody() {
+        d3.select("#courseInfoHeader").html(`<h5>Course Info:<h5/>`);
+        d3.select("#courseInfoCardBody").html(
+          `<h4><i style="font-weight:250"> Click a course node to view more the course detail.<i/><h4/>`
+        );
+      }
     }
 
     function showCourseInfo(courseNode) {
       const courseId = courseNode.id;
-      d3.select("#courseInfoHeader").text("Course code: " + courseId);
+      d3.select("#courseInfoHeader").text("Course Code: " + courseId);
       const cardBody = d3.select("#courseInfoCardBody");
 
-      // Handle prerequisites list and URL
+      // 1. Handle prerequisites list and URL
       const prereq =
         courseNode.data.parentIds.length > 0
           ? getPrereqHerfElement()
-          : "No Prerequisite";
-
-      const specificPrereq =
-        courseNode.data.specificPrereq === ""
-          ? courseNode.data.specificPrereq
-          : "No Other Prerequisite";
-
-      console.log(
-        "courseNode.data.specificPrereq: " + courseNode.data.specificPrereq
-      );
-      console.log(courseNode);
+          : "No prerequisite";
 
       function getPrereqHerfElement() {
         var prereqList = ``;
@@ -217,8 +308,49 @@ export default function () {
         });
         return prereqList;
       }
+      //***************************/
 
-      // Actual Course detail body //
+      // 2. Specific Prereq, basically pure text
+      const specificPrereq =
+        courseNode.data.specificPrereq === ""
+          ? "No requirements"
+          : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
+
+      // 3. Deal with the "ofs"
+      const otherPrereq =
+        courseNode.data.parentIdsComplex.length > 0
+          ? `<label>Other prerequisites: </label>
+          ${getOtherPrereqHerfElement()}
+          `
+          : `<label>Other prerequisites: </label> No other prerequisites<br>`;
+
+      function getOtherPrereqHerfElement() {
+        var otherPrereqList = ``;
+        courseNode.data.parentIdsComplex.forEach(function (theOf) {
+          otherPrereqList += `<li>${Object.keys(theOf)[0].replace(
+            "of",
+            " of"
+          )}: `; // The "XOf", add space between number and 'of'
+          Object.values(theOf).forEach(function (courseArr) {
+            courseArr.forEach(function (course) {
+              // Each course in the "Of"
+              otherPrereqList += `<a href="${directToCoursePage(
+                course //TODO:Deal with non course code
+              )}">${course}&ensp;</a>`;
+            });
+            otherPrereqList += `</li>`;
+          });
+        });
+        var otherPrereqListWithNotes =
+          otherPrereqList +
+          `<li style="font-weight:200; font-style:italic; font-size:90%;">(*For course with no spcified code, click them to view all the possible courses.)<li/>`;
+        return otherPrereqList.includes("xx")
+          ? otherPrereqListWithNotes
+          : otherPrereqList;
+      }
+      //***************************/
+
+      // 4. Actual Course detail body //
       cardBody.html(() => {
         return `
         <label>Course Name: </label>
@@ -229,8 +361,9 @@ export default function () {
         <label>Prerequisites: </label>
         ${prereq}
         <br>
-        <label>Other requirements: </label>
-        ${specificPrereq}
+        ${otherPrereq}
+        <label>Other requirements:  </label>
+        <span style="font-style: normal; color:black;">${specificPrereq}</span>
         <br>
         <label>Trimester: </label>
         ${courseNode.data.trimester}<br>
@@ -240,14 +373,41 @@ export default function () {
         }</a>
         `; // TODO: add url
       });
+
+      // // OPTIONAL
+      // // 5. Set 2 panels at same highght level
+      // var filterHeight = $("#filterCardContent").height();
+      // var infoHeight = $("#courseInfoCardContent").height();
+      // infoHeight > filterHeight
+      //   ? (document.getElementById("filterCardContent").style.height =
+      //       infoHeight + 10 + "px")
+      //   : (document.getElementById("filterCardContent").style.height = "100%");
     }
 
     function directToCoursePage(courseNodeId) {
       // Here we have the course node element id
-      var displine = courseNodeId.match(/[a-zA-Z]+|[0-9]+/g)[0];
-      var code = courseNodeId.match(/[a-zA-Z]+|[0-9]+/g)[1];
-      //window.open("https://www.wgtn.ac.nz/courses/" + displine + "/" + code);
-      return "https://www.wgtn.ac.nz/courses/" + displine + "/" + code;
+      var courseNodeIdRegex = /[a-zA-Z]+|[0-9]+/g;
+      var displine = courseNodeId.match(courseNodeIdRegex)[0];
+      var code = courseNodeId.match(courseNodeIdRegex)[1];
+      const codeRegex = /^\d{3}$/;
+      const courseHomePage =
+        "https://www.wgtn.ac.nz/courses/" + displine + "/" + code;
+      // If couse code is not valid, use VUW course finder.
+      const VUWcourseFinder =
+        "https://www.wgtn.ac.nz/search?q=" +
+        displine +
+        "&filterToggle=f.Course+level%7CcourseLevel=" +
+        code.charAt(0) +
+        "%20&tab=courses";
+      return codeRegex.test(code) ? courseHomePage : VUWcourseFinder;
+    }
+
+    clearHighlightedOnClicked();
+    function clearHighlightedOnClicked() {
+      // Click outside of a node within the canvas to the hide highlighted elements
+      d3.selectAll(".layerRect,.highlighted").on("click", () => {
+        unclassifyHighlightedAndUnhighlightThem();
+      });
     }
   }
 
@@ -312,75 +472,5 @@ export default function () {
         .duration(1000)
         .call(zoom.transform, d3.zoomIdentity); //Reset to original position
     }
-  }
-
-  function deHighlightHoverOnCourse(courseNode) {
-    d3.selectAll("#" + courseNode.id + "Rect").attr(
-      "style",
-      defaultUnhighlightedStyle
-    );
-    courseNode.data.parentIds.forEach((parentId) => {
-      const parentNode = d3
-        .selectAll(".courseNode")
-        .filter("#" + parentId + "Node")._groups[0][0].__data__;
-      deHighlightHoverOnCourse(parentNode);
-      //*************************************************/
-      const pathId = "#" + parentId + "To" + courseNode.id;
-      d3.selectAll(pathId).attr("style", defaultUnhighlightedStyle);
-      d3.selectAll("#" + parentId + "Rect").attr(
-        "style",
-        defaultUnhighlightedStyle
-      );
-    });
-  }
-
-  function highlightHoverOnCourse(courseNode) {
-    d3.selectAll("#" + courseNode.id + "Rect").attr(
-      "style",
-      hoverHighlightStyle
-    );
-    courseNode.data.parentIds.forEach((parentId) => {
-      /**
-       * RECURSIVELY HIGHLIGHT GRANDPARENTS NODE
-       * TODO: CAN ADD A tickbox allow user to highlight only one level up or all the Ancestor Nodes
-       */
-      const parentNode = d3
-        .selectAll(".courseNode")
-        .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
-      highlightHoverOnCourse(parentNode);
-      //*******************************************************************************/
-      const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
-      d3.selectAll(pathId).attr("style", hoverHighlightStyle);
-      d3.selectAll("#" + parentId + "Rect").attr("style", hoverHighlightStyle);
-    });
-  }
-
-  // Add class "highlighted" to Highlight elements with id attached (Rect and Path)
-  function classifyHighlightNodes(courseNode) {
-    // Add Highlighted class to the highlighted node
-    d3.selectAll("#" + courseNode.id + "Rect")
-      .node()
-      .classList.add("highlighted");
-
-    courseNode.data.parentIds.forEach((parentId) => {
-      /**
-       * RECURSIVELY ADD HIGHLIGHTED CLASS TO GRANDPARENTS NODE
-       */
-      const parentNode = d3
-        .selectAll(".courseNode")
-        .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
-      classifyHighlightNodes(parentNode);
-      //******************************************/
-
-      const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
-      const pathIdNode = d3.selectAll(pathId).node();
-      if (pathIdNode !== null) {
-        pathIdNode.classList.add("highlighted");
-      }
-
-      d3.selectAll("#" + parentId + "Rect")
-        .node()
-        .classList.add("highlighted");
-    });
   }
 }

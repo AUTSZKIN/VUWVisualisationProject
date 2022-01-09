@@ -70,7 +70,6 @@ export function rawCourseDataToJsonArray(data) {
         // 3.6 If it not contains any brackets therefore it must have some specific requriements (e.g. "60 300-level pts")
         else if (!complexPrereqRegex.test(prereqLine)) {
           specificPrereq = prereqLineCleaned; // .replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment, DON'T use it!
-          console.log("specificPrereq:" + specificPrereq);
         }
       }
       // 3.7 Normal one prerequisite line. NOTE: EACH LINE ONLY CONTIANS ONE NORMAL COURSE CODE!

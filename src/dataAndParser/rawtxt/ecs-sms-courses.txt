@@ -372,7 +372,7 @@ T 1
 
 ECEN321
 Engineering Statistics
-P ( 1of ( and ENGR121 ENGR122 ) ( and MATH142 MATH151 ) )
+P ( 1of ENGR121 ENGR122 MATH142 MATH151 )
 P ( 2of ECEN2xx )
 S ECS
 T 1
@@ -444,7 +444,7 @@ T 2
 
 EEEN220
 Signals, Systems and Statistics 1
-P ( 1of ( and ENGR121 ENGR122 ) ( and MATH142 MATH151 ) )
+P ( 1of ENGR121 ENGR122 MATH142 MATH151 )
 S ECS
 T 2
 
@@ -496,7 +496,7 @@ T 2
 
 ENGR222
 Computational Algebra and Calculus
-P ( 1of ( and ENGR121 ENGR122 ) ( MATH142 MATH151 ) )
+P ( 1of ENGR121 ENGR122  MATH142 MATH151 )
 S SMS
 T 1
 
@@ -536,11 +536,7 @@ P ENGR301
 P ENGR302
 P ( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )
 S ECS
-<<<<<<< HEAD
-  "trimesters":F
-=======
 T 1,3
->>>>>>> b679661264a8f5bb6780613d20662933053ae68d
 
 MATH132
 Introduction to Mathematical Thinking
