@@ -496,7 +496,7 @@ T 2
 
 ENGR222
 Computational Algebra and Calculus
-P ( 1of ENGR121 ENGR122  MATH142 MATH151 )
+P ( 1of ENGR121 ENGR122 MATH142 MATH151 )
 S SMS
 T 1
 

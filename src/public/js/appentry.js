@@ -27,6 +27,9 @@ function drawLocalData() {
 const rawDataUrl =
   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/rawtxt/ecs-sms-courses.txt";
 
+const tempDataUrl =
+  "https://raw.githubusercontent.com/AUTSZKIN/TempFiles/main/NEW-ecs-sms-courses.txt?token=GHSAT0AAAAAABO3ASVRSM7AAOMSGGK7PT3OYO2LQNQ";
+
 fetch(rawDataUrl).then((response) => {
   response.text().then((data) => {
     var courseJsonArray = rawCourseDataToJsonArray(data);

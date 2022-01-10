@@ -374,8 +374,8 @@ export default function () {
         `; // TODO: add url
       });
 
-      // // OPTIONAL
-      // // 5. Set 2 panels at same highght level
+      // OPTIONAL
+      // 5. Set 2 panels at same highght level
       // var filterHeight = $("#filterCardContent").height();
       // var infoHeight = $("#courseInfoCardContent").height();
       // infoHeight > filterHeight

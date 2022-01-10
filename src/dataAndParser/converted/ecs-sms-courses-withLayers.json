@@ -936,7 +936,7 @@
     "courseTitle": "Computational Algebra and Calculus",
     "parentIds": [],
     "parentIdsComplex": [
-      { "1of": ["ENGR121", "ENGR122", "", "MATH142", "MATH151"] }
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "SMS",
