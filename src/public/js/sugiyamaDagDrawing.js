@@ -348,7 +348,8 @@ export default function () {
 
       // 1. Handle prerequisites list and URL
       const prereq =
-        courseNode.data.parentIds.length > 0
+        courseNode.data.parentIds.length > 0 &&
+        courseNode.data.parentIds[0] != "level100"
           ? getPrereqHerfElement()
           : "No prerequisite";
 
