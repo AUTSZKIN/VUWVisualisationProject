@@ -23,13 +23,13 @@ T 1
 ECEN204
 Electronic Design
 P ( 1of ENGR122 MATH142 )
-P ( 1of ENGR142 or PHYS115 )
+P ( 1of ENGR142 PHYS115 )
 S ECS
 T 2
 
 ECEN220
 Signals and Systems
-P ( 1of ( and ENGR121 ENGR122 ) ( and MATH142 151 ) )
+P ( 1of ENGR121 ENGR122 MATH142 MATH151 ) )
 S ECS
 T 2
 
@@ -42,7 +42,7 @@ T 1
 
 ECEN320
 Introductory Signal Processing
-P ( 1of ECEN220 or MATH244 )
+P ( 1of ECEN220 MATH244 )
 S ECS
 T -
 
@@ -115,7 +115,7 @@ T -
 
 CGRA151
 Introduction to Computer Graphics
-P ( 1of COMP102 COMP112 or DSDN142 )
+P ( 1of COMP102 COMP112 DSDN142 )
 P ( 1of ENGR121 MATH1xx )
 S ECS
 T 2

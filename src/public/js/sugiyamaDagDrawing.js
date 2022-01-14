@@ -34,7 +34,7 @@ export default function () {
     // Draw edges
     const line = d3
       .line()
-      .curve(d3.curveBundle.beta(0.3))
+      .curve(d3.curveBundle.beta(0.2))
       .x((d) => d.x)
       .y((d) => d.y);
 
@@ -45,6 +45,36 @@ export default function () {
       .enter()
       .append("path")
       .attr("d", (data, i) => {
+        //TODO: Find away to generate value (of path) between each node and their parentIdsComplex node
+
+        const mainNode = data.target;
+        const prereqNode = data.source;
+        const complexPrereqNode = data.target.data.parentIdsComplex;
+
+        // console.log("mainNode");
+        // console.log(mainNode);
+        // console.log("prereqNode");
+        // console.log(prereqNode);
+        // complexPrereqNode.length == 0
+        //   ? null
+        //   : (() => {
+        //       console.log("complexPrereqNode");
+        //       complexPrereqNode.forEach(function (theOf) {
+        //         const xOf = Object.keys(theOf)[0]; // The "XOf"
+        //         const complexPrereqCourseArr = new Array();
+
+        //         Object.values(theOf).forEach(function (courseArr) {
+        //           courseArr.forEach(function (course) {
+        //             // course = each course in the "Of"
+        //             complexPrereqCourseArr.push(course);
+        //             //TODO:Deal with non course code
+        //           });
+        //         });
+
+        //         console.log(xOf, complexPrereqCourseArr);
+        //       });
+        //     })();
+
         return line(data.points); //return path line
       })
       .attr("fill", "none")
@@ -63,6 +93,29 @@ export default function () {
           ? "level100"
           : courseNode.source.id + "To" + courseNode.target.id;
       });
+  }
+
+  function drawDotPath(dag) {
+    const line = d3
+      .line()
+      // .curve(d3.curveBundle.beta(0.3))
+      .x((d) => d.x)
+      .y((d) => d.y);
+
+    // Plot edges
+    d3.select("#mainSVG")
+      .selectAll("path")
+      .data(dag.links())
+      .enter()
+      .append("path")
+      .attr("d", (data, i) => {
+        console.log(data);
+        // console.log(line(data.points));
+        return line(data.points); //return path line
+      })
+      .attr("stroke-dasharray", "5,5")
+      .attr("fill", "none")
+      .attr("style", defaultUnhighlightedStyle);
   }
 
   function drawNodes(dag) {
@@ -319,10 +372,10 @@ export default function () {
       // 3. Deal with the "ofs"
       const otherPrereq =
         courseNode.data.parentIdsComplex.length > 0
-          ? `<label>Other prerequisites: </label>
+          ? `<label>Multi-choice prerequisites: </label>
           ${getOtherPrereqHerfElement()}
           `
-          : `<label>Other prerequisites: </label> No other prerequisites<br>`;
+          : `<label>Multi-choice prerequisites: </label> No multi choice prerequisites<br>`;
 
       function getOtherPrereqHerfElement() {
         var otherPrereqList = ``;
@@ -358,7 +411,7 @@ export default function () {
           courseNode.data.courseTitle
         }</a>
         <br>
-        <label>Prerequisites: </label>
+        <label>No choice prerequisites: </label>
         ${prereq}
         <br>
         ${otherPrereq}

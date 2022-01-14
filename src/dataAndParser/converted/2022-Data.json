@@ -9,102 +9,6 @@
     "layer": 0
   },
   {
-    "id": "DATA101",
-    "courseTitle": "Introduction to Data Science",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "SIM",
-    "availability": "y",
-    "trimester": "1,3",
-    "layer": 1
-  },
-  {
-    "id": "ECEN202",
-    "courseTitle": "Digital Electronics",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["ENGR101", "PHYS115"] }],
-    "specificPrereq": "\"15 pts from (ENGR 121, 122, 123, MATH 141, 142, 151, 161)\"",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 3
-  },
-  {
-    "id": "ECEN203",
-    "courseTitle": "Analogue Circuits and Systems",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["ENGR122", "MATH142"] },
-      { "1of": ["ENGR142", "PHYS115"] }
-    ],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 3
-  },
-  {
-    "id": "ECEN204",
-    "courseTitle": "Electronic Design",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["ENGR122", "MATH142"] },
-      { "1of": ["ENGR142", "PHYS115"] }
-    ],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 4
-  },
-  {
-    "id": "ECEN220",
-    "courseTitle": "Signals and Systems",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
-    ],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 4
-  },
-  {
-    "id": "ECEN303",
-    "courseTitle": "Analogue Electronics",
-    "parentIds": ["ECEN204"],
-    "parentIdsComplex": [{ "1of": ["ECEN203", "PHYS235"] }],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "ECEN320",
-    "courseTitle": "Introductory Signal Processing",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["ECEN220", "MATH244"] }],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "RESE313",
-    "courseTitle": "Power Electronics and Electrical Machines",
-    "parentIds": ["RESE211", "RESE212", "ECEN202", "ECEN203"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
     "id": "AIML420",
     "courseTitle": "Artificial Intelligence",
     "parentIds": ["level100"],
@@ -218,18 +122,15 @@
     "parentIdsComplex": [{ "1of": ["AIML420", "COMP307"] }],
     "specificPrereq": "",
     "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 7
+    "availability": "y",
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "CGRA151",
     "courseTitle": "Introduction to Computer Graphics",
     "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["COMP102", "COMP112", "DSDN142"] },
-      { "1of": ["ENGR121", "MATH1xx"] }
-    ],
+    "parentIdsComplex": [{ "1of": ["COMP102", "COMP112", "DSDN142"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
@@ -273,10 +174,8 @@
     "id": "CGRA408",
     "courseTitle": "Computer Graphics Rendering",
     "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
-    ],
-    "specificPrereq": "",
+    "parentIdsComplex": [],
+    "specificPrereq": " \"CGRA 350 or 352 or (CGRA 251 and 30 300-level CGRA/COMP/SWEN/NWEN points) or at least B- in CGRA 401 and 402\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -286,10 +185,8 @@
     "id": "CGRA409",
     "courseTitle": "Geometry Processing Algorithms",
     "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
-    ],
-    "specificPrereq": "",
+    "parentIdsComplex": [],
+    "specificPrereq": "\"CGRA 350 or COMP 308 or at least B- in CGRA 401 and 402 (or COMP 471 and 472 in 2014-15)\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -528,8 +425,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1",
-    "layer": 7
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "CYBR472",
@@ -554,8 +451,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2",
-    "layer": 8
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "DATA101",
+    "courseTitle": "Introduction to Data Science",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "SIM",
+    "availability": "y",
+    "trimester": "1,3",
+    "layer": 1
   },
   {
     "id": "DATA201",
@@ -575,17 +483,8 @@
     "id": "DATA202",
     "courseTitle": "Data Management and Programming",
     "parentIds": ["level100"],
-    "parentIdsComplex": [
-      {
-        "1of": [
-          "COMP102",
-          "COMP112",
-          "COMP132",
-          { "and": ["INFO151", "INFO226"] }
-        ]
-      }
-    ],
-    "specificPrereq": "",
+    "parentIdsComplex": [],
+    "specificPrereq": "\"1of COMP102 COMP112 COMP132 \"INFO226 as a corequisite\" \"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -594,7 +493,7 @@
   {
     "id": "DATA301",
     "courseTitle": "Data Science in Practice",
-    "parentIds": ["DATA201", "DATA202"],
+    "parentIds": ["DATA201", "DATA202", "DATA303"],
     "parentIdsComplex": [],
     "specificPrereq": "",
     "school": "SMS",
@@ -653,130 +552,6 @@
     "availability": "y",
     "trimester": "2",
     "layer": 6
-  },
-  {
-    "id": "ECEN301",
-    "courseTitle": "Embedded Systems",
-    "parentIds": ["ECEN202", "ECEN203"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 6
-  },
-  {
-    "id": "ECEN302",
-    "courseTitle": "Integrated Digital Electronics",
-    "parentIds": ["ECEN202", "ECEN204"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "ECEN310",
-    "courseTitle": "Communication Engineering ",
-    "parentIds": ["ECEN220"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "ECEN315",
-    "courseTitle": "Control Systems Engineering",
-    "parentIds": ["ECEN203"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "ECEN321",
-    "courseTitle": "Engineering Statistics",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] },
-      { "2of": ["ECEN2xx"] }
-    ],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
-    "id": "ECEN405",
-    "courseTitle": "Power Electronics",
-    "parentIds": ["ECEN303"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 8
-  },
-  {
-    "id": "ECEN410",
-    "courseTitle": "Advanced Communications Engineering",
-    "parentIds": ["ECEN310"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "ECEN415",
-    "courseTitle": "Advanced Control Systems Engineering",
-    "parentIds": ["ECEN315"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "ECEN425",
-    "courseTitle": "Advanced Mechatronic Engineering 1: Hardware and Control",
-    "parentIds": ["ECEN301"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "ECEN426",
-    "courseTitle": "Special Topic: Convex Optimisation",
-    "parentIds": ["ECEN320"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "ECEN430",
-    "courseTitle": "Advanced Mechatronic Engineering 2: Intelligence and Design",
-    "parentIds": ["ECEN301"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 8
   },
   {
     "id": "EEEN201",
@@ -838,27 +613,202 @@
     "courseTitle": "Signals, Systems and Statistics 1",
     "parentIds": ["level100"],
     "parentIdsComplex": [
-      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
+      { "2of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
-    "specificPrereq": "",
+    "specificPrereq": "\"(ENGR 121, 122) or (MATH 142, 151);\",",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
     "layer": 4
   },
   {
+    "id": "EEEN301",
+    "courseTitle": "Computer Architecture and Embedded Systems",
+    "parentIds": ["EEEN202", "NWEN241"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 5
+  },
+  {
+    "id": "EEEN310",
+    "courseTitle": "Communication Engineering",
+    "parentIds": ["EEEN220"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 5
+  },
+  {
     "id": "EEEN313",
     "courseTitle": "Power Electronics and Electrical Machines",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [
-      { "1of": ["EEEN203", "ECEN203"] },
-      { "1of": ["EEEN204", "ECEN204"] }
-    ],
+    "parentIds": ["EEEN203", "EEEN204"],
+    "parentIdsComplex": [],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
     "layer": 6
+  },
+  {
+    "id": "EEEN315",
+    "courseTitle": "Control and Instrumentation",
+    "parentIds": ["EEEN203"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 5
+  },
+  {
+    "id": "EEEN320",
+    "courseTitle": "Signals, Systems and Statistics 2",
+    "parentIds": ["EEEN220"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 6
+  },
+  {
+    "id": "EEEN325",
+    "courseTitle": "Robotic Engineering",
+    "parentIds": ["EEEN201"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 5
+  },
+  {
+    "id": "EEEN401",
+    "courseTitle": "Applied Electromagnetics and Compliance",
+    "parentIds": ["EEEN313"],
+    "parentIdsComplex": [{ "1of": ["ENGR222", "MATH244"] }],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN402",
+    "courseTitle": "Programmable Digital Logic",
+    "parentIds": ["EEEN301"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 8
+  },
+  {
+    "id": "EEEN403",
+    "courseTitle": "Advanced Electronic Instrumentation",
+    "parentIds": ["EEEN315"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN410",
+    "courseTitle": "Advanced Communications Engineering",
+    "parentIds": ["EEEN310"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 8
+  },
+  {
+    "id": "EEEN411",
+    "courseTitle": "Coding and Cryptography for Communications",
+    "parentIds": ["EEEN310"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN415",
+    "courseTitle": "Advanced Control Systems Engineering",
+    "parentIds": ["EEEN315"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 8
+  },
+  {
+    "id": "EEEN421",
+    "courseTitle": "Advanced Signal Processing",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [
+      { "1of": ["ECEN321", "EEEN320", "MATH318", "MATH377", "STAT332"] }
+    ],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN422",
+    "courseTitle": "Convex Optimisation",
+    "parentIds": ["EEEN320"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN425",
+    "courseTitle": "Advanced Robotic Engineering",
+    "parentIds": ["EEEN325"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN430",
+    "courseTitle": "Robotic Intelligence and Design",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [{ "1of": ["COMP309", "EEEN325"] }],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "EEEN431",
+    "courseTitle": "Musical Robotics",
+    "parentIds": ["ECEN325"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "ENGR101",
@@ -890,7 +840,7 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2,3",
+    "trimester": "1,2",
     "layer": 1
   },
   {
@@ -916,6 +866,28 @@
     "layer": 2
   },
   {
+    "id": "ENGR141",
+    "courseTitle": "Engineering Science",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "specificPrereq": "\"16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)\",",
+    "school": "SCPS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 1
+  },
+  {
+    "id": "ENGR142",
+    "courseTitle": "Engineering Physics for Electronics and Computer Systems\",",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [],
+    "specificPrereq": "\"either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent\",",
+    "school": "SCPS",
+    "availability": "y",
+    "trimester": "2",
+    "layer": 2
+  },
+  {
     "id": "ENGR201",
     "courseTitle": "Engineering in Context",
     "parentIds": ["ENGR101", "ENGR110"],
@@ -931,9 +903,9 @@
     "courseTitle": "Computational Algebra and Calculus",
     "parentIds": ["level100"],
     "parentIdsComplex": [
-      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
+      { "2of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
-    "specificPrereq": "",
+    "specificPrereq": "\"(ENGR 121, 122) or (MATH 142, 151)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1015,7 +987,7 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1,3",
+    "trimester": "1,2",
     "layer": 7
   },
   {
@@ -1045,7 +1017,7 @@
     "courseTitle": "Calculus 1B",
     "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["MATH141", "QUAN111"] }],
-    "specificPrereq": "",
+    "specificPrereq": "\"MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics.\",",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1111,14 +1083,9 @@
     "courseTitle": "Modelling with Differential Equations",
     "parentIds": ["level100"],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["MATH142", "MATH151"] },
-          { "and": ["ENGR121", "ENGR122"] }
-        ]
-      }
+      { "2of": ["MATH142", "MATH151", "ENGR121", "ENGR122"] }
     ],
-    "specificPrereq": "",
+    "specificPrereq": "\"(MATH 142, 151) or (ENGR 121, 122)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1241,9 +1208,10 @@
     "parentIdsComplex": [
       {
         "2of": [
+          "MATH212",
           "MATH243",
           "MATH244",
-          "MATH235",
+          "MATH245",
           "MATH251",
           "MATH277",
           "ENGR222"
@@ -1263,9 +1231,10 @@
     "parentIdsComplex": [
       {
         "2of": [
+          "MATH212",
           "MATH243",
           "MATH244",
-          "MATH235",
+          "MATH245",
           "MATH251",
           "MATH277",
           "ENGR222"
@@ -1285,9 +1254,10 @@
     "parentIdsComplex": [
       {
         "2of": [
+          "MATH212",
           "MATH243",
           "MATH244",
-          "MATH235",
+          "MATH245",
           "MATH251",
           "MATH277",
           "ENGR222"
@@ -1312,7 +1282,7 @@
         ]
       }
     ],
-    "specificPrereq": "",
+    "specificPrereq": "\"MATH 251 or (ENGR 121 or MATH 151; 15 200-level MATH points)\",",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1448,17 +1418,6 @@
     "layer": 6
   },
   {
-    "id": "NWEN342",
-    "courseTitle": "Computer Organisation",
-    "parentIds": ["NWEN241"],
-    "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 5
-  },
-  {
     "id": "NWEN401",
     "courseTitle": "Distributed Systems Design",
     "parentIds": ["level100"],
@@ -1474,7 +1433,7 @@
     "courseTitle": "Internet Engineering",
     "parentIds": ["NWEN302", "NWEN304"],
     "parentIdsComplex": [
-      { "1of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+      { "3of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
@@ -1529,30 +1488,6 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "NWEN438",
-    "courseTitle": "Special Topic: System and Network Security",
-    "parentIds": ["NWEN241", "NWEN243"],
-    "parentIdsComplex": [{ "4of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "n",
-    "trimester": "1",
-    "layer": 7
-  },
-  {
-    "id": "NWEN439",
-    "courseTitle": "Special Topic: Protocols and Architecture for the Internet of Things",
-    "parentIds": ["NWEN241", "NWEN243"],
-    "parentIdsComplex": [
-      { "4of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
-    ],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
     "trimester": "1",
     "layer": 7
   },
@@ -1615,6 +1550,17 @@
     "parentIdsComplex": [],
     "specificPrereq": "",
     "school": "ECS",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 5
+  },
+  {
+    "id": "RESE322",
+    "courseTitle": "Renewable Energy Storage Engineering",
+    "parentIds": ["EEEN203", "EEEN204"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
     "availability": "y",
     "trimester": "2",
     "layer": 6
@@ -1626,16 +1572,16 @@
     "parentIdsComplex": [],
     "specificPrereq": "",
     "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 6
+    "availability": "n",
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "RESE411",
     "courseTitle": "Power Systems Analysis",
-    "parentIds": ["RESE313", "ECEN202", "ECEN203"],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "",
+    "specificPrereq": "EEN313",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -1644,8 +1590,8 @@
   {
     "id": "RESE412",
     "courseTitle": "Advanced Development of Renewable Energy Systems",
-    "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["EEEN315", "ECEN315"] }],
+    "parentIds": ["EEEN315"],
+    "parentIdsComplex": [],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
@@ -1734,14 +1680,9 @@
     "courseTitle": "Linear Models",
     "parentIds": ["level100"],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["MATH243", "MATH277"] },
-          { "and": ["STAT293", "STAT391"] }
-        ]
-      }
+      { "2of": ["MATH243", "MATH277", "STAT293", "STAT391"] }
     ],
-    "specificPrereq": "",
+    "specificPrereq": "\"(MATH 243, 277) or (STAT 293, 391)\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1869,7 +1810,7 @@
     "id": "SWEN422",
     "courseTitle": "Human Computer Interaction",
     "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["COMP313", "SWEN303", "SWEN325"] }],
+    "parentIdsComplex": [{ "1of": ["SWEN303", "SWEN325"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
@@ -1932,12 +1873,25 @@
     "layer": 7
   },
   {
+    "id": "SWEN428",
+    "courseTitle": "Protocols and Architecture for the Internet of Things",
+    "parentIds": ["NWEN241", "NWEN243"],
+    "parentIdsComplex": [
+      { "4of": ["COMP3xx", "ECEN3xx", "NWEN3xx", "SWEN3xx"] }
+    ],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 7
+  },
+  {
     "id": "SWEN430",
     "courseTitle": "Compiler Engineering",
     "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP261", "SWEN324"] },
-      { "3of": ["COMP3xx", "NWEN3xx", "SWEN3xx", "COMP261"] }
+      { "3of": ["COMP3xx", "NWEN303", "SWEN3xx", "COMP261"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
@@ -1990,17 +1944,6 @@
     "layer": 7
   },
   {
-    "id": "SWEN438",
-    "courseTitle": "Special Topic: DevOps",
-    "parentIds": ["ENGR302"],
-    "parentIdsComplex": [],
-    "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 8
-  },
-  {
     "id": "SWEN439",
     "courseTitle": "Special Topic: Database System Engineering",
     "parentIds": ["level100"],
@@ -2010,5 +1953,16 @@
     "availability": "y",
     "trimester": "1",
     "layer": 7
+  },
+  {
+    "id": "ECEN325",
+    "courseTitle": "Robotic Engineering",
+    "parentIds": ["EEEN201"],
+    "parentIdsComplex": [],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1",
+    "layer": 5
   }
 ]

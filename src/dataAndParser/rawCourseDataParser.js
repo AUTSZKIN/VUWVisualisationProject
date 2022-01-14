@@ -98,7 +98,6 @@ export function rawCourseDataToJsonArray(data) {
       }
 
       //6. Assigning Level/Layer of each course
-
       // go through each node
       var nLevel = courseCode.match(/\d/); //Finds first digit - Level
       var nTri = trimester; // Finds trimester - 1 or 2
@@ -135,8 +134,13 @@ export function rawCourseDataToJsonArray(data) {
           break;
       }
 
+      // 7. Replace all the empty "parentIds": [] to "parentIds": ["level100"]
+      if (prerequisites.length == 0) {
+        prerequisites.push("level100");
+      }
+
       //  if( !courseArray.some((eachCourse) => eachCourse.id === courseCode) // prevent duplicate course id in the array)
-      // 7. Create the course JSON
+      // 8. Create the course JSON
       var courseJsonObj = {
         id: courseCode,
         courseTitle: courseTitle,
@@ -166,7 +170,7 @@ function extractComplexPrereq(arr) {
     }
     arr.shift(); // remove ")"
     //  Use a variable for a property name, can use Computed Property Names->[operator]:list.
-    var jsonListWithOperator = JSON.parse(JSON.stringify({ [operator]: list }));
+    var jsonListWithOperator = { [operator]: list };
 
     return jsonListWithOperator;
   } else {

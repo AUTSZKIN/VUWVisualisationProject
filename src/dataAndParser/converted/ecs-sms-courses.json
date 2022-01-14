@@ -5,7 +5,8 @@
     "parentIds": [],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "trimester": ["0"]
+    "trimester": ["0"],
+    "layer": 0
   },
   {
     "id": "DATA101",
@@ -15,22 +16,24 @@
     "specificPrereq": "",
     "school": "SIM",
     "availability": "y",
-    "trimester": "1,3"
+    "trimester": "1,3",
+    "layer": 1
   },
   {
     "id": "ECEN202",
     "courseTitle": "Digital Electronics",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["ENGR101", "PHYS115"] }],
     "specificPrereq": "\"15 pts from (ENGR 121, 122, 123, MATH 141, 142, 151, 161)\"",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "ECEN203",
     "courseTitle": "Analogue Circuits and Systems",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR122", "MATH142"] },
       { "1of": ["ENGR142", "PHYS115"] }
@@ -38,37 +41,35 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "ECEN204",
     "courseTitle": "Electronic Design",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR122", "MATH142"] },
-      { "1of": ["ENGR142", "or", "PHYS115"] }
+      { "1of": ["ENGR142", "PHYS115"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "ECEN220",
     "courseTitle": "Signals and Systems",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["ENGR121", "ENGR122"] },
-          { "and": ["MATH142", "151"] }
-        ]
-      }
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "ECEN303",
@@ -78,17 +79,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ECEN320",
     "courseTitle": "Introductory Signal Processing",
-    "parentIds": [],
-    "parentIdsComplex": [{ "1of": ["ECEN220", "or", "MATH244"] }],
+    "parentIds": ["level100"],
+    "parentIdsComplex": [{ "1of": ["ECEN220", "MATH244"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "RESE313",
@@ -98,56 +101,61 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "AIML420",
     "courseTitle": "Artificial Intelligence",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "4of": ["COMP3xx", "DATA3xx", "SWEN3xx", "NWEN3xx"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "AIML421",
     "courseTitle": "Machine Learning Tools and Techniques",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "4of": ["COMP3xx", "DATA3xx", "SWEN3xx", "NWEN3xx", "STAT3xx"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "AIML425",
     "courseTitle": "Neural Networks and Deep Learning",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["AIML420", "COMP307"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "AIML426",
     "courseTitle": "Evolutionary Computation and Learning",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["AIML420", "COMP307"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "AIML427",
     "courseTitle": "Big Data",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
@@ -164,73 +172,80 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "AIML428",
     "courseTitle": "Text Mining and Natural Language Processing",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "60 300-level pts",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "AIML429",
     "courseTitle": "Probabilistic Machine Learning",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      { "1of": ["AIML420", "", "COMP307"] },
+      { "1of": ["AIML420", "COMP307"] },
       { "1of": ["MATH177", "STAT292", "STAT293"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "AIML430",
     "courseTitle": "Applications and Implications of Artificial Intelligence",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "\"60 300-level pts\"",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "AIML431",
     "courseTitle": "Current Topics in Artificial Intelligence",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["AIML420", "COMP307"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "CGRA151",
     "courseTitle": "Introduction to Computer Graphics",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      { "1of": ["COMP102", "COMP112", "or", "DSDN142"] },
+      { "1of": ["COMP102", "COMP112", "DSDN142"] },
       { "1of": ["ENGR121", "MATH1xx"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "CGRA251",
     "courseTitle": "Computer Graphics",
     "parentIds": ["CGRA151", "NWEN241"],
-    "parentIdsComplex": [{ "1of": ["", "ENGR121", "MATH151"] }],
+    "parentIdsComplex": [{ "1of": ["ENGR121", "MATH151"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "CGRA350",
@@ -240,7 +255,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "CGRA352",
@@ -250,71 +266,78 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "CGRA408",
     "courseTitle": "Computer Graphics Rendering",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "CGRA409",
     "courseTitle": "Geometry Processing Algorithms",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["CGRA350", "COMP308", { "and": ["CGRA401", "CGRA402"] }] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "CGRA463",
     "courseTitle": "Computer Graphics Practicum",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "HoS",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2,3"
+    "trimester": "2,3",
+    "layer": 8
   },
   {
     "id": "COMP102",
     "courseTitle": "Introduction to Computer Program Design",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "],",
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1,3"
+    "trimester": "1,3",
+    "layer": 1
   },
   {
     "id": "COMP103",
     "courseTitle": "Introduction to Data Structures and Algorithms",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["COMP102", "COMP112"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2,3"
+    "trimester": "2,3",
+    "layer": 2
   },
   {
     "id": "COMP112",
     "courseTitle": "Introduction to Computer Science",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["NCEA", "COMP132"] }],
     "specificPrereq": "\"14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience\"",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "COMP132",
@@ -324,17 +347,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "COMP261",
     "courseTitle": "Algorithms and Data Structures",
     "parentIds": ["COMP103"],
-    "parentIdsComplex": [{ "1of": ["", "ENGR123", "MATH161"] }],
+    "parentIdsComplex": [{ "1of": ["ENGR123", "MATH161"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "COMP304",
@@ -344,12 +369,13 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "COMP307",
     "courseTitle": "Introduction to Artificial Intelligence",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP261", "NWEN241", "SWEN221"] },
       { "1of": ["ENGR123", "MATH151", "MATH161"] }
@@ -357,17 +383,17 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "COMP309",
     "courseTitle": "Machine Learning Tools and Techniques",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
           "COMP261",
-          "",
           { "and": ["DATA201", "DATA202"] },
           "NWEN241",
           "SWEN221"
@@ -377,12 +403,13 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "COMP312",
     "courseTitle": "Simulation and Stochastic Models",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP102", "COMP112", "COMP132", "DATA202"] },
       { "1of": ["ENGR123", "MATH177", "MATH277", "STAT292"] },
@@ -400,19 +427,21 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "COMP313",
     "courseTitle": "Computer Game Development",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "2of": ["COMP261", "NWEN241", "NWEN243", "SWEN222", "SWEN225"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "COMP361",
@@ -422,7 +451,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "COMP425",
@@ -432,7 +462,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "CYBR171",
@@ -442,7 +473,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "CYBR271",
@@ -452,7 +484,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "CYBR371",
@@ -462,7 +495,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "CYBR372",
@@ -472,7 +506,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "CYBR373",
@@ -482,7 +517,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "CYBR471",
@@ -492,7 +528,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "CYBR472",
@@ -504,7 +541,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "CYBR473",
@@ -516,7 +554,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "DATA201",
@@ -529,12 +568,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "DATA202",
     "courseTitle": "Data Management and Programming",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
@@ -548,7 +588,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "DATA301",
@@ -558,12 +599,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "DATA303",
     "courseTitle": "Statistics for Data Science",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["STAT293", "DATA202"] },
       { "1of": ["MATH277", "QUAN203", "STAT292"] }
@@ -571,12 +613,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "DATA304",
     "courseTitle": "Simulation and Stochastic Models",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP102", "COMP112", "COMP132", "DATA202"] },
       { "1of": ["ENGR123", "MATH177", "MATH277", "STAT292"] },
@@ -594,7 +637,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "DATA351",
@@ -607,7 +651,8 @@
     "specificPrereq": "\"prereq courses must have an average of B+ or better\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "ECEN301",
@@ -617,7 +662,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "ECEN302",
@@ -627,7 +673,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ECEN310",
@@ -637,7 +684,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ECEN315",
@@ -647,25 +695,22 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ECEN321",
     "courseTitle": "Engineering Statistics",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["ENGR121", "ENGR122"] },
-          { "and": ["MATH142", "MATH151"] }
-        ]
-      },
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] },
       { "2of": ["ECEN2xx"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ECEN405",
@@ -675,7 +720,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "ECEN410",
@@ -685,7 +731,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "ECEN415",
@@ -695,7 +742,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "ECEN425",
@@ -705,7 +753,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "ECEN426",
@@ -715,7 +764,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "ECEN430",
@@ -725,7 +775,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "EEEN201",
@@ -738,24 +789,26 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "EEEN202",
     "courseTitle": "Digital Electronics and Microprocessors",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP102", "COMP112", "ENGR101", "ENGR121", "MATH161"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "EEEN203",
     "courseTitle": "Circuit Analysis",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR122", "MATH142"] },
       { "1of": ["ENGR142", "PHYS115"] }
@@ -763,12 +816,13 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "EEEN204",
     "courseTitle": "Electronic Devices",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR122", "MATH142"] },
       { "1of": ["ENGR142", "PHYS115"] }
@@ -776,29 +830,26 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "EEEN220",
     "courseTitle": "Signals, Systems and Statistics 1",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      {
-        "1of": [
-          { "and": ["ENGR121", "ENGR122"] },
-          { "and": ["MATH142", "MATH151"] }
-        ]
-      }
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "EEEN313",
     "courseTitle": "Power Electronics and Electrical Machines",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["EEEN203", "ECEN203"] },
       { "1of": ["EEEN204", "ECEN204"] }
@@ -806,47 +857,52 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "ENGR101",
     "courseTitle": "Engineering Technology",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "BEHons",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "ENGR110",
     "courseTitle": "Engineering Design",
     "parentIds": ["ENGR101"],
-    "parentIdsComplex": [{ "1of": ["", "COMP102", "COMP112"] }],
+    "parentIdsComplex": [{ "1of": ["COMP102", "COMP112"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "ENGR121",
     "courseTitle": "Engineering Mathematics Foundations",
-    "parentIds": [],
-    "parentIdsComplex": [{ "1of": ["", "NCEA", "MATH132"] }],
+    "parentIds": ["level100"],
+    "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2,3"
+    "trimester": "1,2,3",
+    "layer": 1
   },
   {
     "id": "ENGR122",
     "courseTitle": "Engineering Mathematics with Calculus",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["ENGR121", "MATH141"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "ENGR123",
@@ -856,7 +912,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2,3"
+    "trimester": "2,3",
+    "layer": 2
   },
   {
     "id": "ENGR201",
@@ -866,19 +923,21 @@
     "specificPrereq": "\"45 further points from Part 1 of the BE(Hons) schedule\"",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "ENGR222",
     "courseTitle": "Computational Algebra and Calculus",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
-      { "1of": [{ "and": ["ENGR121", "ENGR122"] }, { "MATH142": ["MATH151"] }] }
+      { "1of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "ENGR301",
@@ -888,7 +947,8 @@
     "specificPrereq": "\"60 200-level pts from (CYBR, COMP, ECEN, NWEN, RESE, SWEN)\"",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "ENGR302",
@@ -898,7 +958,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "ENGR401",
@@ -920,77 +981,108 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "ENGR439",
     "courseTitle": "Special Topic: Mechatronic Design",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "HoS",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
+  },
+  {
+    "id": "ENGR489",
+    "courseTitle": "Engineering Project",
+    "parentIds": ["ENGR201", "ENGR301", "ENGR302"],
+    "parentIdsComplex": [
+      {
+        "3of": [
+          "COMP3xx",
+          "CYBR3xx",
+          "ECEN3xx",
+          "EEEN3xx",
+          "NWEN3xx",
+          "RESE3xx",
+          "SWEN3xx"
+        ]
+      }
+    ],
+    "specificPrereq": "",
+    "school": "ECS",
+    "availability": "y",
+    "trimester": "1,3",
+    "layer": 7
   },
   {
     "id": "MATH132",
     "courseTitle": "Introduction to Mathematical Thinking",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "],",
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,3"
+    "trimester": "1,3",
+    "layer": 1
   },
   {
     "id": "MATH141",
     "courseTitle": "Calculus 1A",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "MATH142",
     "courseTitle": "Calculus 1B",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["MATH141", "QUAN111"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "MATH151",
     "courseTitle": "Algebra",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "MATH161",
     "courseTitle": "Discrete Mathematics and Logic",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "\"Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR121-123, B+ or better in MATH132, MATH141-177, QUAN111) or equivalent background in mathematics.\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "MATH177",
     "courseTitle": "Probability and Decision Modelling",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "\"Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR122, 123, MATH141, QUAN111) or equivalent background in mathematics.\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 2
   },
   {
     "id": "MATH212",
@@ -1000,7 +1092,8 @@
     "specificPrereq": "\"Alternatively, B+ or better in both (ENGR122, 123)\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "MATH243",
@@ -1010,18 +1103,17 @@
     "specificPrereq": "\"Alternatively, B+ or better in ENGR122\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "MATH244",
     "courseTitle": "Modelling with Differential Equations",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
-          "",
           { "and": ["MATH142", "MATH151"] },
-          "",
           { "and": ["ENGR121", "ENGR122"] }
         ]
       }
@@ -1029,12 +1121,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "MATH245",
     "courseTitle": "Computational Mathematics",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
@@ -1047,7 +1140,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "MATH251",
@@ -1057,7 +1151,8 @@
     "specificPrereq": "\"Alternatively, B+ or better in (ENGR122 or MATH151)\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "MATH261",
@@ -1067,7 +1162,8 @@
     "specificPrereq": "\"Alternatively, B+ or better in ENGR123\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "MATH277",
@@ -1077,7 +1173,8 @@
     "specificPrereq": "\"Alternatively B+ or better in both (ENGR122, 123)\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "MATH301",
@@ -1087,7 +1184,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "MATH309",
@@ -1100,7 +1198,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "MATH311",
@@ -1110,17 +1209,19 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "MATH317",
     "courseTitle": "Metric Spaces",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["MATH211", "MATH212"] }],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "MATH318",
@@ -1130,12 +1231,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "MATH321",
     "courseTitle": "Applied Mathematics I",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "2of": [
@@ -1151,12 +1253,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2"
+    "trimester": "1,2",
+    "layer": 5
   },
   {
     "id": "MATH322",
     "courseTitle": "Applied Mathematics II",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "2of": [
@@ -1172,12 +1275,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2"
+    "trimester": "1,2",
+    "layer": 5
   },
   {
     "id": "MATH323",
     "courseTitle": "Mathematics for Earth Sciences",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "2of": [
@@ -1193,12 +1297,13 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2"
+    "trimester": "1,2",
+    "layer": 5
   },
   {
     "id": "MATH324",
     "courseTitle": "Coding and Cryptography",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
@@ -1210,7 +1315,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "MATH335",
@@ -1223,7 +1329,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "MATH353",
@@ -1236,7 +1343,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "MATH361",
@@ -1246,7 +1354,8 @@
     "specificPrereq": "MATH2xx",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "MATH377",
@@ -1256,7 +1365,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "NWEN241",
@@ -1266,7 +1376,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "NWEN243",
@@ -1276,7 +1387,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "NWEN301",
@@ -1286,7 +1398,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "NWEN302",
@@ -1303,7 +1416,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "NWEN303",
@@ -1316,7 +1430,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "NWEN304",
@@ -1329,7 +1444,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "NWEN342",
@@ -1339,17 +1455,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "NWEN401",
     "courseTitle": "Distributed Systems Design",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "2of": ["NWEN301", "NWEN302", "NWEN303"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN402",
@@ -1361,7 +1479,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN403",
@@ -1373,7 +1492,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN404",
@@ -1385,7 +1505,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN405",
@@ -1397,7 +1518,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN406",
@@ -1407,7 +1529,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN438",
@@ -1417,7 +1540,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "NWEN439",
@@ -1429,22 +1553,24 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "RESE111",
     "courseTitle": "Introduction to Renewable Energy Systems",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "],",
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "3"
+    "trimester": "3",
+    "layer": 7
   },
   {
     "id": "RESE211",
     "courseTitle": "Renewable Energy Generation Systems",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR110", "RESE111"] },
       { "1of": ["ENGR121", { "and": ["MATH141", "MATH151"] }] },
@@ -1453,12 +1579,13 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "RESE212",
     "courseTitle": "Renewable Energy Conversion and Storage",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["ENGR110", "RESE111"] },
       { "1of": ["ENGR121", { "and": ["MATH141", "MATH151"] }] },
@@ -1467,7 +1594,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "RESE311",
@@ -1477,7 +1605,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "RESE312",
@@ -1487,7 +1616,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "RESE323",
@@ -1497,7 +1627,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "RESE411",
@@ -1507,17 +1638,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "RESE412",
     "courseTitle": "Advanced Development of Renewable Energy Systems",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["EEEN315", "ECEN315"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "STAT193",
@@ -1527,17 +1660,19 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1,2,3"
+    "trimester": "1,2,3",
+    "layer": 1
   },
   {
     "id": "STAT292",
     "courseTitle": "Applied Statistics 2A",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["STAT193", "ENGR123", "QUAN102"] }],
     "specificPrereq": "\"Alternatively, a comparable background in Statistics.\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "STAT293",
@@ -1547,7 +1682,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "STAT332",
@@ -1557,7 +1693,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "STAT335",
@@ -1567,7 +1704,8 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "STAT391",
@@ -1577,22 +1715,24 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "STAT392",
     "courseTitle": "Sample Surveys",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["STAT193", "QUAN102", "ENGR123"] }],
     "specificPrereq": "\"30 approved 200 or 300-level pts\"",
     "school": "SMS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "STAT393",
     "courseTitle": "Linear Models",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       {
         "1of": [
@@ -1604,19 +1744,21 @@
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "STAT394",
     "courseTitle": "Multivariate Statistics",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["MATH277", { "and": ["STAT292", "STAT391"] }] }
     ],
     "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "SWEN221",
@@ -1626,7 +1768,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "SWEN225",
@@ -1636,7 +1779,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 4
   },
   {
     "id": "SWEN301",
@@ -1646,22 +1790,24 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "SWEN303",
     "courseTitle": "User Experience Engineering",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["COMP261", "SWEN221"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "SWEN304",
     "courseTitle": "Database System Engineering",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP261", "SWEN221"] },
       { "1of": ["ENGR123", "MATH161"] }
@@ -1669,7 +1815,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "SWEN324",
@@ -1682,7 +1829,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "SWEN325",
@@ -1692,7 +1840,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 6
   },
   {
     "id": "SWEN326",
@@ -1702,7 +1851,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 5
   },
   {
     "id": "SWEN421",
@@ -1712,17 +1862,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN422",
     "courseTitle": "Human Computer Interaction",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["COMP313", "SWEN303", "SWEN325"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "SWEN423",
@@ -1732,17 +1884,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "SWEN424",
     "courseTitle": "Model-Driven Development",
-    "parentIds": [],
-    "parentIdsComplex": [{ "2of": ["", "COMP3xx", "NWEN3xx", "SWEN3xx"] }],
+    "parentIds": ["level100"],
+    "parentIdsComplex": [{ "2of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN425",
@@ -1752,7 +1906,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN426",
@@ -1762,7 +1917,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN427",
@@ -1772,12 +1928,13 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN430",
     "courseTitle": "Compiler Engineering",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [
       { "1of": ["COMP261", "SWEN324"] },
       { "3of": ["COMP3xx", "NWEN3xx", "SWEN3xx", "COMP261"] }
@@ -1785,17 +1942,19 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "SWEN431",
     "courseTitle": "Advanced Programming Languages",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "2of": ["COMP3xx", "SWEN3xx"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN432",
@@ -1805,7 +1964,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN433",
@@ -1815,7 +1975,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "SWEN434",
@@ -1825,7 +1986,8 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   },
   {
     "id": "SWEN438",
@@ -1835,16 +1997,18 @@
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "2"
+    "trimester": "2",
+    "layer": 8
   },
   {
     "id": "SWEN439",
     "courseTitle": "Special Topic: Database System Engineering",
-    "parentIds": [],
+    "parentIds": ["level100"],
     "parentIdsComplex": [{ "4of": ["COMP3xx", "NWEN3xx", "SWEN3xx"] }],
     "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
-    "trimester": "1"
+    "trimester": "1",
+    "layer": 7
   }
 ]

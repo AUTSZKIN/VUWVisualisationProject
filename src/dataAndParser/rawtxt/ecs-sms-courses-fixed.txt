@@ -1,0 +1,1070 @@
+AIML420
+Artificial Intelligence
+P ( 4of COMP3xx DATA3xx SWEN3xx NWEN3xx )
+S ECS
+T 1
+
+AIML421
+Machine Learning Tools and Techniques
+P ( 4of COMP3xx DATA3xx SWEN3xx NWEN3xx STAT3xx )
+S ECS
+T 2
+
+AIML425
+Neural Networks and Deep Learning
+P ( 1of AIML420 COMP307 )
+S ECS
+T 2
+
+AIML426
+Evolutionary Computation and Learning
+P ( 1of AIML420 COMP307 )
+S ECS
+T 2
+
+AIML427
+Big Data
+P ( 1of AIML420 AIML421 COMP307 COMP309 STAT393 STAT394 )
+P ( 1of ENGR123 STAT193 MATH177 QUAN102 )
+S ECS
+T 1
+
+AIML428
+Text Mining and Natural Language Processing
+P 60 300-level pts
+S ECS
+T 1
+
+AIML429
+Probabilistic Machine Learning
+P ( 1of AIML420 COMP307 )
+P ( 1of MATH177 STAT292 STAT293 )
+S ECS
+T 1
+
+AIML430
+Applications and Implications of Artificial Intelligence
+P "60 300-level pts"
+S ECS
+T 2
+
+AIML431
+Current Topics in Artificial Intelligence
+P ( 1of AIML420 COMP307 )
+S ECS
+T 2
+
+CGRA151
+Introduction to Computer Graphics
+P ( 1of COMP102 COMP112 DSDN142 )
+S ECS
+T 2
+
+CGRA251
+Computer Graphics
+P CGRA151
+P NWEN241
+P ( 1of ENGR121 MATH151 )
+S ECS
+T 2
+
+CGRA350
+Real-time 3D Computer Graphics
+P CGRA251
+P COMP261
+P NWEN241
+S ECS
+T 2
+
+CGRA352
+Image-based Graphics
+P CGRA251
+P ( 1of COMP261 NWEN241 )
+S ECS
+T 1
+
+CGRA408
+Computer Graphics Rendering
+P  "CGRA 350 or 352 or (CGRA 251 and 30 300-level CGRA/COMP/SWEN/NWEN points) or at least B- in CGRA 401 and 402"
+S ECS
+T 1
+
+CGRA409
+Geometry Processing Algorithms
+P "CGRA 350 or COMP 308 or at least B- in CGRA 401 and 402 (or COMP 471 and 472 in 2014-15)"
+S ECS
+T 1
+
+CGRA463
+Computer Graphics Practicum
+P HoS
+S ECS
+T 2,3
+
+COMP102
+Introduction to Computer Program Design
+P 
+S ECS
+T 1,3
+
+COMP103
+Introduction to Data Structures and Algorithms
+P ( 1of COMP102 COMP112 )
+S ECS
+T 2,3
+
+COMP112
+Introduction to Computer Science
+P ( 1of NCEA COMP132 )
+P "14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience"
+S ECS
+T 1
+
+COMP132
+Programming for the Natural and Social Sciences
+P
+S ECS
+T 2
+
+COMP261
+Algorithms and Data Structures
+P COMP103
+P ( 1of ENGR123 MATH161 )
+S ECS
+T 1
+
+COMP304
+Programming Languages
+P COMP261
+S ECS
+T 1
+
+COMP307
+Introduction to Artificial Intelligence
+P ( 1of COMP261 NWEN241 SWEN221 )
+P ( 1of ENGR123 MATH151 MATH161 )
+S ECS
+T 1
+
+COMP309
+Machine Learning Tools and Techniques
+P ( 1of COMP261 ( and DATA201 DATA202 ) NWEN241 SWEN221 )
+S ECS
+T 2
+
+COMP312
+Simulation and Stochastic Models
+P ( 1of COMP102 COMP112 COMP132 DATA202 )
+P ( 1of ENGR123 MATH177 MATH277 STAT292 )
+P ( 1of COMP2xx DATA2xx MATH2xx NWEN2xx STAT2xx SWEN2xx )
+S SMS
+T 1
+
+COMP313
+Computer Game Development
+P ( 2of COMP261 NWEN241 NWEN243 SWEN222 SWEN225 )
+S ECS
+T 2
+
+COMP361
+Design and Analysis of Algorithms
+P COMP261
+S ECS
+T 1
+
+COMP425
+Computational Logic
+P COMP304
+P ( 1of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+CYBR171
+Cybersecurity Fundamentals
+P
+S ECS
+T 1
+
+CYBR271
+Secure Programming
+P CYBR171
+P NWEN241
+S ECS
+T 2
+
+CYBR371
+System and Network Security
+P CYBR171
+P NWEN241
+P NWEN243
+S ECS
+T 1
+
+CYBR372
+Applications of Cryptography
+P CYBR171
+P ( 1of CYBR271 COMP261 )
+P NWEN243
+S ECS
+T 2
+
+CYBR373
+Human and Organisational Security
+P CYBR371
+S ECS
+T 2
+
+CYBR471
+Offensive and Defensive Security
+P CYBR271
+P CYBR371
+P CYBR373
+S ECS
+T 2
+
+CYBR472
+Digital Forensics
+P CYBR271
+P CYBR371
+P ( 2of CYBR3xx NWEN3xx SWEN324 SWEN326 )
+S ECS
+T 2
+
+CYBR473
+Malware and Reverse Engineering
+P CYBR271
+P CYBR371
+P ( 2of CYBR3xx NWEN3xx SWEN324 SWEN326 )
+S ECS
+T 1
+
+DATA101
+Introduction to Data Science
+P
+S SIM
+T 1,3
+
+DATA201
+Techniques of Data Science
+P DATA101
+P ( 1of COMP102 COMP112 COMP132 INFO151 )
+P ( 1of ENGR123 MATH177 QUAN102 STAT193 )
+S SMS
+T 2
+
+DATA202
+Data Management and Programming
+P "1of COMP102 COMP112 COMP132 "INFO226 as a corequisite" "
+S SMS
+T 1
+
+DATA301
+Data Science in Practice
+P DATA201
+P DATA202
+P DATA303
+S SMS
+T 2
+
+DATA303
+Statistics for Data Science
+P ( 1of STAT293 DATA202 )
+P ( 1of MATH277 QUAN203 STAT292 )
+S SMS
+T 1
+
+DATA304
+Simulation and Stochastic Models
+P ( 1of COMP102 COMP112 COMP132 DATA202 )
+P ( 1of ENGR123 MATH177 MATH277 STAT292 )
+P ( 1of COMP2xx DATA2xx MATH2xx NWEN2xx STAT2xx SWEN2xx )
+S SMS
+T 1
+
+DATA351
+Data Science Internship
+P DATA201
+P ( 1of MATH277 STAT292 )
+P ( 1of DATA202 QUAN203 )
+P "15 further 200-level points"
+P "prereq courses must have an average of B+ or better"
+S SMS
+T 2
+
+EEEN201
+Mechatronic Design and Prototyping
+P ( 1of COMP102 COMP112 )
+P ENGR101
+P ENGR110
+P ( 1of ENGR121 MATH141 )
+S ECS
+T 2
+
+EEEN202
+Digital Electronics and Microprocessors
+P ( 1of COMP102 COMP112 ENGR101 ENGR121 MATH161 )
+S ECS
+T 1
+
+EEEN203
+Circuit Analysis
+P ( 1of ENGR122 MATH142 )
+P ( 1of ENGR142 PHYS115 )
+S ECS
+T 1
+
+EEEN204
+Electronic Devices
+P ( 1of ENGR122 MATH142 )
+P ( 1of ENGR142 PHYS115 )
+S ECS
+T 2
+
+EEEN220
+Signals, Systems and Statistics 1
+P ( 2of ENGR121 ENGR122 MATH142 MATH151 )
+P "(ENGR 121, 122) or (MATH 142, 151);",
+S ECS
+T 2
+
+EEEN301
+Computer Architecture and Embedded Systems
+P EEEN202
+P NWEN241
+S ECS
+T 1
+
+EEEN310
+Communication Engineering
+P EEEN220
+S ECS
+T 1
+
+EEEN313
+Power Electronics and Electrical Machines
+P EEEN203
+P EEEN204
+S ECS
+T 2
+
+EEEN315
+Control and Instrumentation
+P EEEN203
+S ECS
+T 1
+
+EEEN320
+Signals, Systems and Statistics 2
+P EEEN220
+S ECS
+T 2
+
+EEEN325
+Robotic Engineering
+P EEEN201
+S ECS
+T 1
+
+EEEN401
+Applied Electromagnetics and Compliance
+P EEEN313
+P ( 1of ENGR222 MATH244 )
+S ECS
+T -
+
+EEEN402
+Programmable Digital Logic
+P EEEN301
+S ECS
+T 2
+
+EEEN403
+Advanced Electronic Instrumentation
+P EEEN315
+S ECS
+T -
+
+EEEN410
+Advanced Communications Engineering
+P EEEN310
+S ECS
+T 2
+
+EEEN411
+Coding and Cryptography for Communications
+P EEEN310
+S ECS
+T -
+
+EEEN415
+Advanced Control Systems Engineering
+P EEEN315
+S ECS
+T 2
+
+EEEN421
+Advanced Signal Processing
+P ( 1of ECEN321 EEEN320 MATH318 MATH377 STAT332 )
+S ECS
+T -
+
+EEEN422
+Convex Optimisation
+P EEEN320
+S ECS
+T 1
+
+EEEN425
+Advanced Robotic Engineering
+P EEEN325
+S ECS
+T 1
+
+EEEN430
+Robotic Intelligence and Design
+P ( 1of COMP309 EEEN325 )
+S ECS
+T -
+
+EEEN431
+Musical Robotics
+P ECEN325
+S ECS
+T 2
+
+ENGR101
+Engineering Technology
+P BEHons
+S ECS
+T 1
+
+ENGR110
+Engineering Design
+P ( 1of COMP102 COMP112 )
+P ENGR101
+S ECS
+T 2
+
+ENGR121
+Engineering Mathematics Foundations
+P ( 1of NCEA MATH132 )
+S SMS
+T 1,2
+
+ENGR122
+Engineering Mathematics with Calculus
+P ( 1of ENGR121 MATH141 )
+S SMS
+T 2
+
+ENGR123
+Engineering Mathematics with Logic and Statistics
+P ENGR121
+S SMS
+T 2,3
+
+ENGR141
+Engineering Science
+P "16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)",
+S SCPS
+T 1
+
+ENGR142
+Engineering Physics for Electronics and Computer Systems",
+P "either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent",
+S SCPS
+T 2
+
+ENGR201
+Engineering in Context
+P ENGR101
+P ENGR110
+P "45 further points from Part 1 of the BE(Hons) schedule"
+S ECS
+T 2
+
+ENGR222
+Computational Algebra and Calculus
+P ( 2of ENGR121 ENGR122 MATH142 MATH151 )
+P "(ENGR 121, 122) or (MATH 142, 151)"
+S SMS
+T 1
+
+ENGR301
+Engineering Project Management 1
+P Admission to Part 2 of the BE(Hons)
+P ENGR201
+P "60 200-level pts from (CYBR, COMP, ECEN, NWEN, RESE, SWEN)"
+S ECS
+T 1
+
+ENGR302
+Engineering Project Management 2
+P ENGR301
+S ECS
+T 2
+
+ENGR401
+Professional Practice
+P ENGR201
+P ENGR301
+P ENGR302
+P ( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )
+S ECS
+T 1
+
+ENGR439
+Special Topic: Mechatronic Design
+P HoS
+S ECS
+T -
+
+ENGR489
+Engineering Project
+P ENGR201
+P ENGR301
+P ENGR302
+P ( 3of COMP3xx CYBR3xx ECEN3xx EEEN3xx NWEN3xx RESE3xx SWEN3xx )
+S ECS
+T 1,2
+
+MATH132
+Introduction to Mathematical Thinking
+P 
+S SMS
+T 1,3
+
+MATH141
+Calculus 1A
+P ( 1of NCEA MATH132 )
+S SMS
+T 1
+
+MATH142
+Calculus 1B
+P ( 1of MATH141 QUAN111 )
+P "MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics.",
+S SMS
+T 2
+
+MATH151
+Algebra
+P ( 1of NCEA MATH132 )
+S SMS
+T 1
+
+MATH161
+Discrete Mathematics and Logic
+P "Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR121-123, B+ or better in MATH132, MATH141-177, QUAN111) or equivalent background in mathematics."
+S SMS
+T 2
+
+MATH177
+Probability and Decision Modelling
+P "Approved level of achievement in NCEA Level 3 Calculus or one of (ENGR122, 123, MATH141, QUAN111) or equivalent background in mathematics."
+S SMS
+T 2
+
+MATH212
+Introduction to Real Analysis
+P MATH142
+P MATH161
+P "Alternatively, B+ or better in both (ENGR122, 123)"
+S SMS
+T 1
+
+MATH243
+Multivariable Calculus
+P MATH142
+P MATH151
+P "Alternatively, B+ or better in ENGR122"
+S SMS
+T 2
+
+MATH244
+Modelling with Differential Equations
+P ( 2of MATH142 MATH151 ENGR121 ENGR122 ) 
+P "(MATH 142, 151) or (ENGR 121, 122)"
+S SMS
+T 1
+
+MATH245
+Computational Mathematics
+P ( 1of ENGR122 ENGR123 ( and MATH151 ( 1of MATH141 MATH142 ) ) )
+S SMS
+T 2
+
+MATH251
+Linear Algebra
+P MATH151
+P MATH161
+P "Alternatively, B+ or better in (ENGR122 or MATH151)"
+S SMS
+T 2
+
+MATH261
+Discrete Mathematics 2
+P MATH161
+P "Alternatively, B+ or better in ENGR123"
+S SMS
+T 1
+
+MATH277
+Mathematical Statistics
+P MATH142
+P MATH177
+P "Alternatively B+ or better in both (ENGR122, 123)"
+S SMS
+T 1
+
+MATH301
+Differential Equations
+P MATH243
+P MATH244
+S SMS
+T 2
+
+MATH309
+Mathematical Logic
+P MATH161
+P ( 1of MATH211 MATH212 MATH251 MATH261 )
+P ( 1of MATH2xx COMP261 )
+S SMS
+T 2
+
+MATH311
+Algebra
+P MATH151
+P ( 1of MATH251 MATH261 )
+S SMS
+T 1
+
+MATH317
+Metric Spaces
+P ( 1of MATH211 MATH212 )
+S SMS
+T 1
+
+MATH318
+Hilbert Spaces
+P MATH251
+P ( 1of MATH211 MATH212 )
+S SMS
+T 2
+
+MATH321
+Applied Mathematics I
+P ( 2of MATH212 MATH243 MATH244 MATH245 MATH251 MATH277 ENGR222 )
+S SMS
+T 1,2
+
+MATH322
+Applied Mathematics II
+P ( 2of MATH212 MATH243 MATH244 MATH245 MATH251 MATH277 ENGR222 )
+S SMS
+T 1,2
+
+MATH323
+Mathematics for Earth Sciences
+P ( 2of MATH212 MATH243 MATH244 MATH245 MATH251 MATH277 ENGR222 )
+S SMS
+T 1,2
+
+MATH324
+Coding and Cryptography
+P ( 1of MATH251 ( and ( 1of ENGR121 MATH151 ) MATH2xx ) )
+P "MATH 251 or (ENGR 121 or MATH 151; 15 200-level MATH points)",
+S SMS
+T 2
+
+MATH335
+Computability and Complexity
+P MATH161
+P ( 1of MATH211 MATH212 MATH251 MATH261 )
+P ( 2of MATH2xx COMP261 )
+S SMS
+T 1
+
+MATH353
+Optimisation
+P MATH142
+P MATH151
+P ( 1of MATH243 MATH244 MATH251 MATH261 )
+P ( 2of MATH2xx )
+S SMS
+T 1
+
+MATH361
+Graph Theory
+P MATH161
+P MATH2xx
+S SMS
+T 1
+
+MATH377
+Probability and Random Processes
+P MATH243
+P ( 1of MATH277 STAT232 )
+S SMS
+T 1
+
+NWEN241
+Systems Programming
+P COMP103
+S ECS
+T 1
+
+NWEN243
+Clouds and Networking
+P COMP103
+S ECS
+T 2
+
+NWEN301
+Operating Systems Design
+P NWEN241
+S ECS
+T 2
+
+NWEN302
+Computer Network Design
+P NWEN241
+P NWEN243
+P ( 1of ENGR123 ( and MATH161 ( 1of MATH177 QUAN102 STAT193 ) ) )
+S ECS
+T 2
+
+NWEN303
+Concurrent Programming
+P SWEN221
+P ( 1of ENGR123 MATH161 )
+P ( 1of COMP261 CYBR271 NWEN241 NWEN243 )
+S ECS
+T 1
+
+NWEN304
+Advanced Network Applications
+P NWEN243
+P ( 1of ENGR123 MATH161 )
+P ( 1of COMP261 NWEN241 SWEN221 )
+S ECS
+T 2
+
+NWEN401
+Distributed Systems Design
+P ( 2of NWEN301 NWEN302 NWEN303 )
+S ECS
+T -
+
+NWEN402
+Internet Engineering
+P NWEN302
+P NWEN304
+P ( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+NWEN403
+Advanced Network Engineering
+P NWEN302
+P ( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+NWEN404
+Mobile Computing
+P NWEN302
+P ( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+NWEN405
+Security Engineering
+P NWEN304
+P ( 3of COMP3xx ECEN3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+NWEN406
+Distributed Computing in Grids and Clouds
+P NWEN301
+P ( 1of NWEN302 NWEN303 )
+S ECS
+T -
+
+RESE111
+Introduction to Renewable Energy Systems
+P 
+S ECS
+T 3
+
+RESE211
+Renewable Energy Generation Systems
+P ( 1of ENGR110 RESE111 )
+P ( 1of ENGR121 ( and MATH141 MATH151 ) )
+P ( 1of ENGR141 ( and PHYS114 CHEM114 ) )
+S ECS
+T -
+
+RESE212
+Renewable Energy Conversion and Storage
+P ( 1of ENGR110 RESE111 )
+P ( 1of ENGR121 ( and MATH141 MATH151 ) )
+P ( 1of ENGR141 ( and PHYS114 CHEM114 ) )
+S ECS
+T -
+
+RESE311
+Energy Economic Analyses
+P RESE211
+P RESE212
+P ( 1of STAT193 QUAN102 ECEN321 )
+S ECS
+T 1
+
+RESE312
+Sustainability Modelling Techniques
+P RESE211
+P RESE212
+S ECS
+T -
+
+RESE322
+Renewable Energy Storage Engineering
+P EEEN203
+P EEEN204
+S ECS
+T 2
+
+RESE323
+Renewable Energy Policy
+P RESE211
+P RESE212
+S ECS
+T -
+
+RESE411
+Power Systems Analysis
+P EEN313
+S ECS
+T 2
+
+RESE412
+Advanced Development of Renewable Energy Systems
+P EEEN315
+S ECS
+T 1
+
+STAT193
+Statistics in Practice
+P
+S SMS
+T 1,2,3
+
+STAT292
+Applied Statistics 2A
+P ( 1of STAT193 ENGR123 QUAN102 )
+P "Alternatively, a comparable background in Statistics."
+S SMS
+T 1
+
+STAT293
+Applied Statistics 2B
+P STAT292
+S SMS
+T 2
+
+STAT332
+Statistical Inference
+P MATH243
+P MATH277
+S SMS
+T 2
+
+STAT335
+Statistical Models for Actuarial Science
+P MATH277
+S SMS
+T 1
+
+STAT391
+Mathematical Methods for Applied Statistics
+P STAT292
+S SMS
+T 1
+
+STAT392
+Sample Surveys
+P ( 1of STAT193 QUAN102 ENGR123 )
+P "30 approved 200 or 300-level pts"
+S SMS
+T 1
+
+STAT393
+Linear Models
+P ( 2of MATH243 MATH277 STAT293 STAT391 ) 
+P "(MATH 243, 277) or (STAT 293, 391)"
+S SMS
+T 2
+
+STAT394
+Multivariate Statistics
+P ( 1of MATH277 ( and STAT292 STAT391 ) )
+S SMS
+T 2
+
+SWEN221
+Software Development
+P COMP103
+S ECS
+T 1
+
+SWEN225
+Software Design
+P SWEN221
+S ECS
+T 2
+
+SWEN301
+Structured Methods
+P SWEN225
+S ECS
+T 1
+
+SWEN303
+User Experience Engineering
+P ( 1of COMP261 SWEN221 )
+S ECS
+T 1
+
+SWEN304
+Database System Engineering
+P ( 1of COMP261 SWEN221 )
+P ( 1of ENGR123 MATH161 )
+S ECS
+T 1
+
+SWEN324
+Software Correctness
+P COMP103
+P ( 1of ENGR123 MATH161 )
+P ( 2of COMP2xx NWEN2xx SWEN2xx )
+S ECS
+T 2
+
+SWEN325
+Software Development for Mobile Platforms
+P NWEN243
+P SWEN225
+S ECS
+T 2
+
+SWEN326
+Safety-Critical Systems
+P NWEN241
+P SWEN225
+S ECS
+T 1
+
+SWEN421
+Formal Software Engineering
+P SWEN324
+P ( 2of COMP3xx SWEN3xx )
+S ECS
+T -
+
+SWEN422
+Human Computer Interaction
+P ( 1of SWEN303 SWEN325 )
+S ECS
+T 2
+
+SWEN423
+Design: Patterns, Frameworks and Languages
+P SWEN225
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T 2
+
+SWEN424
+Model-Driven Development
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN425
+Design Patterns
+P SWEN301
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN426
+Advanced Software Implementation and Development
+P SWEN301
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN427
+Advanced Software Engineering: Requirements and Design
+P SWEN301
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN428
+Protocols and Architecture for the Internet of Things
+P NWEN241
+P NWEN243
+P ( 4of COMP3xx ECEN3xx NWEN3xx SWEN3xx )
+S ECS
+T 1
+
+SWEN430
+Compiler Engineering
+P ( 1of COMP261 SWEN324 )
+P ( 3of COMP3xx NWEN303 SWEN3xx COMP261 )
+S ECS
+T 2
+
+SWEN431
+Advanced Programming Languages
+P ( 2of COMP3xx SWEN3xx )
+S ECS
+T 1
+
+SWEN432
+Advanced Database Design and Implementation
+P SWEN304
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN433
+Web Information Systems Engineering
+P SWEN304
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T 2
+
+SWEN434
+Data Warehousing
+P SWEN304
+P ( 2of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T -
+
+SWEN439
+Special Topic: Database System Engineering
+P ( 4of COMP3xx NWEN3xx SWEN3xx )
+S ECS
+T 1
+
+#### Missed courses
+
+ECEN325
+Robotic Engineering
+P EEEN201
+S ECS
+T 1
