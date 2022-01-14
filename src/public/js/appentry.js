@@ -18,7 +18,7 @@ const courseJsonDataUrl =
 drawLocalData();
 
 function drawLocalData() {
-  fetch(localCourseJsonDataUrl)
+  fetch(courseJsonDataUrl)
     .then((response) => response.json())
     .then((json) => {
       var dag = d3dag.dagStratify()(json);
