@@ -463,27 +463,6 @@ export default function () {
       highlightMultiChoicePrereq();
     }
 
-    function unclassifyHighlightedAndUnhighlightThem() {
-      d3.selectAll(".highlighted,.highlightedDotRect").attr(
-        "style",
-        defaultUnhighlightedStyle
-      );
-      d3.selectAll(".dotEdge")
-        .attr("style", defaultUnhighlightedStyle)
-        .style("visibility", "hidden");
-
-      $(".highlighted").removeClass("highlighted");
-      $(".highlightedDotRect").removeClass("highlightedDotRect");
-
-      setDefaultCourseInfoBody();
-      function setDefaultCourseInfoBody() {
-        d3.select("#courseInfoHeader").html(`<h5>Course Info:<h5/>`);
-        d3.select("#courseInfoCardBody").html(
-          `<h4><i style="font-weight:250"> Click a course node to view more the course detail.<i/><h4/>`
-        );
-      }
-    }
-
     function getComplexPrereqCourseArr(courseNode) {
       // Get the ofs course into collection
       const complexPrereqCourseArr = new Array();
@@ -637,6 +616,27 @@ export default function () {
     }
   }
 
+  function unclassifyHighlightedAndUnhighlightThem() {
+    d3.selectAll(".highlighted,.highlightedDotRect").attr(
+      "style",
+      defaultUnhighlightedStyle
+    );
+    d3.selectAll(".dotEdge")
+      .attr("style", defaultUnhighlightedStyle)
+      .style("visibility", "hidden");
+
+    $(".highlighted").removeClass("highlighted");
+    $(".highlightedDotRect").removeClass("highlightedDotRect");
+
+    setDefaultCourseInfoBody();
+    function setDefaultCourseInfoBody() {
+      d3.select("#courseInfoHeader").html(`<h5>Course Info:<h5/>`);
+      d3.select("#courseInfoCardBody").html(
+        `<h4><i style="font-weight:250"> Click a course node to view more the course detail.<i/><h4/>`
+      );
+    }
+  }
+
   function zoomPan() {
     const svgDivContainer = d3.select("#svgDivContainer");
     const mainSVG = d3.select("#mainSVG");
@@ -695,6 +695,7 @@ export default function () {
     );
 
     function reset() {
+      unclassifyHighlightedAndUnhighlightThem();
       svgDivContainer
         .transition()
         .duration(1000)
