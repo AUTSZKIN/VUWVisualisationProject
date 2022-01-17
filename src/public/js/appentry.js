@@ -7,24 +7,11 @@ import { rawCourseDataToJsonArray } from "/src/dataAndParser/rawCourseDataParser
 import { draw } from "./main.js";
 import sugiyama from "./sugiyamaDagDrawing.js";
 
-// const courseJsonDataUrl =
-//   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/2022-Data.json";
-// drawLocalData();
-// function drawLocalData() {
-//   fetch(courseJsonDataUrl)
-//     .then((response) => response.json())
-//     .then((json) => {
-//       var dag = d3dag.dagStratify()(json);
-//       sugiyama()(dag);
-//     });
-//   draw();
-// }
-
-const localCourseJsonDataUrl =
-  "http://127.0.0.1:5500/src/dataAndParser/converted/2022-Data.json";
+const courseJsonDataUrl =
+  "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/2022-Data.json";
 drawLocalData();
 function drawLocalData() {
-  fetch(localCourseJsonDataUrl)
+  fetch(courseJsonDataUrl)
     .then((response) => response.json())
     .then((json) => {
       var dag = d3dag.dagStratify()(json);
@@ -32,6 +19,19 @@ function drawLocalData() {
     });
   draw();
 }
+
+// const localCourseJsonDataUrl =
+//   "http://127.0.0.1:5500/src/dataAndParser/converted/2022-Data.json";
+// drawLocalData();
+// function drawLocalData() {
+//   fetch(localCourseJsonDataUrl)
+//     .then((response) => response.json())
+//     .then((json) => {
+//       var dag = d3dag.dagStratify()(json);
+//       sugiyama()(dag);
+//     });
+//   draw();
+// }
 
 /**
  * Parse a the RAW txt data and save it
