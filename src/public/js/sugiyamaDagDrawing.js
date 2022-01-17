@@ -559,7 +559,7 @@ export default function () {
           courseNode.id
         )}" style="font-size: larger;">${
           courseNode.data.courseTitle
-        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;(* View the course home page for more detail )</text>
+        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;(* View the course outline page for more detail )</text>
         <hr style="width:90%;text-align:left;margin-left:0;height:0.5px;border-width:0;color:black;background-color:black;opacity:80%">
         <label>No choice prerequisites: </label>
         ${prereq}
@@ -574,7 +574,7 @@ export default function () {
         <a href="https://${courseNode.data.school}.wgtn.ac.nz/Main/">${
           courseNode.data.school
         }</a>
-        <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course home page for more comprehensive details<li/>
+        <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course outline page for more comprehensive details<li/>
         `; // TODO: add url
       });
 
@@ -594,7 +594,7 @@ export default function () {
       var displine = courseNodeId.match(courseNodeIdRegex)[0];
       var code = courseNodeId.match(courseNodeIdRegex)[1];
       const codeRegex = /^\d{3}$/;
-      const courseHomePage =
+      const courseOutlinePage =
         "https://www.wgtn.ac.nz/courses/" + displine + "/" + code;
       // If couse code is not valid, use VUW course finder.
       const VUWcourseFinder =
@@ -603,7 +603,7 @@ export default function () {
         "&filterToggle=f.Course+level%7CcourseLevel=" +
         code.charAt(0) +
         "%20&tab=courses";
-      return codeRegex.test(code) ? courseHomePage : VUWcourseFinder;
+      return codeRegex.test(code) ? courseOutlinePage : VUWcourseFinder;
     }
 
     clearHighlightedOnClicked();
