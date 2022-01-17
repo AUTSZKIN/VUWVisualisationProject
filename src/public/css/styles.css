@@ -88,6 +88,16 @@ form label {
 #footnoteAndZoomContainer {
   margin-bottom: -0.1%;
 }
+
+/* SVG */
+#svgDivContainer {
+  margin: 1.8%;
+  margin-left: 4%;
+  margin-right: 4%;
+  display: grid;
+  flex-flow: column;
+}
+
 /* Footnote */
 #footnote {
   font-weight: lighter;
@@ -160,15 +170,6 @@ form label {
 #lineCheckboxLabel {
   padding-top: 1%;
   padding-left: 2%;
-}
-
-/* SVG */
-#svgDivContainer {
-  margin: 1.8%;
-  margin-left: 4%;
-  margin-right: 4%;
-  display: flex;
-  flex-flow: column;
 }
 
 .selector-for-some-widget {
