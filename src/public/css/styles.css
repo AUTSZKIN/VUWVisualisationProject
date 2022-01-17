@@ -270,3 +270,9 @@ a:hover {
 .bg-warning {
   opacity: 99%;
 }
+
+line {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+  stroke-linecap: square;
+}

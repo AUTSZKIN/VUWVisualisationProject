@@ -77,6 +77,7 @@ export default function () {
   function drawDotPath(dag) {
     // Parse and save the collection of points between mainNode and its XOF node.
     var linesArray = new Array();
+
     d3.selectAll("line")
       .data(dag.links())
       .enter()
@@ -103,15 +104,14 @@ export default function () {
                   courseCodeRegex.test(course)
                     ? (() => {
                         // For each complex: Add a mainNode to ComplexCourseNode pair
-                        // MAIN NODE's X and Y coordinates on SVG canvase
-                        const mainNodeTranslate = getTranslateXY(
-                          document.getElementById(data.target.id + "Node")
-                        );
 
-                        // XOF NODE's X and Y coordinates on SVG canvase
-                        const complexNodeTranslate = getTranslateXY(
-                          document.getElementById(course + "Node")
+                        // MAIN NODE's X and Y coordinates on SVG canvase
+                        const mainNodeTranslate = getTranslateXYD3(
+                          data.target.id
                         );
+                        // XOF NODE's X and Y coordinates on SVG canvase
+                        const complexNodeTranslate = getTranslateXYD3(course);
+
                         const pointsToComplexPrereq = {
                           x1: mainNodeTranslate.x,
                           y1: mainNodeTranslate.y,
@@ -128,10 +128,29 @@ export default function () {
             });
           })();
 
+      function getTranslateXYD3(courseId) {
+        // The translate string e.g. "translate(3594, 1388.8888)""
+        const mainNodeTranslateString = d3
+          .select("#" + courseId + "Node")
+          .attr("transform");
+
+        // Turn string into : "['3594', '1388.8888']"
+        var matchesArray = mainNodeTranslateString.match(/\d+\.?\d+/g); // Note some value might not have decimal place hence "?" added
+        return {
+          x: matchesArray[0],
+          y: matchesArray[1],
+        };
+      }
+
       // get the translated coordinates of the element in SVG canvas
       function getTranslateXY(element) {
-        const style = window.getComputedStyle(element);
+        const style = window.getComputedStyle(element)[transform];
+        console.log(style);
         const matrix = new DOMMatrixReadOnly(style.transform);
+        console.log(matrix);
+        console.log(matrix.m41);
+        console.log(matrix.m42);
+
         return {
           x: matrix.m41,
           y: matrix.m42,
@@ -152,19 +171,24 @@ export default function () {
       .attr("fill", "none")
       .attr("style", defaultUnhighlightedStyle)
       .attr("class", "dotEdge")
-      .attr("x1", (data) => {
+      // .attr("d", (d, i) => {
+      //   var dVal = `M ${d.x1} ${d.y1}, L ${d.x2} ${d.y2}`;
+      //   console.log(dVal);
+      //   return dVal;
+      // }) // For path elements
+      .attr("x1", (data, i) => {
         return data.x1;
       })
-      .attr("y1", (data) => {
+      .attr("y1", (data, i) => {
         return data.y1;
       })
-      .attr("x2", (data) => {
+      .attr("x2", (data, i) => {
         return data.x2;
       })
-      .attr("y2", (data) => {
+      .attr("y2", (data, i) => {
         return data.y2;
       })
-      .attr("id", (data) => {
+      .attr("id", (data, i) => {
         return data.id;
       })
       .style("visibility", "hidden");
@@ -444,7 +468,6 @@ export default function () {
 
       complexPrereqCourseArr.forEach((prerequisiteId) => {
         const pathId = "#" + courseNode.id + "To" + prerequisiteId + "DotEdge"; // Path connect source and target node
-        console.log(pathId);
         const thePath = d3.selectAll(pathId).node();
         // hightlight the path between course and each prereq node
         if (thePath !== null) {
