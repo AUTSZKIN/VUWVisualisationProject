@@ -606,7 +606,7 @@
     "parentIdsComplex": [
       { "2of": ["ENGR121", "ENGR122", "MATH142", "MATH151"] }
     ],
-    "specificPrereq": "\"(ENGR 121, 122) or (MATH 142, 151);\",",
+    "specificPrereq": "\"(ENGR 121, 122) or (MATH 142, 151);\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -861,7 +861,7 @@
     "courseTitle": "Engineering Science",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "\"16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)\",",
+    "specificPrereq": "\"16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)\"",
     "school": "SCPS",
     "availability": "y",
     "trimester": "1",
@@ -869,10 +869,10 @@
   },
   {
     "id": "ENGR142",
-    "courseTitle": "Engineering Physics for Electronics and Computer Systems\",",
+    "courseTitle": "Engineering Physics for Electronics and Computer Systems",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "\"either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent\",",
+    "specificPrereq": "\"either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent\"",
     "school": "SCPS",
     "availability": "y",
     "trimester": "2",
@@ -1008,7 +1008,7 @@
     "courseTitle": "Calculus 1B",
     "parentIds": ["level100"],
     "parentIdsComplex": [{ "1of": ["MATH141", "QUAN111"] }],
-    "specificPrereq": "\"MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics.\",",
+    "specificPrereq": "\"MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics.\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1465,11 +1465,11 @@
     "courseTitle": "Introduction to Renewable Energy Systems",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "",
+    "specificPrereq": "\"This course is available on Trimester 3\"",
     "school": "ECS",
-    "availability": "y",
-    "trimester": "3",
-    "layer": 7
+    "availability": "n",
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "RESE211",

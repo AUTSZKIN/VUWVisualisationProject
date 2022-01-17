@@ -323,7 +323,7 @@ T 2
 EEEN220
 Signals, Systems and Statistics 1
 P ( 2of ENGR121 ENGR122 MATH142 MATH151 )
-P "(ENGR 121, 122) or (MATH 142, 151);",
+P "(ENGR 121, 122) or (MATH 142, 151);"
 S ECS
 T 2
 
@@ -465,13 +465,13 @@ T 2,3
 
 ENGR141
 Engineering Science
-P "16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)",
+P "16 Achievement Standard credits NCEA Level 3 in one of Mathematics or Physics (or equivalent)"
 S SCPS
 T 1
 
 ENGR142
-Engineering Physics for Electronics and Computer Systems",
-P "either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent",
+Engineering Physics for Electronics and Computer Systems
+P "either ENGR 141 and (ENGR 121 or MATH 141) or approved levels of achievement in NCEA Level 3 Physics and Calculus or equivalent"
 S SCPS
 T 2
 
@@ -543,7 +543,7 @@ T 1
 MATH142
 Calculus 1B
 P ( 1of MATH141 QUAN111 )
-P "MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics.",
+P "MATH 141 or QUAN 111 or approved level of achievement in NCEA Level 3 Calculus or an equivalent background in mathematics."
 S SMS
 T 2
 

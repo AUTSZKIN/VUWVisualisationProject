@@ -185,19 +185,6 @@ function searchCourse(str) {
 }
 
 function drawSVG() {
-  /** FOOTNOTES */
-  d3.select("body")
-    .append("div")
-    .attr("id", "footnote")
-    .html(
-      "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
-        "* Faded courses are not available at the moment. For example: </text>" +
-        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="55px" style="position: absolute;"/><br>' +
-        "<text>* Course with asterisk has specific requriement, please see the course info panel. For example: </text>" +
-        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="55px" /><br>'
-    );
-  /** FOOTNOTES */
-
   const svgDivContainer = d3
     .select("body")
     .append("div")
@@ -214,6 +201,21 @@ function drawSVG() {
       "viewBox",
       `${viewBoxX} ${viewBoxY} ${viewBoxWidth * 2} ${viewBoxHeight}`
     );
+
+  /** FOOTNOTES */
+  d3.select("#svgDivContainer")
+    .append("div")
+    .attr("id", "footnoteAndZoomContainer")
+    .append("div")
+    .attr("id", "footnote")
+    .html(
+      "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
+        "* Faded courses are not available at the moment. For example: </text>" +
+        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="55px" style="position: absolute;"/><br>' +
+        "<text>* Course with asterisk ( * ) has specific requriement, please see the course info panel. For example: </text>" +
+        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="55px" /><br>'
+    );
+  /** FOOTNOTES */
 
   drawLayer();
 }

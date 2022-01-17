@@ -85,9 +85,31 @@ form label {
   padding-left: 5%;
 }
 
+#footnoteAndZoomContainer {
+  margin-bottom: -0.1%;
+}
+/* Footnote */
+#footnote {
+  font-weight: lighter;
+  font-style: italic;
+  font-size: medium;
+  color: grey;
+  float: left;
+  padding-left: 0%;
+  padding-right: 5%;
+  padding-bottom: 1%;
+  order: 0;
+}
+
+#zoomBtnContainer {
+  margin-bottom: 2%;
+  order: 0;
+}
+
 #mainSVG {
   border: solid #ddd 0.5px;
   border-radius: 6px;
+  order: 1;
 }
 
 /* Filter */
@@ -142,9 +164,11 @@ form label {
 
 /* SVG */
 #svgDivContainer {
-  margin: 2%;
+  margin: 1.8%;
   margin-left: 4%;
   margin-right: 4%;
+  display: flex;
+  flex-flow: column;
 }
 
 .selector-for-some-widget {
@@ -215,7 +239,7 @@ form label {
 }
 
 #cardBody {
-  min-height: 270px;
+  min-height: 320px;
 }
 
 /* Course info card body */
@@ -227,17 +251,6 @@ form label {
   top: 50%;
   left: 50%;
   margin-right: -50%; */
-}
-
-/* Footnote */
-#footnote {
-  font-weight: lighter;
-  font-style: italic;
-  font-size: medium;
-  color: grey;
-  float: left;
-  padding-left: 4%;
-  margin: 0.8%;
 }
 
 /* HTML link */

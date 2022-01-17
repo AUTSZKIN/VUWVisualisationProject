@@ -5,8 +5,8 @@ export default function () {
   // const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
   const highlightStyle = "stroke:red; stroke-width:4.5";
   const hoverHighlightStyle = "stroke:purple; stroke-width:3.5";
-  const dotHoverHighlightStyle = "stroke:tomato; stroke-width:4.5";
-  const defaultUnhighlightedStyle = "stroke:grey; stroke-width:1";
+  const dotHoverHighlightStyle = "stroke:orange; stroke-width:4.5";
+  const defaultUnhighlightedStyle = "stroke:grey; stroke-width:0.7";
 
   function sugiyama(dag) {
     const layering = d3_dag.layeringLongestPath();
@@ -232,7 +232,7 @@ export default function () {
       .attr("fill", "darkslategray")
       .attr("class", "nodeText")
       .attr("font-size", "200%")
-      .style("transform", "translate(35px, -6px)");
+      .style("transform", "translate(35px, -14px)");
 
     function courseCodeProcessing(courseNode) {
       // console.log(courseNode);
@@ -279,6 +279,7 @@ export default function () {
         unclassifyHighlightedAndUnhighlightThem();
       } else {
         classifyHighlightedAndHighlightThem(courseNode);
+        classifyAndHighlightMultiChoicePrereq(courseNode);
         showCourseInfoPanel(courseNode);
       }
     }
@@ -288,7 +289,7 @@ export default function () {
         .transition()
         .duration(100)
         .style("opacity", 0.95)
-        .attr("visibility", "visiable");
+        .attr("visibility", "visible");
       d3.selectAll("#" + courseNode.id + "Rect").attr(
         "style",
         hoverHighlightStyle
@@ -325,7 +326,7 @@ export default function () {
             "#" + courseNode.id + "To" + xOfPrerequisiteId + "DotEdge"; // Path connect source and target node
           d3.selectAll(pathId)
             .attr("style", dotHoverHighlightStyle)
-            .style("visibility", "visiable");
+            .style("visibility", "visible");
           d3.selectAll("#" + xOfPrerequisiteId + "Rect").attr(
             "style",
             dotHoverHighlightStyle
@@ -368,8 +369,8 @@ export default function () {
             defaultUnhighlightedStyle
           );
         });
-        //Keep highlighted course, exclude text
-        $(".highlighted").not(".nodeText").attr("style", highlightStyle);
+        //Keep highlighted course
+        d3.selectAll(".highlighted").attr("style", highlightStyle);
       }
 
       function hideOfsPathAndNode(courseNode) {
@@ -385,7 +386,21 @@ export default function () {
             defaultUnhighlightedStyle
           );
         });
+        //Keep highlighted course
+        highlightMultiChoicePrereq();
       }
+    }
+
+    function highlightMultiChoicePrereq() {
+      d3.selectAll(".highlighted")
+        .filter(".dotEdge")
+        .style("visibility", "visible")
+        .attr("style", dotHoverHighlightStyle);
+
+      d3.selectAll(".highlighted")
+        .filter(".highlightedDotRect")
+        .style("visibility", "visible")
+        .attr("style", dotHoverHighlightStyle);
     }
 
     function classifyHighlightedAndHighlightThem(courseNode) {
@@ -395,9 +410,9 @@ export default function () {
         .node()
         .classList.add("highlighted");
 
-      d3.selectAll("#" + courseNode.id + "Text")
-        .node()
-        .classList.add("highlighted");
+      // d3.selectAll("#" + courseNode.id + "Text")
+      //   .node()
+      //   .classList.add("highlighted");
 
       courseNode.data.parentIds.forEach((prerequisiteId) => {
         /**
@@ -420,10 +435,16 @@ export default function () {
           .classList.add("highlighted");
       });
 
+      // highlight elements when click exclude text
+      $(".highlighted").attr("style", highlightStyle);
+    }
+
+    function classifyAndHighlightMultiChoicePrereq(courseNode) {
       const complexPrereqCourseArr = getComplexPrereqCourseArr(courseNode);
 
       complexPrereqCourseArr.forEach((prerequisiteId) => {
-        const pathId = "#" + prerequisiteId + "To" + courseNode.id + "dotEdge"; // Path connect source and target node
+        const pathId = "#" + courseNode.id + "To" + prerequisiteId + "DotEdge"; // Path connect source and target node
+        console.log(pathId);
         const thePath = d3.selectAll(pathId).node();
         // hightlight the path between course and each prereq node
         if (thePath !== null) {
@@ -433,17 +454,28 @@ export default function () {
         d3.selectAll("#" + prerequisiteId + "Rect")
           .node()
           .classList.add("highlighted");
+
+        d3.selectAll("#" + prerequisiteId + "Rect")
+          .node()
+          .classList.add("highlightedDotRect");
       });
 
-      // highlight elements when click exclude text
-      $(".highlighted").not(".nodeText").attr("style", highlightStyle);
+      highlightMultiChoicePrereq();
     }
 
     function unclassifyHighlightedAndUnhighlightThem() {
-      d3.selectAll(".highlighted").attr("style", defaultUnhighlightedStyle);
-      $(".highlighted").removeClass("highlighted");
-      setDefaultCourseInfoBody();
+      d3.selectAll(".highlighted,.highlightedDotRect").attr(
+        "style",
+        defaultUnhighlightedStyle
+      );
+      d3.selectAll(".dotEdge")
+        .attr("style", defaultUnhighlightedStyle)
+        .style("visibility", "hidden");
 
+      $(".highlighted").removeClass("highlighted");
+      $(".highlightedDotRect").removeClass("highlightedDotRect");
+
+      setDefaultCourseInfoBody();
       function setDefaultCourseInfoBody() {
         d3.select("#courseInfoHeader").html(`<h5>Course Info:<h5/>`);
         d3.select("#courseInfoCardBody").html(
@@ -488,7 +520,7 @@ export default function () {
         courseNode.data.parentIds.length > 0 &&
         courseNode.data.parentIds[0] != "level100"
           ? getPrereqHerfElement()
-          : "No prerequisite (View the course home page for more detail)";
+          : "No prerequisite";
 
       function getPrereqHerfElement() {
         var prereqList = ``;
@@ -504,7 +536,7 @@ export default function () {
       // 2. Specific Prereq, basically pure text
       const specificPrereq =
         courseNode.data.specificPrereq === ""
-          ? "No requirements (View the course home page for more detail)"
+          ? "No requirements"
           : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
 
       // 3. Deal with the "ofs"
@@ -513,7 +545,7 @@ export default function () {
           ? `<label>Multi-choice prerequisites: </label>
           ${getOtherPrereqHerfElement()}
           `
-          : `<label>Multi-choice prerequisites: </label> No multi choice prerequisites (View the course home page for more detail)<br>`;
+          : `<label>Multi-choice prerequisites: </label> No multi-choice prerequisites <br>`;
 
       function getOtherPrereqHerfElement() {
         var otherPrereqList = ``;
@@ -544,11 +576,12 @@ export default function () {
       // 4. Actual Course detail body //
       cardBody.html(() => {
         return `
-        <label>Course Name: </label>
-        <a href="${directToCoursePage(courseNode.id)}">${
+        <a href="${directToCoursePage(
+          courseNode.id
+        )}" style="font-size: larger;">${
           courseNode.data.courseTitle
-        }</a>
-        <br>
+        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;(* View the course home page for more detail )</text>
+        <hr style="width:90%;text-align:left;margin-left:0;height:0.5px;border-width:0;color:black;background-color:black;opacity:80%">
         <label>No choice prerequisites: </label>
         ${prereq}
         <br>
@@ -641,9 +674,11 @@ export default function () {
     svgDivContainer.call(zoom);
 
     // Adding three Bootstrap style zoom buttons
-    const zoomBtnContainer = svgDivContainer
+    const zoomBtnContainer = d3
+      .selectAll("#footnoteAndZoomContainer")
       .append("div")
       .attr("id", "zoomBtnContainer")
+      .style("transform", "translate(0%, 2vw)")
       .html(
         '<button id="reset" class="btn btn-outline-primary btn-sm">Reset</button>' +
           '<button id="zoom_in" class="btn btn-outline-secondary btn-sm btn-circle">+</button>' +
