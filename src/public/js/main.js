@@ -190,8 +190,11 @@ function drawSVG() {
     .append("div")
     .attr("id", "footnote")
     .html(
-      "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>* Faded courses are not available at the moment. For example: </text>" +
-        '<img id="fadedCourse" alt="fadedCourse" src="https://i.loli.net/2021/01/18/1qckDlCBV6OdAhf.png" width="55px" />'
+      "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
+        "* Faded courses are not available at the moment. For example: </text>" +
+        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="55px" style="position: absolute;"/><br>' +
+        "<text>* Course with asterisk has specific requriement, please see the course info panel. For example: </text>" +
+        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="55px" /><br>'
     );
   /** FOOTNOTES */
 
@@ -212,7 +215,7 @@ function drawSVG() {
       `${viewBoxX} ${viewBoxY} ${viewBoxWidth * 2} ${viewBoxHeight}`
     );
 
-  drawLayer(mainSVG);
+  drawLayer();
 }
 
 function drawLayer() {
@@ -231,6 +234,7 @@ function drawLayer() {
   const levelLayers = d3
     .select("#mainSVG")
     .append("g")
+    .attr("class", "layerRectContainer")
     .selectAll("g")
     .data(trimesters)
     .enter()

@@ -7,18 +7,24 @@ import { rawCourseDataToJsonArray } from "/src/dataAndParser/rawCourseDataParser
 import { draw } from "./main.js";
 import sugiyama from "./sugiyamaDagDrawing.js";
 
-const courseJsonDataUrl =
-  "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/2022-Data.json";
+// const courseJsonDataUrl =
+//   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/converted/2022-Data.json";
+// drawLocalData();
+// function drawLocalData() {
+//   fetch(courseJsonDataUrl)
+//     .then((response) => response.json())
+//     .then((json) => {
+//       var dag = d3dag.dagStratify()(json);
+//       sugiyama()(dag);
+//     });
+//   draw();
+// }
 
-// const tempCourseJsonDataUrl =
-//   "https://raw.githubusercontent.com/AUTSZKIN/TempFiles/main/New-ecs-sms-courses-withLayers.json?token=GHSAT0AAAAAABO3ASVQZ722PFE7NYEZBXCKYPBAUXQ";
-// const localCourseJsonDataUrl =
-//   "http://127.0.0.1:5500/src/dataAndParser/converted/2022-Data.json";
-
+const localCourseJsonDataUrl =
+  "http://127.0.0.1:5500/src/dataAndParser/converted/2022-Data.json";
 drawLocalData();
-
 function drawLocalData() {
-  fetch(courseJsonDataUrl)
+  fetch(localCourseJsonDataUrl)
     .then((response) => response.json())
     .then((json) => {
       var dag = d3dag.dagStratify()(json);
@@ -33,16 +39,12 @@ function drawLocalData() {
 // const rawDataUrl =
 //   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/rawtxt/ecs-sms-courses.txt";
 
-// const tempDataUrl =
-//   "https://raw.githubusercontent.com/AUTSZKIN/TempFiles/main/NEW-ecs-sms-courses.txt?token=GHSAT0AAAAAABO3ASVRSM7AAOMSGGK7PT3OYO2LQNQ";
-
 const localDateUrl =
   "http://127.0.0.1:5500/src/dataAndParser/rawtxt/ecs-sms-courses-fixed.txt";
-
 fetch(localDateUrl).then((response) => {
   response.text().then((data) => {
-    var courseJsonArray = rawCourseDataToJsonArray(data);
     // PRINT THE PARSED DATA
+    // var courseJsonArray = rawCourseDataToJsonArray(data);
     // console.log(JSON.stringify(courseJsonArray));
   });
 });

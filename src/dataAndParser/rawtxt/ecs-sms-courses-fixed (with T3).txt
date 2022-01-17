@@ -115,7 +115,8 @@ T 2,3
 
 COMP112
 Introduction to Computer Science
-P "14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP 132, or equivalent programming experience"
+P ( 1of NCEA COMP132 )
+P "14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience"
 S ECS
 T 1
 
@@ -147,8 +148,7 @@ T 1
 
 COMP309
 Machine Learning Tools and Techniques
-P ( 1of COMP261 NWEN241 SWEN221 )
-P "Or alternatively, ( DATA201 and DATA202 )"
+P ( 1of COMP261 ( and DATA201 DATA202 ) NWEN241 SWEN221 )
 S ECS
 T 2
 
@@ -447,7 +447,7 @@ T 2
 
 ENGR121
 Engineering Mathematics Foundations
-P "16 AS credits NCEA Level 3 Mathematics (or equivalent) or MATH 132;"
+P ( 1of NCEA MATH132 )
 S SMS
 T 1,2
 
@@ -536,7 +536,7 @@ T 1,3
 
 MATH141
 Calculus 1A
-P "16 achievement standard credits of NCEA Level 3 Mathematics (or equivalent) or MATH 132"
+P ( 1of NCEA MATH132 )
 S SMS
 T 1
 
@@ -549,7 +549,7 @@ T 2
 
 MATH151
 Algebra
-P "16 achievement standard credits NCEA Level 3 Mathematics (or equivalent) or MATH 132"
+P ( 1of NCEA MATH132 )
 S SMS
 T 1
 
@@ -577,7 +577,7 @@ MATH243
 Multivariable Calculus
 P MATH142
 P MATH151
-P " B+ or better in ENGR122"
+P "Alternatively, B+ or better in ENGR122"
 S SMS
 T 2
 
@@ -590,8 +590,7 @@ T 1
 
 MATH245
 Computational Mathematics
-P ( 1of ENGR122 ENGR123 )
-P "Or alternatively, MATH 151 and (141 or 142)"
+P ( 1of ENGR122 ENGR123 ( and MATH151 ( 1of MATH141 MATH142 ) ) )
 S SMS
 T 2
 
@@ -673,8 +672,8 @@ T 1,2
 
 MATH324
 Coding and Cryptography
-P MATH251
-P "Or alternatively, (ENGR 121 or MATH 151; 15 200-level MATH points)"
+P ( 1of MATH251 ( and ( 1of ENGR121 MATH151 ) MATH2xx ) )
+P "MATH 251 or (ENGR 121 or MATH 151; 15 200-level MATH points)",
 S SMS
 T 2
 
@@ -731,7 +730,7 @@ NWEN302
 Computer Network Design
 P NWEN241
 P NWEN243
-P "ENGR 123 or (MATH 161, one of MATH 177, QUAN 102 or STAT 193)"
+P ( 1of ENGR123 ( and MATH161 ( 1of MATH177 QUAN102 STAT193 ) ) )
 S ECS
 T 2
 
@@ -795,14 +794,15 @@ T -
 
 RESE111
 Introduction to Renewable Energy Systems
-P "This course is available on Trimester 3"
+P 
 S ECS
-T -
+T 3
 
 RESE211
 Renewable Energy Generation Systems
 P ( 1of ENGR110 RESE111 )
-P "ENGR 121 (or MATH 141 and 151); ENGR 141 (or PHYS 114 and CHEM 114)"
+P ( 1of ENGR121 ( and MATH141 MATH151 ) )
+P ( 1of ENGR141 ( and PHYS114 CHEM114 ) )
 S ECS
 T -
 
@@ -908,8 +908,7 @@ T 2
 
 STAT394
 Multivariate Statistics
-P MATH277
-P "Or alternatively, STAT 292 and STAT 391"
+P ( 1of MATH277 ( and STAT292 STAT391 ) )
 S SMS
 T 2
 
@@ -1090,45 +1089,27 @@ S -
 T 1,2,3
 
 DSDN142
-Creative Coding I / Waehere ā-Auaha I
-P 
-S The School of Design Innovation
-T 2,3
-
-SWEN222
-Software Design
-P SWEN221
-S ECS
-T 2
-
-QUAN203
-Quantitative Methods for Economics and Finance
-P "ECON 130, QUAN 102 (or STAT 193); QUAN 111 or (MATH 141/142, 151);"
-S The School of Economics & Finance
-T 2
-
-PHYS115
-Physics 1B
-P "as for PHYS114"
-S The School of Chemical & Physical Sciences
-T 2
-
-QUAN111
-Mathematics for Economics and Finance
-P MATH141
-P MATH151
-P "MATH 142 is also required; Note: QUAN111 is also provided in Trimester 1"
-S The School of Economics & Finance
-T 2,1
-
-STAT232
-N/A
-P 
+Dummy
+P
 S -
 T -
 
+SWEN222
+Dummy
+P
+S -
+T -
+
+QUAN203
+Dummy
+P
+S -
+T -
+
+PHYS115
+
+QUAN111
+
+STAT232
+
 INFO151
-Databases
-P 
-S The School of Information Management
-T 1,2

@@ -998,7 +998,7 @@ function connect(...args) {
 /**
  * Before you can compute a DAG layout, you need a DAG structure.  If your data
  * is already in a DAG structure, you can use the [[hierarchy]] method to
- * generate a default [[HierarchyOperator]] which can then be used to transform
+ * generate a default [[HierarchyOperator]] which can then be used to transforrm
  * your data into a [[Dag]].
  *
  * @packageDocumentation

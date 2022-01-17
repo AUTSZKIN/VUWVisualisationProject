@@ -85,6 +85,11 @@ form label {
   padding-left: 5%;
 }
 
+#mainSVG {
+  border: solid #ddd 0.5px;
+  border-radius: 6px;
+}
+
 /* Filter */
 /* form {
   margin-left: 4%;
@@ -140,11 +145,6 @@ form label {
   margin: 2%;
   margin-left: 4%;
   margin-right: 4%;
-}
-
-#mainSVG {
-  border: solid #ddd 0.5px;
-  border-radius: 6px;
 }
 
 .selector-for-some-widget {
@@ -226,8 +226,7 @@ form label {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%); */
+  margin-right: -50%; */
 }
 
 /* Footnote */

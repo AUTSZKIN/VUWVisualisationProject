@@ -229,8 +229,8 @@
     "id": "COMP112",
     "courseTitle": "Introduction to Computer Science",
     "parentIds": ["level100"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP 132, or equivalent programming experience\"",
+    "parentIdsComplex": [{ "1of": ["NCEA", "COMP132"] }],
+    "specificPrereq": "\"14 AS level 3 NCEA credits in Digital Technology including 6 credits in Computer Programming, or COMP132, or equivalent programming experience\"",
     "school": "ECS",
     "availability": "y",
     "trimester": "1",
@@ -287,8 +287,17 @@
     "id": "COMP309",
     "courseTitle": "Machine Learning Tools and Techniques",
     "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["COMP261", "NWEN241", "SWEN221"] }],
-    "specificPrereq": "\"Or alternatively, ( DATA201 and DATA202 )\"",
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "COMP261",
+          { "and": ["DATA201", "DATA202"] },
+          "NWEN241",
+          "SWEN221"
+        ]
+      }
+    ],
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -827,8 +836,8 @@
     "id": "ENGR121",
     "courseTitle": "Engineering Mathematics Foundations",
     "parentIds": ["level100"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"16 AS credits NCEA Level 3 Mathematics (or equivalent) or MATH 132;\"",
+    "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
     "trimester": "1,2",
@@ -996,8 +1005,8 @@
     "id": "MATH141",
     "courseTitle": "Calculus 1A",
     "parentIds": ["level100"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"16 achievement standard credits of NCEA Level 3 Mathematics (or equivalent) or MATH 132\"",
+    "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1018,8 +1027,8 @@
     "id": "MATH151",
     "courseTitle": "Algebra",
     "parentIds": ["level100"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"16 achievement standard credits NCEA Level 3 Mathematics (or equivalent) or MATH 132\"",
+    "parentIdsComplex": [{ "1of": ["NCEA", "MATH132"] }],
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
     "trimester": "1",
@@ -1063,7 +1072,7 @@
     "courseTitle": "Multivariable Calculus",
     "parentIds": ["MATH142", "MATH151"],
     "parentIdsComplex": [],
-    "specificPrereq": "\" B+ or better in ENGR122\"",
+    "specificPrereq": "\"Alternatively, B+ or better in ENGR122\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1086,8 +1095,16 @@
     "id": "MATH245",
     "courseTitle": "Computational Mathematics",
     "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["ENGR122", "ENGR123"] }],
-    "specificPrereq": "\"Or alternatively, MATH 151 and (141 or 142)\"",
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "ENGR122",
+          "ENGR123",
+          { "and": ["MATH151", { "1of": ["MATH141", "MATH142"] }] }
+        ]
+      }
+    ],
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1256,9 +1273,16 @@
   {
     "id": "MATH324",
     "courseTitle": "Coding and Cryptography",
-    "parentIds": ["MATH251"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"Or alternatively, (ENGR 121 or MATH 151; 15 200-level MATH points)\"",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "MATH251",
+          { "and": [{ "1of": ["ENGR121", "MATH151"] }, "MATH2xx"] }
+        ]
+      }
+    ],
+    "specificPrereq": "\"MATH 251 or (ENGR 121 or MATH 151; 15 200-level MATH points)\",",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1351,8 +1375,15 @@
     "id": "NWEN302",
     "courseTitle": "Computer Network Design",
     "parentIds": ["NWEN241", "NWEN243"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"ENGR 123 or (MATH 161, one of MATH 177, QUAN 102 or STAT 193)\"",
+    "parentIdsComplex": [
+      {
+        "1of": [
+          "ENGR123",
+          { "and": ["MATH161", { "1of": ["MATH177", "QUAN102", "STAT193"] }] }
+        ]
+      }
+    ],
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "y",
     "trimester": "2",
@@ -1475,8 +1506,12 @@
     "id": "RESE211",
     "courseTitle": "Renewable Energy Generation Systems",
     "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["ENGR110", "RESE111"] }],
-    "specificPrereq": "\"ENGR 121 (or MATH 141 and 151); ENGR 141 (or PHYS 114 and CHEM 114)\"",
+    "parentIdsComplex": [
+      { "1of": ["ENGR110", "RESE111"] },
+      { "1of": ["ENGR121", { "and": ["MATH141", "MATH151"] }] },
+      { "1of": ["ENGR141", { "and": ["PHYS114", "CHEM114"] }] }
+    ],
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
     "trimester": "1",
@@ -1486,8 +1521,12 @@
     "id": "RESE212",
     "courseTitle": "Renewable Energy Conversion and Storage",
     "parentIds": ["level100"],
-    "parentIdsComplex": [{ "1of": ["ENGR110", "RESE111"] }],
-    "specificPrereq": "\"ENGR 121 (or MATH 141 and 151); ENGR 141 (or PHYS 114 and CHEM 114)\"",
+    "parentIdsComplex": [
+      { "1of": ["ENGR110", "RESE111"] },
+      { "1of": ["ENGR121", { "and": ["MATH141", "MATH151"] }] },
+      { "1of": ["ENGR141", { "and": ["PHYS114", "CHEM114"] }] }
+    ],
+    "specificPrereq": "",
     "school": "ECS",
     "availability": "n",
     "trimester": "1",
@@ -1652,9 +1691,11 @@
   {
     "id": "STAT394",
     "courseTitle": "Multivariate Statistics",
-    "parentIds": ["MATH277"],
-    "parentIdsComplex": [],
-    "specificPrereq": "\"Or alternatively, STAT 292 and STAT 391\"",
+    "parentIds": ["level100"],
+    "parentIdsComplex": [
+      { "1of": ["MATH277", { "and": ["STAT292", "STAT391"] }] }
+    ],
+    "specificPrereq": "",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",
@@ -1961,62 +2002,62 @@
   },
   {
     "id": "DSDN142",
-    "courseTitle": "Creative Coding I / Waehere ā-Auaha I",
+    "courseTitle": "Dummy",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "The School of Design Innovation",
-    "availability": "y",
-    "trimester": "2,3",
-    "layer": 2
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 1
   },
   {
     "id": "SWEN222",
-    "courseTitle": "Software Design",
-    "parentIds": ["SWEN221"],
+    "courseTitle": "Dummy",
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "ECS",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 4
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "QUAN203",
-    "courseTitle": "Quantitative Methods for Economics and Finance",
+    "courseTitle": "Dummy",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "\"ECON 130, QUAN 102 (or STAT 193); QUAN 111 or (MATH 141/142, 151);\"",
-    "school": "The School of Economics & Finance",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 4
+    "specificPrereq": "",
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "PHYS115",
-    "courseTitle": "Physics 1B",
+    "courseTitle": "Dummy",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "\"as for PHYS114\"",
-    "school": "The School of Chemical & Physical Sciences",
-    "availability": "y",
-    "trimester": "2",
-    "layer": 2
+    "specificPrereq": "",
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "QUAN111",
-    "courseTitle": "Mathematics for Economics and Finance",
-    "parentIds": ["MATH141", "MATH151"],
+    "courseTitle": "Dummy",
+    "parentIds": ["level100"],
     "parentIdsComplex": [],
-    "specificPrereq": "\"MATH 142 is also required; Note: QUAN111 is also provided in Trimester 1\"",
-    "school": "The School of Economics & Finance",
-    "availability": "y",
-    "trimester": "2,1",
-    "layer": 2
+    "specificPrereq": "",
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 3
   },
   {
     "id": "STAT232",
-    "courseTitle": "Mathematics for Economics and Finance",
+    "courseTitle": "Dummy",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
@@ -2027,13 +2068,13 @@
   },
   {
     "id": "INFO151",
-    "courseTitle": "Databases",
+    "courseTitle": "Dummy",
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "The School of Information Management",
-    "availability": "y",
-    "trimester": "1,2",
-    "layer": 1
+    "school": "-",
+    "availability": "n",
+    "trimester": "1",
+    "layer": 3
   }
 ]

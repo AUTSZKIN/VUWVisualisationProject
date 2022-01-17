@@ -1,10 +1,11 @@
-import * as d3 from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
+import * as d3_basic from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
 import * as d3_dag from "/src/public/d3-dag/d3-dag-082.js"; // Starting from /src/, import local modified d3-dag library
 
 export default function () {
   // const d3 = Object.assign({}, d3_basic, d3_dag); // Combine d3_base and d3_dag as one Library
   const highlightStyle = "stroke:red; stroke-width:4.5";
   const hoverHighlightStyle = "stroke:purple; stroke-width:3.5";
+  const dotHoverHighlightStyle = "stroke:tomato; stroke-width:4.5";
   const defaultUnhighlightedStyle = "stroke:grey; stroke-width:1";
 
   function sugiyama(dag) {
@@ -25,7 +26,12 @@ export default function () {
     sugiyamaOperator(dag);
     drawPaths(dag);
     drawNodes(dag);
+    drawDotPath(dag);
     zoomPan();
+    drawTooltipAndCourseInfoPanel();
+
+    // Element stacking context will display in order of appearance, so manually move nodes to above dot pathss
+    d3.select(".nodesContainer").raise();
   }
 
   return sugiyama;
@@ -40,46 +46,17 @@ export default function () {
 
     // Plot edges
     d3.select("#mainSVG")
+      .append("g")
+      .attr("class", "pathContainer")
       .selectAll("path")
       .data(dag.links())
       .enter()
       .append("path")
       .attr("d", (data, i) => {
-        //TODO: Find away to generate value (of path) between each node and their parentIdsComplex node
-
-        const mainNode = data.target;
-        const prereqNode = data.source;
-        const complexPrereqNode = data.target.data.parentIdsComplex;
-
-        // console.log("mainNode");
-        // console.log(mainNode);
-        // console.log("prereqNode");
-        // console.log(prereqNode);
-        // complexPrereqNode.length == 0
-        //   ? null
-        //   : (() => {
-        //       console.log("complexPrereqNode");
-        //       complexPrereqNode.forEach(function (theOf) {
-        //         const xOf = Object.keys(theOf)[0]; // The "XOf"
-        //         const complexPrereqCourseArr = new Array();
-
-        //         Object.values(theOf).forEach(function (courseArr) {
-        //           courseArr.forEach(function (course) {
-        //             // course = each course in the "Of"
-        //             complexPrereqCourseArr.push(course);
-        //             //TODO:Deal with non course code
-        //           });
-        //         });
-
-        //         console.log(xOf, complexPrereqCourseArr);
-        //       });
-        //     })();
-
         return line(data.points); //return path line
       })
       .attr("fill", "none")
       .attr("style", defaultUnhighlightedStyle)
-      .attr("transform", "translate(" + 10 + "," + 10 + ")")
       .attr("class", (courseNode) => {
         return (
           "courseEdge " +
@@ -89,40 +66,116 @@ export default function () {
         ); // add connection as CLASS and target course as CLASS
       })
       .attr("id", (courseNode) => {
+        const courseNodeId = courseNode.target.id;
+        const prerequisiteNodeId = courseNode.source.id;
         return courseNode.source.id == "level100"
           ? "level100"
-          : courseNode.source.id + "To" + courseNode.target.id;
+          : courseNodeId + "To" + prerequisiteNodeId;
       });
   }
 
   function drawDotPath(dag) {
-    const line = d3
-      .line()
-      // .curve(d3.curveBundle.beta(0.3))
-      .x((d) => d.x)
-      .y((d) => d.y);
-
-    // Plot edges
-    d3.select("#mainSVG")
-      .selectAll("path")
+    // Parse and save the collection of points between mainNode and its XOF node.
+    var linesArray = new Array();
+    d3.selectAll("line")
       .data(dag.links())
       .enter()
-      .append("path")
-      .attr("d", (data, i) => {
-        console.log(data);
-        // console.log(line(data.points));
-        return line(data.points); //return path line
+      .append("null")
+      .attr("null", (courseData, i) => {
+        parseXofCourses(courseData);
       })
-      .attr("stroke-dasharray", "5,5")
+      .remove();
+
+    function parseXofCourses(data) {
+      // Start Parsing
+      const mainNodeId = data.target.id;
+      const complexPrereqNode = data.target.data.parentIdsComplex;
+      complexPrereqNode.length == 0
+        ? null
+        : (() => {
+            complexPrereqNode.forEach(function (theOf) {
+              const xOf = Object.keys(theOf)[0]; // The "XOf"
+              Object.values(theOf).forEach(function (courseArr) {
+                courseArr.forEach(function (course) {
+                  // Course code regex
+                  const courseCodeRegex = /^[A-Z]{4}[0-9]{3}/;
+                  // If course is an actual course code (COMP101) but not the unspecifeid (COP3XX) add it to complexPrereqCourseArr
+                  courseCodeRegex.test(course)
+                    ? (() => {
+                        // For each complex: Add a mainNode to ComplexCourseNode pair
+                        // MAIN NODE's X and Y coordinates on SVG canvase
+                        const mainNodeTranslate = getTranslateXY(
+                          document.getElementById(data.target.id + "Node")
+                        );
+
+                        // XOF NODE's X and Y coordinates on SVG canvase
+                        const complexNodeTranslate = getTranslateXY(
+                          document.getElementById(course + "Node")
+                        );
+                        const pointsToComplexPrereq = {
+                          x1: mainNodeTranslate.x,
+                          y1: mainNodeTranslate.y,
+                          x2: complexNodeTranslate.x,
+                          y2: complexNodeTranslate.y,
+                          id: mainNodeId + "To" + course + "DotEdge",
+                          class: xOf + ":" + courseArr,
+                        };
+                        linesArray.push(pointsToComplexPrereq);
+                      })()
+                    : null;
+                });
+              });
+            });
+          })();
+
+      // get the translated coordinates of the element in SVG canvas
+      function getTranslateXY(element) {
+        const style = window.getComputedStyle(element);
+        const matrix = new DOMMatrixReadOnly(style.transform);
+        return {
+          x: matrix.m41,
+          y: matrix.m42,
+        };
+      }
+      // End Parsing
+    }
+
+    // Draw the actual dot edges using coordinates
+    d3.select("#mainSVG")
+      .append("g")
+      .attr("class", "dotPathContainer")
+      .selectAll("line")
+      .data(linesArray)
+      .enter()
+      .append("line")
+      .attr("stroke-dasharray", "10,10")
       .attr("fill", "none")
-      .attr("style", defaultUnhighlightedStyle);
+      .attr("style", defaultUnhighlightedStyle)
+      .attr("class", "dotEdge")
+      .attr("x1", (data) => {
+        return data.x1;
+      })
+      .attr("y1", (data) => {
+        return data.y1;
+      })
+      .attr("x2", (data) => {
+        return data.x2;
+      })
+      .attr("y2", (data) => {
+        return data.y2;
+      })
+      .attr("id", (data) => {
+        return data.id;
+      })
+      .style("visibility", "hidden");
   }
 
   function drawNodes(dag) {
     // Draw nodes
     const courseNodes = d3
       .select("#mainSVG")
-      .append("g") // A inner <g> container inside the mainSVG
+      .append("g")
+      .attr("class", "nodesContainer")
       .selectAll("g")
       .data(dag.descendants())
       .enter()
@@ -134,9 +187,6 @@ export default function () {
       .attr("id", (courseNode) => {
         return courseNode.data.id + "Node";
       });
-
-    //Draw tooltip and info panel
-    drawTooltipAndCourseInfoPanel();
 
     // Draw node rectangle
     const nodeW = 95,
@@ -161,7 +211,7 @@ export default function () {
     // Add text to nodes
     courseNodes
       .append("text")
-      .text((d) => d.id)
+      .text((courseNode) => courseNode.id)
       .attr("font-weight", "bold")
       .attr("font-family", "sans-serif")
       .attr("text-anchor", "middle")
@@ -170,6 +220,30 @@ export default function () {
       .attr("class", "nodeText")
       .attr("font-size", "115%")
       .attr("id", (courseNode) => courseNode.id + "Text");
+
+    // Check is course contains complex prerequisites/requirement
+    // If yes, add asterisk notation to the course code.
+    // Return the course code
+    courseNodes
+      .append("text")
+      .text((courseNode) => courseCodeProcessing(courseNode))
+      .attr("font-weight", "bold")
+      .attr("font-family", "sans-serif")
+      .attr("fill", "darkslategray")
+      .attr("class", "nodeText")
+      .attr("font-size", "200%")
+      .style("transform", "translate(35px, -6px)");
+
+    function courseCodeProcessing(courseNode) {
+      // console.log(courseNode);
+      const parentIdsComplex = courseNode.data.parentIdsComplex;
+      const specificPrereq = courseNode.data.specificPrereq;
+      if (parentIdsComplex.length == 0 && specificPrereq == "") {
+        return;
+      }
+      return "*";
+    }
+
     // Hide level100 root node
     d3.selectAll(".level100Node *,#level100Node *")
       .attr("transform", "translate(-3000, -3000)")
@@ -197,15 +271,15 @@ export default function () {
 
     function clickOnNode(courseNode) {
       // Highlight/Dehighlight clicked course node (Rect element)
-      const node = d3.select("#" + courseNode.id + "Node");
-      const rect = node.select(".nodeRect");
-      var isRectHighlighted = rect.classed("highlighted");
+      const courseNodeRectElem = d3
+        .select("#" + courseNode.id + "Node")
+        .select(".nodeRect");
+      var isRectHighlighted = courseNodeRectElem.classed("highlighted");
       if (isRectHighlighted) {
         unclassifyHighlightedAndUnhighlightThem();
       } else {
         classifyHighlightedAndHighlightThem(courseNode);
-        popUpWindow.style("visibility", "hidden"); // hide popup window
-        showCourseInfo(courseNode);
+        showCourseInfoPanel(courseNode);
       }
     }
 
@@ -214,40 +288,49 @@ export default function () {
         .transition()
         .duration(100)
         .style("opacity", 0.95)
-        .style("visibility", "visible");
+        .attr("visibility", "visiable");
+      d3.selectAll("#" + courseNode.id + "Rect").attr(
+        "style",
+        hoverHighlightStyle
+      );
       highlightHoverOnCourse(courseNode);
-      showOfsPath(courseNode);
+      showXOfPrerequisite(courseNode);
 
       // Highlight without classify them as highlighted, just a temporarty highlight.
       function highlightHoverOnCourse(courseNode) {
-        d3.selectAll("#" + courseNode.id + "Rect").attr(
-          "style",
-          hoverHighlightStyle
-        );
-        courseNode.data.parentIds.forEach((parentId) => {
+        courseNode.data.parentIds.forEach((prerequisiteId) => {
           /**
            * RECURSIVELY HIGHLIGHT GRANDPARENTS NODE
            * TODO: CAN ADD A tickbox allow user to highlight only one level up or all the Ancestor Nodes
            */
           const parentNode = d3
             .selectAll(".courseNode")
-            .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
+            .filter("#" + prerequisiteId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT prerequisiteId TO DAGNODE
           highlightHoverOnCourse(parentNode);
           //*******************************************************************************/
-          // Path connect source and target node
-          const pathId = "#" + parentId + "To" + courseNode.id;
-          // highlight edge/path
-          d3.selectAll(pathId).attr("style", hoverHighlightStyle);
+          const pathId = "#" + courseNode.id + "To" + prerequisiteId; // Path connect source and target node
+          d3.selectAll(pathId).attr("style", hoverHighlightStyle); // highlight edge/path
           //highlight rect boarder
-          d3.selectAll("#" + parentId + "Rect").attr(
+          d3.selectAll("#" + prerequisiteId + "Rect").attr(
             "style",
             hoverHighlightStyle
           );
         });
       }
 
-      function showOfsPath(courseNode) {
-        console.log("Show the Ofs!");
+      function showXOfPrerequisite(courseNode) {
+        const complexPrereqCourseArr = getComplexPrereqCourseArr(courseNode);
+        complexPrereqCourseArr.forEach((xOfPrerequisiteId) => {
+          const pathId =
+            "#" + courseNode.id + "To" + xOfPrerequisiteId + "DotEdge"; // Path connect source and target node
+          d3.selectAll(pathId)
+            .attr("style", dotHoverHighlightStyle)
+            .style("visibility", "visiable");
+          d3.selectAll("#" + xOfPrerequisiteId + "Rect").attr(
+            "style",
+            dotHoverHighlightStyle
+          );
+        });
       }
     }
 
@@ -264,23 +347,23 @@ export default function () {
 
     function mouseleave(courseNode) {
       popUpWindow.transition().delay(200).style("opacity", 0);
+      d3.selectAll("#" + courseNode.id + "Rect").attr(
+        "style",
+        defaultUnhighlightedStyle
+      );
       deHighlightHoverOnCourse(courseNode);
-      hideOfsPath(courseNode);
+      hideOfsPathAndNode(courseNode);
 
       function deHighlightHoverOnCourse(courseNode) {
-        d3.selectAll("#" + courseNode.id + "Rect").attr(
-          "style",
-          defaultUnhighlightedStyle
-        );
-        courseNode.data.parentIds.forEach((parentId) => {
+        courseNode.data.parentIds.forEach((prerequisiteId) => {
           const parentNode = d3
             .selectAll(".courseNode")
-            .filter("#" + parentId + "Node")._groups[0][0].__data__;
+            .filter("#" + prerequisiteId + "Node")._groups[0][0].__data__;
           deHighlightHoverOnCourse(parentNode);
           //*************************************************/
-          const pathId = "#" + parentId + "To" + courseNode.id;
+          const pathId = "#" + courseNode.id + "To" + prerequisiteId;
           d3.selectAll(pathId).attr("style", defaultUnhighlightedStyle);
-          d3.selectAll("#" + parentId + "Rect").attr(
+          d3.selectAll("#" + prerequisiteId + "Rect").attr(
             "style",
             defaultUnhighlightedStyle
           );
@@ -289,41 +372,69 @@ export default function () {
         $(".highlighted").not(".nodeText").attr("style", highlightStyle);
       }
 
-      function hideOfsPath(courseNode) {
-        console.log("Hide the Ofs!");
+      function hideOfsPathAndNode(courseNode) {
+        const complexPrereqCourseArr = getComplexPrereqCourseArr(courseNode);
+        complexPrereqCourseArr.forEach((xOfPrerequisiteId) => {
+          const pathId =
+            "#" + courseNode.id + "To" + xOfPrerequisiteId + "DotEdge"; // Path connect source and target node
+          d3.selectAll(pathId)
+            .attr("style", defaultUnhighlightedStyle)
+            .style("visibility", "hidden");
+          d3.selectAll("#" + xOfPrerequisiteId + "Rect").attr(
+            "style",
+            defaultUnhighlightedStyle
+          );
+        });
       }
     }
 
     function classifyHighlightedAndHighlightThem(courseNode) {
       // Add class "highlighted" to Highlight elements with id attached (Rect and Path)
-
       // Add Highlighted class to the highlighted node
       d3.selectAll("#" + courseNode.id + "Rect")
         .node()
         .classList.add("highlighted");
+
       d3.selectAll("#" + courseNode.id + "Text")
         .node()
         .classList.add("highlighted");
-      courseNode.data.parentIds.forEach((parentId) => {
+
+      courseNode.data.parentIds.forEach((prerequisiteId) => {
         /**
          * RECURSIVELY ADD HIGHLIGHTED CLASS TO GRANDPARENTS NODE
          */
         const parentNode = d3
           .selectAll(".courseNode")
-          .filter("#" + parentId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT parentID TO DAGNODE
+          .filter("#" + prerequisiteId + "Node")._groups[0][0].__data__; //A HARDCORE WAY TO CONVERT prerequisiteId TO DAGNODE
         classifyHighlightedAndHighlightThem(parentNode);
         //******************************************/
-
-        const pathId = "#" + parentId + "To" + courseNode.id; // Path connect source and target node
-        const pathIdNode = d3.selectAll(pathId).node();
-        if (pathIdNode !== null) {
-          pathIdNode.classList.add("highlighted");
+        const pathId = "#" + courseNode.id + "To" + prerequisiteId; // Path connect source and target node
+        const thePath = d3.selectAll(pathId).node();
+        // hightlight the path between course and each prereq node
+        if (thePath !== null) {
+          thePath.classList.add("highlighted");
         }
-
-        d3.selectAll("#" + parentId + "Rect")
+        // highlight the prereq node
+        d3.selectAll("#" + prerequisiteId + "Rect")
           .node()
           .classList.add("highlighted");
       });
+
+      const complexPrereqCourseArr = getComplexPrereqCourseArr(courseNode);
+
+      complexPrereqCourseArr.forEach((prerequisiteId) => {
+        const pathId = "#" + prerequisiteId + "To" + courseNode.id + "dotEdge"; // Path connect source and target node
+        const thePath = d3.selectAll(pathId).node();
+        // hightlight the path between course and each prereq node
+        if (thePath !== null) {
+          thePath.classList.add("highlighted");
+        }
+        // highlight the prereq node
+        d3.selectAll("#" + prerequisiteId + "Rect")
+          .node()
+          .classList.add("highlighted");
+      });
+
       // highlight elements when click exclude text
       $(".highlighted").not(".nodeText").attr("style", highlightStyle);
     }
@@ -341,7 +452,33 @@ export default function () {
       }
     }
 
-    function showCourseInfo(courseNode) {
+    function getComplexPrereqCourseArr(courseNode) {
+      // Get the ofs course into collection
+      const complexPrereqCourseArr = new Array();
+      const complexPrereqNode = courseNode.data.parentIdsComplex;
+      complexPrereqNode.length == 0
+        ? null
+        : (() => {
+            complexPrereqNode.forEach(function (theOf) {
+              const xOf = Object.keys(theOf)[0]; // The "XOf"
+              Object.values(theOf).forEach(function (courseArr) {
+                courseArr.forEach(function (course) {
+                  // Course code regex
+                  const courseCodeRegex = /^[A-Z]{4}[0-9]{3}/;
+                  // If course is an actual course code (COMP101) but not the unspecifeid (COP3XX) add it to complexPrereqCourseArr
+                  courseCodeRegex.test(course)
+                    ? (() => {
+                        complexPrereqCourseArr.push(course);
+                      })()
+                    : null;
+                });
+              });
+            });
+          })();
+      return complexPrereqCourseArr;
+    }
+
+    function showCourseInfoPanel(courseNode) {
       const courseId = courseNode.id;
       d3.select("#courseInfoHeader").text("Course Code: " + courseId);
       const cardBody = d3.select("#courseInfoCardBody");
@@ -351,7 +488,7 @@ export default function () {
         courseNode.data.parentIds.length > 0 &&
         courseNode.data.parentIds[0] != "level100"
           ? getPrereqHerfElement()
-          : "No prerequisite";
+          : "No prerequisite (View the course home page for more detail)";
 
       function getPrereqHerfElement() {
         var prereqList = ``;
@@ -367,7 +504,7 @@ export default function () {
       // 2. Specific Prereq, basically pure text
       const specificPrereq =
         courseNode.data.specificPrereq === ""
-          ? "No requirements"
+          ? "No requirements (View the course home page for more detail)"
           : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
 
       // 3. Deal with the "ofs"
@@ -376,7 +513,7 @@ export default function () {
           ? `<label>Multi-choice prerequisites: </label>
           ${getOtherPrereqHerfElement()}
           `
-          : `<label>Multi-choice prerequisites: </label> No multi choice prerequisites<br>`;
+          : `<label>Multi-choice prerequisites: </label> No multi choice prerequisites (View the course home page for more detail)<br>`;
 
       function getOtherPrereqHerfElement() {
         var otherPrereqList = ``;
@@ -425,6 +562,7 @@ export default function () {
         <a href="https://${courseNode.data.school}.wgtn.ac.nz/Main/">${
           courseNode.data.school
         }</a>
+        <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course home page for more comprehensive details<li/>
         `; // TODO: add url
       });
 
@@ -457,6 +595,7 @@ export default function () {
     }
 
     clearHighlightedOnClicked();
+
     function clearHighlightedOnClicked() {
       // Click outside of a node within the canvas to the hide highlighted elements
       d3.selectAll(".layerRect,.highlighted").on("click", () => {
