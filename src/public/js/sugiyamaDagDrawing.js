@@ -704,12 +704,14 @@ export default function () {
       .style("transform", "translate(0%, 2vw)")
       .html(
         '<button id="reset" class="btn btn-outline-primary btn-sm">Reset</button>' +
+          '<button id="clear" class="btn btn-outline-primary btn-sm">Clear</button>' +
           '<button id="zoom_in" class="btn btn-outline-secondary btn-sm btn-circle">+</button>' +
           '<button id="zoom_out" class="btn btn-outline-secondary btn-sm btn-circle">-</button>'
       );
 
     // SETTING ZOOMING BUTTONS
     d3.select("#reset").on("click", reset);
+    d3.select("#clear").on("click", unclassifyHighlightedAndUnhighlightThem);
     d3.select("#zoom_in").on("click", () =>
       svgDivContainer.transition().duration(500).call(zoom.scaleBy, 2)
     );
@@ -718,7 +720,6 @@ export default function () {
     );
 
     function reset() {
-      unclassifyHighlightedAndUnhighlightThem();
       svgDivContainer
         .transition()
         .duration(1000)
