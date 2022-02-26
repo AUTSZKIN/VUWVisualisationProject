@@ -538,7 +538,7 @@
       { "1of": ["MATH277", "STAT292"] },
       { "1of": ["DATA202", "QUAN203"] }
     ],
-    "specificPrereq": "\"prereq courses must have an average of B+ or better\"",
+    "specificPrereq": "\"15 further 200-level points, prereq courses must have an average of B+ or better\"",
     "school": "SMS",
     "availability": "y",
     "trimester": "2",

@@ -1,3 +1,5 @@
+import * as d3 from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
+
 const nodeRadius = 20;
 const viewBoxX = -nodeRadius * 15;
 const viewBoxY = nodeRadius * 7; // Controling (viewbox view of nodes) Node Position FIXME: Find a better way
@@ -11,16 +13,21 @@ function drawNav() {
     {
       id: "Course Pathways Visualisation",
       url: "https://vuwvisual.herokuapp.com/",
-      // url: "http://localhost:8080/",
       status: "active",
     },
+    { id: "About VUW", url: "https://www.wgtn.ac.nz/about" },
     { id: "Future Student", url: "https://www.wgtn.ac.nz/study" },
     {
       id: "International Student",
       url: "https://www.wgtn.ac.nz/international",
     },
     { id: "Current Student", url: "https://www.wgtn.ac.nz/students" },
-    { id: "About VUW", url: "https://www.wgtn.ac.nz/about" },
+    { id: "myTools", url: "https://www.wgtn.ac.nz/api/toolbar/students" },
+    { id: "Blackboard", url: "https://blackboard.vuw.ac.nz/" },
+    {
+      id: "Maps",
+      url: "https://www.wgtn.ac.nz/about/campuses-facilities/campuses",
+    },
   ];
   const nav = d3.select("body").append("div").attr("id", "nav");
   const navContainer = nav.append("div").attr("id", "navContainer");
@@ -55,8 +62,7 @@ function drawHeader() {
       </div>
       `
   );
-  const mainheader = d3.select("body").append("div").attr("id", "mainheader");
-  mainheader.append("h3").text("Course Filter");
+  //const mainheader = d3.select("body").append("div").attr("id", "mainheader").append("h3").text("Course Filter");
   d3.select("body").append("div").attr("id", "cardsContainer");
 }
 
@@ -89,10 +95,10 @@ function drawFilter() {
     .append("label")
     .attr("class", "paneltext")
     .text("Select school");
+
   const schoolPicker = schoolContainer
     .append("select")
-    .attr("class", "selectpicker")
-    .on("change", schoolChanged); // When change school
+    .attr("class", "selectpicker");
   schoolPicker.append("option").attr("selected", "").text("All"); // Default Select
   schoolPicker
     .selectAll("option")
@@ -100,6 +106,9 @@ function drawFilter() {
     .enter()
     .append("option")
     .text((school) => school.id); // All listed School
+
+  // SCHOOL UPDATE
+  // schoolPicker.on("change", schoolChanged);
 
   /** COURSE SEARCH */
   var searchContainer = cardBody //TODO: Fix search not working in cardBody
@@ -116,11 +125,12 @@ function drawFilter() {
   searchContainer
     .append("button")
     .attr("type", "button") //this fixes button auto-refresh console
-    .text("Search")
-    .on("click", function () {
-      let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
-      searchCourse(searchInput.value);
-    });
+    .text("Search");
+  // SEARCH UPDATE
+  // searchContainer.on("click", function () {
+  //   let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
+  //   searchCourse(searchInput.value);
+  // });
 
   /** NOTES */
   cardBody
@@ -132,7 +142,26 @@ function drawFilter() {
     );
 }
 
-function drawCourseInfoField() {
+// function searchCourse(str) {
+//   console.log("Searching String:" + str);
+// }
+
+// function schoolChanged() {
+//   // TODO: Clean every courseEdge & courseNode highlight first
+//   // d3.selectAll(".courseEdge,.courseNode")
+//   //   .transition()
+//   //   .attr("style", default_node_edge_strokeStyle);
+
+//   const selectedSchool = $(this).val();
+//   d3.selectAll("." + selectedSchool).style("opacity", 0.25);
+
+//   // FIXME: Don't highlight them, but fade(invisiable) the others
+//   // d3.selectAll("." + selectedSchool + ">.nodeRect") // Select all the .nodeRect in class #[selectedSchool], to prevent highlight text elemnt
+//   //   .transition()
+//   //   .attr("style", node_edge_highlightStyle);
+// }
+
+function drawCourseInfoField(s) {
   const cardsContainer = d3.select("#cardsContainer");
   const infoFieldForm = cardsContainer
     .append("form")
@@ -167,23 +196,6 @@ function drawCourseInfoField() {
     );
 }
 
-function schoolChanged() {
-  // TODO: Clean every courseEdge & courseNode highlight first
-  // d3.selectAll(".courseEdge,.courseNode")
-  //   .transition()
-  //   .attr("style", default_node_edge_strokeStyle);
-
-  const selectedSchool = $(this).val();
-  // FIXME: Don't highlight them, but fade(invisiable) the others
-  d3.selectAll("." + selectedSchool + ">.nodeRect") // Select all the .nodeRect in class #[selectedSchool], to prevent highlight text elemnt
-    .transition()
-    .attr("style", node_edge_highlightStyle);
-}
-
-function searchCourse(str) {
-  console.log("Searching String:" + str);
-}
-
 function drawSVG() {
   const svgDivContainer = d3
     .select("body")
@@ -211,9 +223,9 @@ function drawSVG() {
     .html(
       "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
         "* Faded courses are not available at the moment. For example: </text>" +
-        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="55px" style="position: absolute;"/><br>' +
+        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/><br>' +
         "<text>* Course with asterisk ( * ) has specific requriement, please see the course info panel. For example: </text>" +
-        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="55px" /><br>'
+        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /><br>'
     );
   /** FOOTNOTES */
 

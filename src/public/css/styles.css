@@ -111,6 +111,10 @@ form label {
   order: 0;
 }
 
+#footnote > text {
+  font-size: small;
+}
+
 #zoomBtnContainer {
   margin-bottom: 2%;
   order: 0;
@@ -222,6 +226,7 @@ form label {
 #cardsContainer {
   /* height: 100%;
   width: 100%; */
+  padding-top: 2%;
   margin-bottom: -1%;
   display: flex;
 }
@@ -255,7 +260,7 @@ form label {
 }
 
 /* HTML link */
-a:hover {
+#cardsContainer > a:hover {
   background-color: yellow;
   text-decoration: underline;
 }

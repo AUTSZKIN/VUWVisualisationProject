@@ -39,12 +39,12 @@ function drawLocalData() {
 // const rawDataUrl =
 //   "https://raw.githubusercontent.com/AUTSZKIN/VUWVisualisationProject/main/src/dataAndParser/rawtxt/ecs-sms-courses.txt";
 
-const localDateUrl =
-  "http://127.0.0.1:5500/src/dataAndParser/rawtxt/ecs-sms-courses-fixed.txt";
-fetch(localDateUrl).then((response) => {
-  response.text().then((data) => {
-    // PRINT THE PARSED DATA
-    // var courseJsonArray = rawCourseDataToJsonArray(data);
-    // console.log(JSON.stringify(courseJsonArray));
-  });
-});
+// const localDateUrl =
+//   "http://127.0.0.1:5500/src/dataAndParser/rawtxt/ecs-sms-courses-fixed.txt";
+// fetch(localDateUrl).then((response) => {
+//   response.text().then((data) => {
+//     // PRINT THE PARSED DATA
+//     // var courseJsonArray = rawCourseDataToJsonArray(data);
+//     // console.log(JSON.stringify(courseJsonArray));
+//   });
+// });

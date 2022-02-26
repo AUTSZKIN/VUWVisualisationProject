@@ -286,8 +286,7 @@ Data Science Internship
 P DATA201
 P ( 1of MATH277 STAT292 )
 P ( 1of DATA202 QUAN203 )
-P "15 further 200-level points"
-P "prereq courses must have an average of B+ or better"
+P "15 further 200-level points, prereq courses must have an average of B+ or better"
 S SMS
 T 2
 

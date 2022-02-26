@@ -1,4 +1,4 @@
-import * as d3_basic from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
+import * as d3 from "https://unpkg.com/d3@6.2.0?module"; // "bare" import d3-dag remotely using unpkg
 import * as d3_dag from "/src/public/d3-dag/d3-dag-082.js"; // Starting from /src/, import local modified d3-dag library
 
 export default function () {
@@ -11,7 +11,7 @@ export default function () {
   function sugiyama(dag) {
     const layering = d3_dag.layeringLongestPath();
     const decross = d3_dag.decrossTwoLayer();
-    const coord = d3_dag.coordCenter();
+    const coord = d3_dag.coordCenter(); //d3_dag.coordQuad();
 
     var xSep = 3700,
       ySep = 2500; // Controling Node Seperation/Position FIXME: Find a better way -> ALSO CHECK function sugiyama2() in d3-dag
@@ -29,6 +29,7 @@ export default function () {
     drawDotPath(dag);
     zoomPan();
     drawTooltipAndCourseInfoPanel();
+    filterSearch();
 
     // Element stacking context will display in order of appearance, so manually move nodes to above dot pathss
     d3.select(".nodesContainer").raise();
@@ -141,21 +142,6 @@ export default function () {
           y: matchesArray[1],
         };
       }
-
-      // get the translated coordinates of the element in SVG canvas
-      function getTranslateXY(element) {
-        const style = window.getComputedStyle(element)[transform];
-        console.log(style);
-        const matrix = new DOMMatrixReadOnly(style.transform);
-        console.log(matrix);
-        console.log(matrix.m41);
-        console.log(matrix.m42);
-
-        return {
-          x: matrix.m41,
-          y: matrix.m42,
-        };
-      }
       // End Parsing
     }
 
@@ -171,11 +157,6 @@ export default function () {
       .attr("fill", "none")
       .attr("style", defaultUnhighlightedStyle)
       .attr("class", "dotEdge")
-      // .attr("d", (d, i) => {
-      //   var dVal = `M ${d.x1} ${d.y1}, L ${d.x2} ${d.y2}`;
-      //   console.log(dVal);
-      //   return dVal;
-      // }) // For path elements
       .attr("x1", (data, i) => {
         return data.x1;
       })
@@ -299,13 +280,14 @@ export default function () {
         .select("#" + courseNode.id + "Node")
         .select(".nodeRect");
       var isRectHighlighted = courseNodeRectElem.classed("highlighted");
-      if (isRectHighlighted) {
-        unclassifyHighlightedAndUnhighlightThem();
-      } else {
-        classifyHighlightedAndHighlightThem(courseNode);
-        classifyAndHighlightMultiChoicePrereq(courseNode);
-        showCourseInfoPanel(courseNode);
-      }
+      // TODO: Add IT BACK when unhighlight when highlight node is clicked
+      // if (isRectHighlighted) {
+      //   unclassifyHighlightedAndUnhighlightThem();
+      // } else {
+      classifyHighlightedAndHighlightThem(courseNode);
+      classifyAndHighlightMultiChoicePrereq(courseNode);
+      showCourseInfoPanel(courseNode);
+      // }
     }
 
     function mouseover(courseNode) {
@@ -366,7 +348,7 @@ export default function () {
       var y = mouseEvent.pageY - popUpWindowHeight - 6;
       popUpWindow.style("left", x + "px").style("top", y + "px"); // set popUpWindow position on the top left.  TODO: remove "px"
       popUpWindow.html(
-        `<p id="TooltipCourseName">${courseNode.data.courseTitle}</p>`
+        `<p id="TooltipCourseName">${courseNode.data.id}: ${courseNode.data.courseTitle}</p>`
       );
     }
 
@@ -538,7 +520,7 @@ export default function () {
       // 2. Specific Prereq, basically pure text
       const specificPrereq =
         courseNode.data.specificPrereq === ""
-          ? "No requirements"
+          ? "No other requirements"
           : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
 
       // 3. Deal with the "ofs"
@@ -582,7 +564,7 @@ export default function () {
           courseNode.id
         )}" style="font-size: larger;">${
           courseNode.data.courseTitle
-        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;(* View the course outline page for more detail )</text>
+        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;</text>
         <hr style="width:90%;text-align:left;margin-left:0;height:0.5px;border-width:0;color:black;background-color:black;opacity:80%">
         <label>No choice prerequisites: </label>
         ${prereq}
@@ -658,6 +640,9 @@ export default function () {
         `<h4><i style="font-weight:250"> Click a course node to view more the course detail.<i/><h4/>`
       );
     }
+
+    // Filter and Search involved
+    // $("g").children().css("opacity", "1"); // Reset all elements in mainSVG to unfaded state
   }
 
   function zoomPan() {
@@ -724,6 +709,50 @@ export default function () {
         .transition()
         .duration(1000)
         .call(zoom.transform, d3.zoomIdentity); //Reset to original position
+    }
+  }
+
+  function filterSearch() {
+    // SCHOOL Filter
+    const schoolPicker1 = d3.select(".selectpicker");
+    schoolPicker1.on("change", schoolUpdate);
+
+    // Search Filter
+    const searchContainer = d3.select(".searchContainer");
+    searchContainer.on("click", function () {
+      let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
+      searchUpdate(searchInput.value);
+    });
+
+    // SCHOOL UPDATE
+    function schoolUpdate() {
+      // TODO: Clean every courseEdge & courseNode highlight first
+      unclassifyHighlightedAndUnhighlightThem();
+      // d3.selectAll(".courseEdge,.courseNode")
+      //   .transition()
+      //   .attr("style", default_node_edge_strokeStyle);
+
+      // FIXME: Don't highlight them, but fade(invisiable) the others
+      // d3.selectAll("." + selectedSchool + ">.nodeRect") // Select all the .nodeRect in class #[selectedSchool], to prevent highlight text elemnt
+      //   .transition()
+      //   .attr("style", node_edge_highlightStyle);
+
+      const selectedSchool = $(this).val();
+      if (selectedSchool != "All") {
+        console.log(selectedSchool);
+        // d3.selectAll("." + selectedSchool).style("opacity", 0.25);
+        // Fade out unrelated nodes and path
+        $(".courseNode:not(." + selectedSchool + ")").css("opacity", "0.33");
+        $(".courseEdge:not(." + selectedSchool + ")").css("opacity", "0.33");
+      } else {
+        // if select 'All'
+        $("g").children().css("opacity", "1"); // Reset all elements in mainSVG to unfaded state
+      }
+    }
+
+    // SEARCH UPDATE
+    function searchUpdate(keywords) {
+      console.log("Searching String:" + keywords);
     }
   }
 }
