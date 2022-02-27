@@ -500,126 +500,135 @@ export default function () {
       return complexPrereqCourseArr;
     }
 
-    function showCourseInfoPanel(courseNode) {
-      const courseId = courseNode.id;
-      d3.select("#courseInfoHeader").text("Course Code: " + courseId);
-      const cardBody = d3.select("#courseInfoCardBody");
+    clearHighlightedOnClicked();
 
-      // 1. Handle prerequisites list and URL
-      const prereq =
-        courseNode.data.parentIds.length > 0 &&
-        courseNode.data.parentIds[0] != "level100"
-          ? getPrereqHerfElement()
-          : "No prerequisite";
-
-      function getPrereqHerfElement() {
-        var prereqList = ``;
-        courseNode.data.parentIds.forEach(function (parentCourse) {
-          prereqList += `<a href="${directToCoursePage(
-            parentCourse
-          )}">${parentCourse}&ensp;</a>`; //add space: &ensp;
-        });
-        return prereqList;
-      }
-      //***************************/
-
-      // 2. Specific Prereq, basically pure text
-      const specificPrereq =
-        courseNode.data.specificPrereq === ""
-          ? "No other requirements"
-          : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
-
-      // 3. Deal with the "ofs"
-      const otherPrereq =
-        courseNode.data.parentIdsComplex.length > 0
-          ? `<label>Multi-choice prerequisites: </label>
-          ${getOtherPrereqHerfElement()}
-          `
-          : `<label>Multi-choice prerequisites: </label> No multi-choice prerequisites <br>`;
-
-      function getOtherPrereqHerfElement() {
-        var otherPrereqList = ``;
-        courseNode.data.parentIdsComplex.forEach(function (theOf) {
-          otherPrereqList += `<li>${Object.keys(theOf)[0].replace(
-            "of",
-            " of"
-          )}: `; // The "XOf", add space between number and 'of'
-          Object.values(theOf).forEach(function (courseArr) {
-            courseArr.forEach(function (course) {
-              // Each course in the "Of"
-              otherPrereqList += `<a href="${directToCoursePage(
-                course //TODO:Deal with non course code
-              )}">${course}&ensp;</a>`;
-            });
-            otherPrereqList += `</li>`;
-          });
-        });
-        var otherPrereqListWithNotes =
-          otherPrereqList +
-          `<li style="font-weight:200; font-style:italic; font-size:90%;">(*For course with no spcified code, click them to view all the possible courses.)<li/>`;
-        return otherPrereqList.includes("xx")
-          ? otherPrereqListWithNotes
-          : otherPrereqList;
-      }
-      //***************************/
-
-      // 4. Actual Course detail body //
-      cardBody.html(() => {
-        const school = courseNode.data.school;
-        var schoolName;
-        switch (school) {
-          case "ECS":
-            schoolName = "School of Engineering and Computer Science";
-            break;
-          case "SMS":
-            schoolName = "School of Mathematics and Statistics";
-            break;
-          case "SIM":
-            schoolName = "School of Information Management";
-            break;
-          case "SCPS":
-            schoolName = "School of Chemical & Physical Sciences";
-            break;
-          case "SEF":
-            schoolName = "School of Economics & Finance";
-            break;
-          case "SDI":
-            schoolName = "School of Design Innovation";
-            break;
-        }
-
-        return `
-        <a href="${directToCoursePage(
-          courseNode.id
-        )}" style="font-size: larger;">${
-          courseNode.data.courseTitle
-        }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;</text>
-        <hr style="width:90%;text-align:left;margin-left:0;height:0.5px;border-width:0;color:black;background-color:black;opacity:80%">
-        <label>No choice prerequisites: </label>
-        ${prereq}
-        <br>
-        ${otherPrereq}
-        <label>Other requirements:  </label>
-        <span style="font-style: normal; color:black;">${specificPrereq}</span>
-        <br>
-        <label>Trimester: </label>
-        ${courseNode.data.trimester}<br>
-        <label>School: </label>
-        <a href="https://www.wgtn.ac.nz/${courseNode.data.school.toLowerCase()}">${schoolName}</a>
-        
-        <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course outline page for more comprehensive details<li/>
-        `; // TODO: add url
+    function clearHighlightedOnClicked() {
+      // Click outside of a node within the canvas to the hide highlighted elements
+      d3.selectAll(".layerRect,.highlighted").on("click", () => {
+        unclassifyHighlightedAndUnhighlightThem();
       });
-
-      // OPTIONAL
-      // 5. Set 2 panels at same highght level
-      // var filterHeight = $("#filterCardContent").height();
-      // var infoHeight = $("#courseInfoCardContent").height();
-      // infoHeight > filterHeight
-      //   ? (document.getElementById("filterCardContent").style.height =
-      //       infoHeight + 10 + "px")
-      //   : (document.getElementById("filterCardContent").style.height = "100%");
     }
+  }
+
+  function showCourseInfoPanel(courseNode) {
+    const courseId = courseNode.id;
+    d3.select("#courseInfoHeader").text("Course Code: " + courseId);
+    const cardBody = d3.select("#courseInfoCardBody");
+
+    // 1. Handle prerequisites list and URL
+    const prereq =
+      courseNode.data.parentIds.length > 0 &&
+      courseNode.data.parentIds[0] != "level100"
+        ? getPrereqHerfElement()
+        : "No prerequisite";
+
+    function getPrereqHerfElement() {
+      var prereqList = ``;
+      courseNode.data.parentIds.forEach(function (parentCourse) {
+        prereqList += `<a href="${directToCoursePage(
+          parentCourse
+        )}">${parentCourse}&ensp;</a>`; //add space: &ensp;
+      });
+      return prereqList;
+    }
+    //***************************/
+
+    // 2. Specific Prereq, basically pure text
+    const specificPrereq =
+      courseNode.data.specificPrereq === ""
+        ? "No other requirements"
+        : courseNode.data.specificPrereq.replace(/['"]+/g, ""); // remove quotation mark from the specific requirenment
+
+    // 3. Deal with the "ofs"
+    const otherPrereq =
+      courseNode.data.parentIdsComplex.length > 0
+        ? `<label>Multi-choice prerequisites: </label>
+        ${getOtherPrereqHerfElement()}
+        `
+        : `<label>Multi-choice prerequisites: </label> No multi-choice prerequisites <br>`;
+
+    function getOtherPrereqHerfElement() {
+      var otherPrereqList = ``;
+      courseNode.data.parentIdsComplex.forEach(function (theOf) {
+        otherPrereqList += `<li>${Object.keys(theOf)[0].replace(
+          "of",
+          " of"
+        )}: `; // The "XOf", add space between number and 'of'
+        Object.values(theOf).forEach(function (courseArr) {
+          courseArr.forEach(function (course) {
+            // Each course in the "Of"
+            otherPrereqList += `<a href="${directToCoursePage(
+              course //TODO:Deal with non course code
+            )}">${course}&ensp;</a>`;
+          });
+          otherPrereqList += `</li>`;
+        });
+      });
+      var otherPrereqListWithNotes =
+        otherPrereqList +
+        `<li style="font-weight:200; font-style:italic; font-size:90%;">(*For course with no spcified code, click them to view all the possible courses.)<li/>`;
+      return otherPrereqList.includes("xx")
+        ? otherPrereqListWithNotes
+        : otherPrereqList;
+    }
+    //***************************/
+
+    // 4. Actual Course detail body //
+    cardBody.html(() => {
+      const school = courseNode.data.school;
+      var schoolName;
+      switch (school) {
+        case "ECS":
+          schoolName = "School of Engineering and Computer Science";
+          break;
+        case "SMS":
+          schoolName = "School of Mathematics and Statistics";
+          break;
+        case "SIM":
+          schoolName = "School of Information Management";
+          break;
+        case "SCPS":
+          schoolName = "School of Chemical & Physical Sciences";
+          break;
+        case "SEF":
+          schoolName = "School of Economics & Finance";
+          break;
+        case "SDI":
+          schoolName = "School of Design Innovation";
+          break;
+      }
+
+      return `
+      <a href="${directToCoursePage(
+        courseNode.id
+      )}" style="font-size: larger;">${
+        courseNode.data.courseTitle
+      }</a> <text style="font-size: small;font-style:italic; "> &nbsp;&nbsp;</text>
+      <hr style="width:90%;text-align:left;margin-left:0;height:0.5px;border-width:0;color:black;background-color:black;opacity:80%">
+      <label>No choice prerequisites: </label>
+      ${prereq}
+      <br>
+      ${otherPrereq}
+      <label>Other requirements:  </label>
+      <span style="font-style: normal; color:black;">${specificPrereq}</span>
+      <br>
+      <label>Trimester: </label>
+      ${courseNode.data.trimester}<br>
+      <label>School: </label>
+      <a href="https://www.wgtn.ac.nz/${courseNode.data.school.toLowerCase()}">${schoolName}</a>
+      
+      <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course outline page for more comprehensive details<li/>
+      `; // TODO: add url
+    });
+
+    // OPTIONAL
+    // 5. Set 2 panels at same highght level
+    // var filterHeight = $("#filterCardContent").height();
+    // var infoHeight = $("#courseInfoCardContent").height();
+    // infoHeight > filterHeight
+    //   ? (document.getElementById("filterCardContent").style.height =
+    //       infoHeight + 10 + "px")
+    //   : (document.getElementById("filterCardContent").style.height = "100%");
 
     function directToCoursePage(courseNodeId) {
       // Here we have the course node element id
@@ -637,15 +646,6 @@ export default function () {
         code.charAt(0) +
         "%20&tab=courses";
       return codeRegex.test(code) ? courseOutlinePage : VUWcourseFinder;
-    }
-
-    clearHighlightedOnClicked();
-
-    function clearHighlightedOnClicked() {
-      // Click outside of a node within the canvas to the hide highlighted elements
-      d3.selectAll(".layerRect,.highlighted").on("click", () => {
-        unclassifyHighlightedAndUnhighlightThem();
-      });
     }
   }
 
@@ -695,7 +695,7 @@ export default function () {
     // Actual zoom
     const zoom = d3
       .zoom()
-      .scaleExtent([1, 4]) //SETTING ZOOMING RANGE LIMIT
+      .scaleExtent([1, 5]) //SETTING ZOOMING RANGE LIMIT
       // 4. translateExtent([[x0, y0], [x1, y1]]), where [x0, y0] is the top-left corner of the world
       // and [x1, y1] is the bottom-right corner of the world
       .translateExtent([worldTopLeft, worldBottomRight])
@@ -772,19 +772,30 @@ export default function () {
 
     // SEARCH UPDATE
     function searchUpdate() {
-      // Clean every courseEdge & courseNode highlight first
-      unclassifyHighlightedAndUnhighlightThem();
+      unclassifyHighlightedAndUnhighlightThem(); // Clean every courseEdge & courseNode highlight first
 
-      var keywords = document.querySelector("#searchInput").value; //get user input as [object HTMLInputElement]
-      // Split the keywords by Space or Comma using
-      var keywordArray = keywords.split(/[, ]+/);
+      var keywords = document.querySelector("#searchInput").value; // Get user input as [object HTMLInputElement]
+      var keywordArray = keywords.split(/[, ]+/); // Split the keywords by Space or Comma using
 
       if (keywordArray[0] != "") {
-        // Remove validation on new search query
-        $(".searchValidation").remove();
         showSearchCourses(keywordArray);
+        // If there is a full course code, display the course info
+        displayCourseInfo(keywordArray);
       } else {
         validationMessage();
+      }
+
+      // If there is a full course code, display the course info
+      function displayCourseInfo(keywordArray) {
+        const courseCodeRegex = /^[A-Z]{4}[0-9]{3}/;
+        const courseCode = keywordArray[0].toUpperCase();
+        if (keywordArray.length >= 1 && courseCodeRegex.test(courseCode)) {
+          //Find the actual course node object
+          const courseNode = d3
+            .selectAll(".courseNode")
+            .filter("#" + courseCode + "Node")._groups[0][0].__data__;
+          showCourseInfoPanel(courseNode);
+        }
       }
 
       // Validation for empty string, if search validation not exists then display it
@@ -801,6 +812,9 @@ export default function () {
 
       // Fade out unrelated nodes and path
       function showSearchCourses(keywordArray) {
+        // Remove validation on new search query
+        $(".searchValidation").remove();
+
         var relatedCoursesList = [];
         var unRelatedCoursesList = [];
 
@@ -857,7 +871,8 @@ export default function () {
           });
         }
       }
-      ////
+
+      //END
     }
   }
 }
