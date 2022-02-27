@@ -100,7 +100,7 @@ form label {
 
 /* Footnote */
 #footnote {
-  font-weight: lighter;
+  font-weight: 300;
   font-style: italic;
   font-size: medium;
   color: grey;
@@ -160,12 +160,21 @@ form label {
 }
 
 .notes {
-  width: 48%;
-  font-weight: lighter;
+  width: 98%;
+  font-weight: 300;
   font-style: italic;
   font-size: small;
   padding-left: 2%;
   color: grey;
+}
+
+.searchValidation {
+  width: 98%;
+  font-weight: 300;
+  font-style: italic;
+  font-size: small;
+  padding-left: 2%;
+  color: red;
 }
 
 #checkboxContainer,

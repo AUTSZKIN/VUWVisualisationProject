@@ -29,7 +29,7 @@ export default function () {
     drawDotPath(dag);
     zoomPan();
     drawTooltipAndCourseInfoPanel();
-    filterSearch();
+    filterSearch(dag);
 
     // Element stacking context will display in order of appearance, so manually move nodes to above dot pathss
     d3.select(".nodesContainer").raise();
@@ -176,7 +176,7 @@ export default function () {
   }
 
   function drawNodes(dag) {
-    var schoolList = [];
+    // var schoolList = [];
 
     // Draw nodes
     const courseNodes = d3
@@ -193,12 +193,12 @@ export default function () {
       })
       .attr("id", (courseNode) => {
         /** FIND DISTINCT SCHOOL*/
-        schoolList.push(courseNode.data.school);
+        // schoolList.push(courseNode.data.school);
 
         return courseNode.data.id + "Node";
       });
-    var schoolSet = [...new Set(schoolList)];
-    console.log(schoolSet);
+    // var schoolSet = [...new Set(schoolList)];
+    // console.log(schoolSet);
 
     // Draw node rectangle
     const nodeW = 95,
@@ -247,7 +247,6 @@ export default function () {
       .style("transform", "translate(35px, -14px)");
 
     function courseCodeProcessing(courseNode) {
-      // console.log(courseNode);
       const parentIdsComplex = courseNode.data.parentIdsComplex;
       const specificPrereq = courseNode.data.specificPrereq;
       if (parentIdsComplex.length == 0 && specificPrereq == "") {
@@ -566,6 +565,29 @@ export default function () {
 
       // 4. Actual Course detail body //
       cardBody.html(() => {
+        const school = courseNode.data.school;
+        var schoolName;
+        switch (school) {
+          case "ECS":
+            schoolName = "School of Engineering and Computer Science";
+            break;
+          case "SMS":
+            schoolName = "School of Mathematics and Statistics";
+            break;
+          case "SIM":
+            schoolName = "School of Information Management";
+            break;
+          case "SCPS":
+            schoolName = "School of Chemical & Physical Sciences";
+            break;
+          case "SEF":
+            schoolName = "School of Economics & Finance";
+            break;
+          case "SDI":
+            schoolName = "School of Design Innovation";
+            break;
+        }
+
         return `
         <a href="${directToCoursePage(
           courseNode.id
@@ -583,9 +605,7 @@ export default function () {
         <label>Trimester: </label>
         ${courseNode.data.trimester}<br>
         <label>School: </label>
-        <a href="https://www.wgtn.ac.nz/${courseNode.data.school.toLowerCase()}">${
-          courseNode.data.school
-        }</a>
+        <a href="https://www.wgtn.ac.nz/${courseNode.data.school.toLowerCase()}">${schoolName}</a>
         
         <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course outline page for more comprehensive details<li/>
         `; // TODO: add url
@@ -720,17 +740,14 @@ export default function () {
     }
   }
 
-  function filterSearch() {
+  function filterSearch(dag) {
     // SCHOOL Filter
     const schoolPicker = d3.select(".selectpicker");
     schoolPicker.on("change", schoolUpdate);
 
     // Search Filter
     const searchButton = d3.select("#searchButton");
-    searchButton.on("click", function () {
-      let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
-      searchUpdate(searchInput.value);
-    });
+    searchButton.on("click", searchUpdate);
 
     // SCHOOL UPDATE
     function schoolUpdate() {
@@ -742,7 +759,6 @@ export default function () {
       const schoolCode = schoolName.substr(0, schoolName.indexOf(" -"));
       // Select school other than 'All'
       if (schoolCode != "All") {
-        // console.log(schoolCode);
         // Fade out unrelated nodes and path
         $(".courseNode:not(." + schoolCode + ")").css("opacity", "0.33");
         $(".courseEdge:not(." + schoolCode + ")").css("opacity", "0.33");
@@ -753,8 +769,81 @@ export default function () {
     }
 
     // SEARCH UPDATE
-    function searchUpdate(keywords) {
-      console.log("Searching String:" + keywords);
+    function searchUpdate() {
+      // Clean every courseEdge & courseNode highlight first
+      unclassifyHighlightedAndUnhighlightThem();
+
+      var keywords = document.querySelector("#searchInput").value; //get user input as [object HTMLInputElement]
+      // Split the keywords by Space or Comma using
+      var keywordArray = keywords.split(/[, ]+/);
+
+      if (keywordArray[0] != "") {
+        showSearchCourses(keywordArray);
+      } else {
+        validationMessage();
+      }
+
+      // Validation for empty string, if search validation not exists then display it
+      function validationMessage() {
+        if ($(".searchValidation").length == 0) {
+          const searchValidation = d3
+            .select(".searchContainer")
+            .append("div")
+            .attr("class", "searchValidation")
+            .text(
+              "Please type in the course(s) or discipline(s) you want to search."
+            );
+        }
+      }
+
+      // Fade out unrelated nodes and path
+      function showSearchCourses(keywordArray) {
+        var relatedCoursesList = [];
+        var unRelatedCoursesList = [];
+
+        // 1.FIND ALL RELATED COURSE
+        keywordArray.forEach((keyword) => {
+          // Go through data without manipulation
+          d3.select("dummy")
+            .data(dag.descendants())
+            .enter()
+            .append("null")
+            .attr("null", (courseData, i) => {
+              // Add related course to the list
+              if (
+                courseData.id.toUpperCase().startsWith(keyword.toUpperCase())
+              ) {
+                relatedCoursesList.push(courseData.id);
+              }
+            })
+            .remove();
+        });
+
+        // 2.FIND ALL UNREALTED COURSES
+        d3.select("dummy")
+          .data(dag.descendants())
+          .enter()
+          .append("null")
+          .attr("null", (courseData, i) => {
+            const courseCode = courseData.id;
+            //If course not in related list, add it unrelated list
+            if (!relatedCoursesList.includes(courseCode)) {
+              unRelatedCoursesList.push(courseCode);
+            }
+          })
+          .remove();
+
+        // 3.FADE OUT ALL UNRELATED COURSE
+        unRelatedCoursesList.forEach((courseCode) => {
+          var courseNodeId = "#" + courseCode + "Node";
+          var courseEdgeClass = "." + courseCode;
+          //Fade out unrelated nodes
+          $(courseNodeId).css("opacity", "0.33");
+          //Fade out unrelated edges
+          $(courseEdgeClass).css("opacity", "0.33");
+        });
+      }
+      ////
     }
   }
 }

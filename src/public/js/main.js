@@ -95,10 +95,7 @@ function drawFilter() {
     { id: "SEF - School of Economics & Finance" },
     { id: "SDI - School of Design Innovation" },
   ];
-  schoolContainer
-    .append("label")
-    .attr("class", "paneltext")
-    .text("Select school");
+  schoolContainer.append("label").attr("class", "paneltext").text("School");
 
   const schoolPicker = schoolContainer
     .append("select")
@@ -115,10 +112,7 @@ function drawFilter() {
   var searchContainer = cardBody //TODO: Fix search not working in cardBody
     .append("div")
     .attr("class", "searchContainer form-group");
-  searchContainer
-    .append("label")
-    .attr("class", "paneltext")
-    .text("Disciplines*");
+  searchContainer.append("label").attr("class", "paneltext").text("Course(s)");
   searchContainer
     .append("input")
     .attr("type", "string")
@@ -132,10 +126,10 @@ function drawFilter() {
   /** NOTES */
   cardBody
     .append("div")
-    .attr("class", "form-group notes")
+    .attr("class", "notes")
     .text(
       `*If options on faculty or school are selected this will show additional disciplines. 
-        If not this acts as a filter. (example: COMP, MATH, PHYS)`
+        If not this acts as a filter. (e.g. CYBR471, COMP1, MATH,)`
     );
 }
 
