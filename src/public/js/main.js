@@ -88,8 +88,12 @@ function drawFilter() {
   const schoolContainer = cardBody.append("div").attr("class", "form-group");
   const schoolData = [
     { id: "" }, //(placeholder)
-    { id: "ECS" },
-    { id: "SMS" },
+    { id: "ECS - School of Engineering and Computer Science" },
+    { id: "SMS - School of Mathematics and Statistics" },
+    { id: "SIM - School of Information Management" },
+    { id: "SCPS - School of Chemical & Physical Sciences" },
+    { id: "SEF - School of Economics & Finance" },
+    { id: "SDI - School of Design Innovation" },
   ];
   schoolContainer
     .append("label")
@@ -107,9 +111,6 @@ function drawFilter() {
     .append("option")
     .text((school) => school.id); // All listed School
 
-  // SCHOOL UPDATE
-  // schoolPicker.on("change", schoolChanged);
-
   /** COURSE SEARCH */
   var searchContainer = cardBody //TODO: Fix search not working in cardBody
     .append("div")
@@ -125,12 +126,8 @@ function drawFilter() {
   searchContainer
     .append("button")
     .attr("type", "button") //this fixes button auto-refresh console
+    .attr("id", "searchButton")
     .text("Search");
-  // SEARCH UPDATE
-  // searchContainer.on("click", function () {
-  //   let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
-  //   searchCourse(searchInput.value);
-  // });
 
   /** NOTES */
   cardBody
@@ -141,25 +138,6 @@ function drawFilter() {
         If not this acts as a filter. (example: COMP, MATH, PHYS)`
     );
 }
-
-// function searchCourse(str) {
-//   console.log("Searching String:" + str);
-// }
-
-// function schoolChanged() {
-//   // TODO: Clean every courseEdge & courseNode highlight first
-//   // d3.selectAll(".courseEdge,.courseNode")
-//   //   .transition()
-//   //   .attr("style", default_node_edge_strokeStyle);
-
-//   const selectedSchool = $(this).val();
-//   d3.selectAll("." + selectedSchool).style("opacity", 0.25);
-
-//   // FIXME: Don't highlight them, but fade(invisiable) the others
-//   // d3.selectAll("." + selectedSchool + ">.nodeRect") // Select all the .nodeRect in class #[selectedSchool], to prevent highlight text elemnt
-//   //   .transition()
-//   //   .attr("style", node_edge_highlightStyle);
-// }
 
 function drawCourseInfoField(s) {
   const cardsContainer = d3.select("#cardsContainer");

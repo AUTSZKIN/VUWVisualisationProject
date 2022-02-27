@@ -1954,7 +1954,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "SEF",
+    "school": "-",
     "availability": "y",
     "trimester": "1,2,3",
     "layer": 1
@@ -1965,7 +1965,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "SDI",
+    "school": "The School of Design Innovation",
     "availability": "y",
     "trimester": "2,3",
     "layer": 2
@@ -1987,7 +1987,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "\"ECON 130, QUAN 102 (or STAT 193); QUAN 111 or (MATH 141/142, 151);\"",
-    "school": "SEF",
+    "school": "The School of Economics & Finance",
     "availability": "y",
     "trimester": "2",
     "layer": 4
@@ -1998,7 +1998,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "\"as for PHYS114\"",
-    "school": "SCPS",
+    "school": "The School of Chemical & Physical Sciences",
     "availability": "y",
     "trimester": "2",
     "layer": 2
@@ -2009,7 +2009,7 @@
     "parentIds": ["MATH141", "MATH151"],
     "parentIdsComplex": [],
     "specificPrereq": "\"MATH 142 is also required; Note: QUAN111 is also provided in Trimester 1\"",
-    "school": "SEF",
+    "school": "The School of Economics & Finance",
     "availability": "y",
     "trimester": "2,1",
     "layer": 2
@@ -2020,7 +2020,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "SMS",
+    "school": "-",
     "availability": "n",
     "trimester": "1",
     "layer": 3
@@ -2031,7 +2031,7 @@
     "parentIds": ["level100"],
     "parentIdsComplex": [],
     "specificPrereq": "",
-    "school": "SIM",
+    "school": "The School of Information Management",
     "availability": "y",
     "trimester": "1,2",
     "layer": 1

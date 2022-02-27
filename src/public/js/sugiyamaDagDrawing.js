@@ -176,6 +176,8 @@ export default function () {
   }
 
   function drawNodes(dag) {
+    var schoolList = [];
+
     // Draw nodes
     const courseNodes = d3
       .select("#mainSVG")
@@ -190,8 +192,13 @@ export default function () {
         return "courseNode " + courseNode.data.school; // Also assign the school as class
       })
       .attr("id", (courseNode) => {
+        /** FIND DISTINCT SCHOOL*/
+        schoolList.push(courseNode.data.school);
+
         return courseNode.data.id + "Node";
       });
+    var schoolSet = [...new Set(schoolList)];
+    console.log(schoolSet);
 
     // Draw node rectangle
     const nodeW = 95,
@@ -576,9 +583,10 @@ export default function () {
         <label>Trimester: </label>
         ${courseNode.data.trimester}<br>
         <label>School: </label>
-        <a href="https://${courseNode.data.school}.wgtn.ac.nz/Main/">${
+        <a href="https://www.wgtn.ac.nz/${courseNode.data.school.toLowerCase()}">${
           courseNode.data.school
         }</a>
+        
         <li style="font-weight:180; font-style:italic; font-size:90%;">*Please view the course outline page for more comprehensive details<li/>
         `; // TODO: add url
       });
@@ -642,7 +650,7 @@ export default function () {
     }
 
     // Filter and Search involved
-    // $("g").children().css("opacity", "1"); // Reset all elements in mainSVG to unfaded state
+    $("g").children().css("opacity", "1"); // Reset all elements in mainSVG to unfaded state
   }
 
   function zoomPan() {
@@ -714,36 +722,30 @@ export default function () {
 
   function filterSearch() {
     // SCHOOL Filter
-    const schoolPicker1 = d3.select(".selectpicker");
-    schoolPicker1.on("change", schoolUpdate);
+    const schoolPicker = d3.select(".selectpicker");
+    schoolPicker.on("change", schoolUpdate);
 
     // Search Filter
-    const searchContainer = d3.select(".searchContainer");
-    searchContainer.on("click", function () {
+    const searchButton = d3.select("#searchButton");
+    searchButton.on("click", function () {
       let searchInput = document.querySelector("#searchInput"); //get user input as [object HTMLInputElement]
       searchUpdate(searchInput.value);
     });
 
     // SCHOOL UPDATE
     function schoolUpdate() {
-      // TODO: Clean every courseEdge & courseNode highlight first
+      // Clean every courseEdge & courseNode highlight first
       unclassifyHighlightedAndUnhighlightThem();
-      // d3.selectAll(".courseEdge,.courseNode")
-      //   .transition()
-      //   .attr("style", default_node_edge_strokeStyle);
 
-      // FIXME: Don't highlight them, but fade(invisiable) the others
-      // d3.selectAll("." + selectedSchool + ">.nodeRect") // Select all the .nodeRect in class #[selectedSchool], to prevent highlight text elemnt
-      //   .transition()
-      //   .attr("style", node_edge_highlightStyle);
-
-      const selectedSchool = $(this).val();
-      if (selectedSchool != "All") {
-        console.log(selectedSchool);
-        // d3.selectAll("." + selectedSchool).style("opacity", 0.25);
+      // Select the school code only (e.g. "SDI - School of Design Innovation")
+      const schoolName = $(this).val();
+      const schoolCode = schoolName.substr(0, schoolName.indexOf(" -"));
+      // Select school other than 'All'
+      if (schoolCode != "All") {
+        // console.log(schoolCode);
         // Fade out unrelated nodes and path
-        $(".courseNode:not(." + selectedSchool + ")").css("opacity", "0.33");
-        $(".courseEdge:not(." + selectedSchool + ")").css("opacity", "0.33");
+        $(".courseNode:not(." + schoolCode + ")").css("opacity", "0.33");
+        $(".courseEdge:not(." + schoolCode + ")").css("opacity", "0.33");
       } else {
         // if select 'All'
         $("g").children().css("opacity", "1"); // Reset all elements in mainSVG to unfaded state

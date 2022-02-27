@@ -1085,13 +1085,13 @@ T -
 QUAN102
 Statistics for Business
 P
-S -
+S SEF
 T 1,2,3
 
 DSDN142
 Creative Coding I / Waehere ā-Auaha I
 P 
-S The School of Design Innovation
+S SDI
 T 2,3
 
 SWEN222
@@ -1103,13 +1103,13 @@ T 2
 QUAN203
 Quantitative Methods for Economics and Finance
 P "ECON 130, QUAN 102 (or STAT 193); QUAN 111 or (MATH 141/142, 151);"
-S The School of Economics & Finance
+S SEF
 T 2
 
 PHYS115
 Physics 1B
 P "as for PHYS114"
-S The School of Chemical & Physical Sciences
+S SCPS
 T 2
 
 QUAN111
@@ -1117,17 +1117,17 @@ Mathematics for Economics and Finance
 P MATH141
 P MATH151
 P "MATH 142 is also required; Note: QUAN111 is also provided in Trimester 1"
-S The School of Economics & Finance
+S SEF
 T 2,1
 
 STAT232
 N/A
 P 
-S -
+S SMS
 T -
 
 INFO151
 Databases
 P 
-S The School of Information Management
+S SIM
 T 1,2

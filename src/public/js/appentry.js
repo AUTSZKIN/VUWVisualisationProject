@@ -44,7 +44,7 @@ function drawLocalData() {
 // fetch(localDateUrl).then((response) => {
 //   response.text().then((data) => {
 //     // PRINT THE PARSED DATA
-//     // var courseJsonArray = rawCourseDataToJsonArray(data);
-//     // console.log(JSON.stringify(courseJsonArray));
+//     var courseJsonArray = rawCourseDataToJsonArray(data);
+//     console.log(JSON.stringify(courseJsonArray));
 //   });
 // });
