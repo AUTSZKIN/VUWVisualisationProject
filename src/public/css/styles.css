@@ -86,7 +86,10 @@ form label {
 }
 
 #footnoteAndZoomContainer {
-  margin-bottom: -0.1%;
+  /* margin-bottom: -0.1%;
+  margin-top: -2.5%; */
+  margin-bottom: 1px;
+  margin-top: -42px;
 }
 
 /* SVG */
@@ -109,6 +112,38 @@ form label {
   padding-right: 5%;
   padding-bottom: 1%;
   order: 0;
+}
+
+.searchGuide {
+  /* padding-bottom: 2%; */
+  /* color: rgb(7, 0, 104); */
+  font-weight: 400;
+  font-size: 15px;
+  padding-bottom: 20px;
+}
+
+.footnoteHeader {
+  color: rgb(41, 41, 41);
+  font-weight: 500;
+  padding-bottom: 3px;
+}
+
+.footnoteTextInstrc {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: medium;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.footnoteText1 {
+  /* padding-bottom: 1%; */
+  font-style: normal;
+  font-size: larger;
+  font-weight: 400;
+  color: darkcyan;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #footnote > text {
@@ -138,9 +173,10 @@ form label {
 
 .paneltext {
   font-weight: bold;
-  font-size: medium;
-  padding-right: 2%;
-  padding-left: 2%;
+  font-size: larger;
+  padding-right: 1%;
+  padding-left: 1%;
+  padding-top: 2%;
 }
 
 .selectpicker {
@@ -148,6 +184,8 @@ form label {
   font-weight: normal;
   font-size: small;
   width: auto;
+  padding-right: 2%;
+  padding-left: 2%;
 }
 
 .searchContainer {
@@ -159,12 +197,16 @@ form label {
   padding: 1%;
 }
 
+#searchButton {
+  margin-left: 1%;
+}
+
 .notes {
   width: 98%;
   font-weight: 300;
   font-style: italic;
   font-size: small;
-  padding-left: 2%;
+  padding-left: 1%;
   color: grey;
 }
 
@@ -255,6 +297,7 @@ form label {
 
 #cardBody {
   min-height: 320px;
+  /* min-height: 100%; */
 }
 
 /* Course info card body */
@@ -289,4 +332,39 @@ line {
   stroke: rgb(255, 255, 255);
   stroke-width: 1;
   stroke-linecap: square;
+}
+
+/* User Guide */
+.userguideTooltip {
+  position: relative;
+  /* display: inline-block; */
+  /* border-bottom: 1px dotted black; */
+  cursor: pointer;
+  color: rgb(64, 136, 187);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 22px;
+  margin-top: 58px;
+}
+
+.userguideTooltip .userguideTooltipContent {
+  visibility: hidden;
+  font-size: small;
+  background-color: rgb(233, 241, 223);
+  color: black;
+  border-style: solid;
+  border-width: 0.1px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  text-align: left;
+  opacity: 0.95;
+  position: absolute;
+  z-index: 1;
+  padding-left: 10px;
+}
+
+.userguideTooltip.active .userguideTooltipContent {
+  visibility: visible;
 }

@@ -663,9 +663,9 @@ export default function () {
 
     setDefaultCourseInfoBody();
     function setDefaultCourseInfoBody() {
-      d3.select("#courseInfoHeader").html(`<h5>Course Info:<h5/>`);
+      d3.select("#courseInfoHeader").html(`<h5>Course Information<h5/>`);
       d3.select("#courseInfoCardBody").html(
-        `<h4><i style="font-weight:250"> Click a course node to view more the course detail.<i/><h4/>`
+        `<h4><i style="font-weight:250"> Click a course node to view more the course detail<i/><h4/>`
       );
     }
 
@@ -753,6 +753,8 @@ export default function () {
     function schoolUpdate() {
       // Clean every courseEdge & courseNode highlight first
       unclassifyHighlightedAndUnhighlightThem();
+      // Remove validation on new search query
+      $(".searchValidation").remove();
 
       // Select the school code only (e.g. "SDI - School of Design Innovation")
       const schoolName = $(this).val();
@@ -778,6 +780,8 @@ export default function () {
       var keywordArray = keywords.split(/[, ]+/);
 
       if (keywordArray[0] != "") {
+        // Remove validation on new search query
+        $(".searchValidation").remove();
         showSearchCourses(keywordArray);
       } else {
         validationMessage();
@@ -786,8 +790,7 @@ export default function () {
       // Validation for empty string, if search validation not exists then display it
       function validationMessage() {
         if ($(".searchValidation").length == 0) {
-          const searchValidation = d3
-            .select(".searchContainer")
+          d3.select(".searchContainer")
             .append("div")
             .attr("class", "searchValidation")
             .text(
@@ -819,29 +822,40 @@ export default function () {
             .remove();
         });
 
-        // 2.FIND ALL UNREALTED COURSES
-        d3.select("dummy")
-          .data(dag.descendants())
-          .enter()
-          .append("null")
-          .attr("null", (courseData, i) => {
-            const courseCode = courseData.id;
-            //If course not in related list, add it unrelated list
-            if (!relatedCoursesList.includes(courseCode)) {
-              unRelatedCoursesList.push(courseCode);
-            }
-          })
-          .remove();
+        if (relatedCoursesList.length == 0) {
+          if ($(".searchValidation").length == 0) {
+            d3.select(".searchContainer")
+              .append("div")
+              .attr("class", "searchValidation")
+              .text("No result found");
+          }
+        } else {
+          // Remove validation when course(s) found
+          $(".searchValidation").remove();
+          // 2.FIND ALL UNREALTED COURSES
+          d3.select("dummy")
+            .data(dag.descendants())
+            .enter()
+            .append("null")
+            .attr("null", (courseData, i) => {
+              const courseCode = courseData.id;
+              //If course not in related list, add it unrelated list
+              if (!relatedCoursesList.includes(courseCode)) {
+                unRelatedCoursesList.push(courseCode);
+              }
+            })
+            .remove();
 
-        // 3.FADE OUT ALL UNRELATED COURSE
-        unRelatedCoursesList.forEach((courseCode) => {
-          var courseNodeId = "#" + courseCode + "Node";
-          var courseEdgeClass = "." + courseCode;
-          //Fade out unrelated nodes
-          $(courseNodeId).css("opacity", "0.33");
-          //Fade out unrelated edges
-          $(courseEdgeClass).css("opacity", "0.33");
-        });
+          // 3.FADE OUT ALL UNRELATED COURSE
+          unRelatedCoursesList.forEach((courseCode) => {
+            var courseNodeId = "#" + courseCode + "Node";
+            var courseEdgeClass = "." + courseCode;
+            //Fade out unrelated nodes
+            $(courseNodeId).css("opacity", "0.33");
+            //Fade out unrelated edges
+            $(courseEdgeClass).css("opacity", "0.33");
+          });
+        }
       }
       ////
     }

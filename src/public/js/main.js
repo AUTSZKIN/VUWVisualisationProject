@@ -78,14 +78,16 @@ function drawFilter() {
     .attr("class", "card")
     .attr("id", "filterCardContent");
   const cardHeading = formCard.append("div").attr("class", "card-header");
-  cardHeading.append("h5").text("Filter and display options");
+  cardHeading.append("h5").text("School and Course Filter");
   const cardBody = formCard
     .append("div")
     .attr("class", "card-body")
     .attr("id", "cardBody");
 
   /** SCHOOL SELECTION */
-  const schoolContainer = cardBody.append("div").attr("class", "form-group");
+  const schoolContainer = cardBody
+    .append("div")
+    .attr("class", "schoolSelectorContainer form-group");
   const schoolData = [
     { id: "" }, //(placeholder)
     { id: "ECS - School of Engineering and Computer Science" },
@@ -95,7 +97,7 @@ function drawFilter() {
     { id: "SEF - School of Economics & Finance" },
     { id: "SDI - School of Design Innovation" },
   ];
-  schoolContainer.append("label").attr("class", "paneltext").text("School");
+  schoolContainer.append("label").attr("class", "paneltext").text("School:");
 
   const schoolPicker = schoolContainer
     .append("select")
@@ -112,7 +114,7 @@ function drawFilter() {
   var searchContainer = cardBody //TODO: Fix search not working in cardBody
     .append("div")
     .attr("class", "searchContainer form-group");
-  searchContainer.append("label").attr("class", "paneltext").text("Course(s)");
+  searchContainer.append("label").attr("class", "paneltext").text("Course(s):");
   searchContainer
     .append("input")
     .attr("type", "string")
@@ -124,13 +126,45 @@ function drawFilter() {
     .text("Search");
 
   /** NOTES */
+  // cardBody
+  //   .append("div")
+  //   .attr("class", "notes")
+  //   .html(
+  //     "<div class='searchGuide'>Type in any course(s) or/and discipline(s) interested, use space or comma to separate multiple query ( e.g.,  CYBR471 MATH1 STA or CYBR471,MATH1,STA )</div>" +
+  //       "<div class='footnoteHeader'> User guide: </div>" +
+  //       "<div class='footnoteText1'>* Hover on or click course node(s) to show and highlight its prerequisites, click blank area to clear the highlight</div>" +
+  //       "<div class='footnoteText1'>* L100 T2 = Level 100 Courses in Trimester 2</div>" +
+  //       '<div class="footnoteText1">* Courses in grey are not available at the moment. e.g.,  <img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/></div>' +
+  //       '<div class="footnoteText1">* Course with asterisk has specific requriement(s), see the course info panel. <br> e.g., <img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /></div>'
+  //   );
+
+  /** User Guides */
   cardBody
     .append("div")
     .attr("class", "notes")
-    .text(
-      `*If options on faculty or school are selected this will show additional disciplines. 
-        If not this acts as a filter. (e.g. CYBR471, COMP1, MATH,)`
+    .html(
+      "<div class='searchGuide'>Type in any course(s) or/and discipline(s) interested, use space or comma to separate multiple query ( e.g.,  CYBR471 MATH1 STA or CYBR471,MATH1,STA )</div>" +
+        '<div class="userguideTooltip"><i class="bi bi-question-circle-fill" style="font-size: normal"></i> User Guide' +
+        "<div class='userguideTooltipContent'>" +
+        "<div class='footnoteTextInstrc'>This is an interactive visualisation system aims to present students and interested parties with an overview of the VUW courses from different schools to help ﬁnd course prerequisite relationships and details.</div>" +
+        "<div class='footnoteText1'>* To zoom in/out on the visualisation use mouse wheel or the [+/-] buttons </div>" +
+        "<div class='footnoteText1'>* Hover or click on course node(s) to show and highlight its prerequisites, click [Clear] button or blank area to clear the highlighted elements </div>" +
+        "<div class='footnoteText1'>* Click [Reset] button to re-position the visualisation </div>" +
+        "<div class='footnoteText1'>* L100 T2 = Level 100 Courses in Trimester 2</div>" +
+        '<div class="footnoteText1">* Courses in grey are not available at the moment. e.g.,  <img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/></div>' +
+        '<div class="footnoteText1">* Course with asterisk has specific requriement(s), see the course info panel. <br> e.g., <img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /></div>' +
+        "</div>" +
+        "</div>"
     );
+
+  var tooltip = document.querySelector(".userguideTooltip");
+  tooltip.addEventListener("click", function () {
+    if (this.classList.contains("active")) {
+      this.classList.remove("active");
+    } else {
+      this.classList.add("active");
+    }
+  });
 }
 
 function drawCourseInfoField(s) {
@@ -152,7 +186,7 @@ function drawCourseInfoField(s) {
   // Card Heading:Course Code
   courseInfoCardHeading
     .append("h5")
-    .text("Course Info:")
+    .text("Course Information:")
     .attr("id", "courseInfoHeader");
 
   // Card Body: Course detail
@@ -164,7 +198,7 @@ function drawCourseInfoField(s) {
     .append("div")
     .attr("id", "courseInfoCardBody")
     .html(
-      `<h4><i style="font-weight:250 "> Click a course node to view more the course detail. <i/><h4/>`
+      `<h4><i style="font-weight:250 "> Click a course node to view more the course detail <i/><h4/>`
     );
 }
 
@@ -189,16 +223,16 @@ function drawSVG() {
   /** FOOTNOTES */
   d3.select("#svgDivContainer")
     .append("div")
-    .attr("id", "footnoteAndZoomContainer")
-    .append("div")
-    .attr("id", "footnote")
-    .html(
-      "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
-        "* Faded courses are not available at the moment. For example: </text>" +
-        '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/><br>' +
-        "<text>* Course with asterisk ( * ) has specific requriement, please see the course info panel. For example: </text>" +
-        '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /><br>'
-    );
+    .attr("id", "footnoteAndZoomContainer");
+  // .append("div")
+  // .attr("id", "footnote")
+  // .html(
+  //   "<text>* L100 T2 = Level 100 Courses in Trimester 2<br>" +
+  //     "* Faded courses are not available at the moment. For example: </text>" +
+  //     '<img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/><br>' +
+  //     "<text>* Course with asterisk ( * ) has specific requriement, please see the course info panel. For example: </text>" +
+  //     '<img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /><br>'
+  // );
   /** FOOTNOTES */
 
   drawLayer();
