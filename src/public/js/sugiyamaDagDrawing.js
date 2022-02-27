@@ -665,7 +665,7 @@ export default function () {
     function setDefaultCourseInfoBody() {
       d3.select("#courseInfoHeader").html(`<h5>Course Information<h5/>`);
       d3.select("#courseInfoCardBody").html(
-        `<h4><i style="font-weight:250"> Click a course node to view more the course detail<i/><h4/>`
+        `<h4><i style="font-weight:250"> Click a course node or search using course code to view more detail ( e.g., ENGR123 )<i/><h4/>`
       );
     }
 

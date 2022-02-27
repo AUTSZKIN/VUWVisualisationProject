@@ -187,7 +187,7 @@ function drawCourseInfoField(s) {
   // Card Heading:Course Code
   courseInfoCardHeading
     .append("h5")
-    .text("Course Information:")
+    .text("Course Information")
     .attr("id", "courseInfoHeader");
 
   // Card Body: Course detail
@@ -199,7 +199,7 @@ function drawCourseInfoField(s) {
     .append("div")
     .attr("id", "courseInfoCardBody")
     .html(
-      `<h4><i style="font-weight:250 "> Click a course node to view more the course detail <i/><h4/>`
+      `<h4><i style="font-weight:250"> Click a course node or search using course code to view more detail ( e.g., ENGR123 )<i/><h4/>`
     );
 }
 
