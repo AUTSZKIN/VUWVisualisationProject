@@ -296,7 +296,7 @@ form label {
 }
 
 #cardBody {
-  min-height: 320px;
+  min-height: 345px;
   /* min-height: 100%; */
 }
 
@@ -341,10 +341,14 @@ line {
   /* border-bottom: 1px dotted black; */
   cursor: pointer;
   color: rgb(64, 136, 187);
-  font-weight: bold;
+  font-weight: 300;
   font-style: italic;
-  font-size: 22px;
-  margin-top: 58px;
+  font-size: 20px;
+  /* width: fit-content; */
+
+  margin-top: 50px;
+  border-bottom: dotted;
+  border-bottom-style: inset;
 }
 
 .userguideTooltip .userguideTooltipContent {

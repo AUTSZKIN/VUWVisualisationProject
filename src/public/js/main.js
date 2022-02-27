@@ -144,11 +144,12 @@ function drawFilter() {
     .attr("class", "notes")
     .html(
       "<div class='searchGuide'>Type in any course(s) or/and discipline(s) interested, use space or comma to separate multiple query ( e.g.,  CYBR471 MATH1 STA or CYBR471,MATH1,STA )</div>" +
-        '<div class="userguideTooltip"><i class="bi bi-question-circle-fill" style="font-size: normal"></i> User Guide' +
+        '<div class="userguideTooltip">  <i class="bi bi-question-circle-fill" style="font-size: normal"></i> About & Usage' +
         "<div class='userguideTooltipContent'>" +
         "<div class='footnoteTextInstrc'>This is an interactive visualisation system aims to present students and interested parties with an overview of the VUW courses from different schools to help ﬁnd course prerequisite relationships and details.</div>" +
-        "<div class='footnoteText1'>* To zoom in/out on the visualisation use mouse wheel or the [+/-] buttons </div>" +
-        "<div class='footnoteText1'>* Hover or click on course node(s) to show and highlight its prerequisites, click [Clear] button or blank area to clear the highlighted elements </div>" +
+        "<div class='footnoteText1'>* To zoom in/out on the visualisation use mouse wheel or the [-/+] buttons </div>" +
+        "<div class='footnoteText1'>* Hover or click on course node(s) to show and highlight its prerequisites, use [Clear] button or click blank area to clear the highlighted elements </div>" +
+        "<div class='footnoteText1'>* The Sloid lines indicate the No-choice prerequisite connection and the Dotted lines indicate the Multi-choice prerequisite connection.  </div>" +
         "<div class='footnoteText1'>* Click [Reset] button to re-position the visualisation </div>" +
         "<div class='footnoteText1'>* L100 T2 = Level 100 Courses in Trimester 2</div>" +
         '<div class="footnoteText1">* Courses in grey are not available at the moment. e.g.,  <img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/></div>' +
