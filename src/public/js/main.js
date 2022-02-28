@@ -153,7 +153,7 @@ function drawFilter() {
         "<div class='footnoteText1'>* Click [Reset] button to re-position the visualisation </div>" +
         "<div class='footnoteText1'>* L100 T2 = Level 100 Courses in Trimester 2</div>" +
         '<div class="footnoteText1">* Courses in grey are not available at the moment. e.g.,  <img id="fadedCourse" alt="fadedCourse" src="https://s2.loli.net/2022/01/17/dpin4xJosT3NUSa.png" width="43px" style="position: absolute;"/></div>' +
-        '<div class="footnoteText1">* Course with asterisk has specific requriement(s), see the course info panel. <br> e.g., <img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /></div>' +
+        '<div class="footnoteText1">* Course with asterisk has specific requriement(s), see the course info panel. e.g., <img id="courseWithAsterisk" alt="courseWithAsterisk" src="https://s2.loli.net/2022/01/17/1JUPrIMytF8HV4N.png" width="43px" /></div>' +
         "</div>" +
         "</div>"
     );
