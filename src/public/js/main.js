@@ -114,7 +114,10 @@ function drawFilter() {
   var searchContainer = cardBody //TODO: Fix search not working in cardBody
     .append("div")
     .attr("class", "searchContainer form-group");
-  searchContainer.append("label").attr("class", "paneltext").text("Course(s):");
+  searchContainer
+    .append("label")
+    .attr("class", "paneltext")
+    .text("Course/Discipline:");
   searchContainer
     .append("input")
     .attr("type", "string")
