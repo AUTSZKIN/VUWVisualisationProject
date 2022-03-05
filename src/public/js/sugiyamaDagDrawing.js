@@ -133,10 +133,12 @@ export default function () {
         // The translate string e.g. "translate(3594, 1388.8888)""
         const mainNodeTranslateString = d3
           .select("#" + courseId + "Node")
-          .attr("transform");
+          .attr("transform")
+          .replace("translate(", "")
+          .replace(")", "");
 
         // Turn string into : "['3594', '1388.8888']"
-        var matchesArray = mainNodeTranslateString.match(/\d+\.?\d+/g); // Note some value might not have decimal place hence "?" added
+        var matchesArray = mainNodeTranslateString.match(/\d+\.?\d+|[0-9]+/g); // Note some value might not have decimal place hence "?" added
         return {
           x: matchesArray[0],
           y: matchesArray[1],
